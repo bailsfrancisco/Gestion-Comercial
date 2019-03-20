@@ -1,8 +1,19 @@
 package ar.com.gestioncomercial.model;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "persona")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+        name = "tipo_persona",
+        discriminatorType = DiscriminatorType.STRING
+)
 public abstract class AbstractPersona extends AbstractEntity {
 
     private String nombre;
@@ -17,9 +28,21 @@ public abstract class AbstractPersona extends AbstractEntity {
 
     private String observaciones;
 
-    private Categoria categoria;
-
     private String celular;
+
+    public AbstractPersona() {
+
+    }
+
+    public AbstractPersona(String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.mail = mail;
+        this.direccion = direccion;
+        this.cuitCuil = cuitCuil;
+        this.observaciones = observaciones;
+        this.celular = celular;
+    }
 
     public String getNombre() {
         return nombre;
@@ -67,14 +90,6 @@ public abstract class AbstractPersona extends AbstractEntity {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
     }
 
     public String getCelular() {

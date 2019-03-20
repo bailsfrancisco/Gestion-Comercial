@@ -5,6 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
@@ -13,12 +14,32 @@ public abstract class AbstractEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private LocalDateTime fechaAlta;
+
+    private Long version;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public LocalDateTime getFechaAlta() {
+        return fechaAlta;
+    }
+
+    public void setFechaAlta(LocalDateTime fechaAlta) {
+        this.fechaAlta = fechaAlta;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     @Override
