@@ -3,6 +3,7 @@ package ar.com.gestioncomercial.model;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -25,19 +26,19 @@ public class Reparacion extends AbstractEntity {
 
     private Integer estadoReparacion;
 
-    @OneToOne(optional = false)
+    @OneToOne(cascade = CascadeType.ALL,optional = false)
     @JoinColumn(name = "tecnico_id")
     private AbstractPersona tecnico;
 
-    @OneToOne(optional = false)
+    @OneToOne(cascade = CascadeType.ALL,optional = false)
     @JoinColumn(name = "cotizacion_id")
     private Cotizacion cotizacion;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToOne(optional = false)
+    @OneToOne(cascade = CascadeType.ALL,optional = false)
     @JoinColumn(name = "solicitud_reparacion_id")
     private SolicitudReparacion solicitud_reparacion;
 

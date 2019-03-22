@@ -1,5 +1,6 @@
 package ar.com.gestioncomercial.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -9,11 +10,11 @@ import javax.persistence.ManyToOne;
 @DiscriminatorValue("proveedor_id")
 public class Proveedor extends AbstractPersona {
 
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL,optional = false)
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "producto_id")
     private Producto producto;
 

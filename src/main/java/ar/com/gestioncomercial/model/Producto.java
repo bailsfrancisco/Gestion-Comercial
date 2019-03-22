@@ -24,7 +24,7 @@ public class Producto extends AbstractEntity {
 
     private Integer stockActual;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL,optional = false)
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 

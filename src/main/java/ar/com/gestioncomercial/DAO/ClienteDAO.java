@@ -7,6 +7,8 @@ package ar.com.gestioncomercial.DAO;
 
 import ar.com.gestioncomercial.model.Cliente;
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 
 /**
  *

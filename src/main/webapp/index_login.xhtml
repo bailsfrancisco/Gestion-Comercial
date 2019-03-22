@@ -7,26 +7,26 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title>login</title>
+        <title>Ingresar</title>
     </h:head>
     <h:body class="body">
-        <div class="div">
+        <div class="content">
             <h:form>
                 <p:growl id="messages" autoUpdate="true"/>
-                <p:panelGrid id="panelGrid" class="panelGrid" columns="2" layout="grid">
+                <p:panelGrid id="panel_grid" class="panel_grid" columns="2" layout="grid">
                     <f:facet name="header">
-                        <h:outputText value="IngreseSusDatos"></h:outputText>
+                        <h:outputText value="Ingrese sus datos"></h:outputText>
                     </f:facet>
-                    <p:outputLabel for="@next" value="labelEmail"/>
-                    <p:inputText placeholder="Ingrese su email" id="email" required="true" validatorMessage="invalidEmail'">
+                    <p:outputLabel for="@next" value="E-mail"/>
+                    <p:inputText placeholder="Ingrese su email" id="email" value="#{sessionBacking.email}" required="true" validatorMessage="¡¡¡ Email incorrecto !!!">
                         <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                         <p:clientValidator />
                         <p:message for="email"/>
                     </p:inputText>
-                    <p:outputLabel value="labelPassword"></p:outputLabel>
-                    <p:password placeholder="Ingrese su contraseña"/>
+                    <p:outputLabel for="@next" value="Contraseña"></p:outputLabel>
+                    <p:password placeholder="Ingrese su contraseña" value="#{sessionBacking.password}" required="true"/>
                     <h:column/>
-                    <p:commandButton id="botonLogin" icon="ui-icon-key" value="botonIngresar" update="messages" />
+                    <p:commandButton id="boton_ingresar" icon="ui-icon-key" value="Ingresar" action="#{sessionBacking.login_admin()}" update="messages" />
                 </p:panelGrid>
             </h:form>
         </div>

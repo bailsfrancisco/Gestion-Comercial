@@ -11,10 +11,12 @@ import javax.persistence.Temporal;
 @Table(name = "cotizacion")
 public class Cotizacion extends AbstractEntity {
 
+    /*
     @ManyToOne
     @JoinColumn(name = "reparacion_id")
     private Reparacion reparacion;
-
+     */
+    private String descripcion_cotizacion;
     private Float precioTotal;
 
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -24,18 +26,27 @@ public class Cotizacion extends AbstractEntity {
 
     }
 
-    public Cotizacion(Reparacion reparacion, Float precioTotal, Date fechaVencimiento) {
-        this.reparacion = reparacion;
+    public Cotizacion(/*Reparacion reparacion*/String descripcion_cotizacion, Float precioTotal, Date fechaVencimiento) {
+        //this.reparacion = reparacion;
+        this.descripcion_cotizacion = descripcion_cotizacion;
         this.precioTotal = precioTotal;
         this.fechaVencimiento = fechaVencimiento;
     }
 
+    /*
     public Reparacion getReparacion() {
         return reparacion;
     }
 
     public void setReparacion(Reparacion reparacion) {
         this.reparacion = reparacion;
+    }*/
+    public String getDescripcion_cotizacion() {
+        return descripcion_cotizacion;
+    }
+
+    public void setDescripcion_cotizacion(String descripcion_cotizacion) {
+        this.descripcion_cotizacion = descripcion_cotizacion;
     }
 
     public Float getPrecioTotal() {
