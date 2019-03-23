@@ -5,8 +5,10 @@
  */
 package ar.com.gestioncomercial.DAO;
 
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Proveedor;
 import javax.ejb.Stateless;
+import java.util.List;
 
 /**
  *
@@ -17,6 +19,11 @@ public class ProveedorDAO extends AbstractDAO<Proveedor> {
 
     public ProveedorDAO() {
         super(Proveedor.class);
+    }
+
+    @Override
+    protected List<Proveedor> getAll() {
+        return null;
     }
 
 }

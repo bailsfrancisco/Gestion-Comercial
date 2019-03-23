@@ -7,6 +7,7 @@ package ar.com.gestioncomercial.DAO;
 
 import ar.com.gestioncomercial.model.AbstractPersona;
 import javax.ejb.Stateless;
+import java.util.List;
 
 /**
  *
@@ -19,4 +20,8 @@ public class AbstractPersonaDAO extends AbstractDAO<AbstractPersona> {
         super(AbstractPersona.class);
     }
 
+    @Override
+    protected List<AbstractPersona> getAll() {
+        return null;
+    }
 }

@@ -5,8 +5,10 @@
  */
 package ar.com.gestioncomercial.DAO;
 
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Categoria;
 import javax.ejb.Stateless;
+import java.util.List;
 
 /**
  *
@@ -17,6 +19,11 @@ public class CategoriaDAO extends AbstractDAO<Categoria> {
 
     public CategoriaDAO() {
         super(Categoria.class);
+    }
+
+    @Override
+    protected List<Categoria> getAll() {
+        return null;
     }
 
 }

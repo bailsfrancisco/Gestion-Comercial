@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/base.xhtml">
+
+    <ui:define name="menu" >
+        <f:view contentType="text/html">
+            <h:form>
+                <p:growl id="messages" autoUpdate="true"/>
+
+                    <p:menubar>
+                        <c:choose>
+                            <c:when test="#{sessionBacking.usuario.administrador}">
+
+                            </c:when>
+
+                            <c:otherwise>
+
+                            </c:otherwise>
+
+
+                        </c:choose>
+                        <p:submenu styleClass="nav-items" label="#{sessionBacking.usuario.nombre}" >
+                            <p:menuitem  value="Mis Reparaciones" action="#{sessionBacking.urlMap.getWELCOME()}"/>
+                            <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
+                        </p:submenu>
+
+                    </p:menubar>
+
+
+
+        <div id="content" class="content">
+            <ui:insert name="content"/>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom"/>
+        </div>
+            </h:form>
+        </f:view>
+    </ui:define>
+
+</ui:composition>

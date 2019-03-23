@@ -5,8 +5,10 @@
  */
 package ar.com.gestioncomercial.DAO;
 
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Cliente;
 import javax.ejb.Stateless;
+import java.util.List;
 
 /**
  *
@@ -17,6 +19,11 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
 
     public ClienteDAO() {
         super(Cliente.class);
+    }
+
+    @Override
+    protected List<Cliente> getAll() {
+        return null;
     }
 
 }

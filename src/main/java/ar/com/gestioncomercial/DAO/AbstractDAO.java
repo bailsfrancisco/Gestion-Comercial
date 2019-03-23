@@ -3,6 +3,7 @@ package ar.com.gestioncomercial.DAO;
 import javax.ejb.EJBException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 public abstract class AbstractDAO<T> {
 
@@ -30,4 +31,6 @@ public abstract class AbstractDAO<T> {
     public T find(Long id) {
         return em.find(typeParameter, id);
     }
+
+    protected abstract List<T> getAll();
 }

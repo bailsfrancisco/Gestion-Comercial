@@ -5,8 +5,10 @@
  */
 package ar.com.gestioncomercial.DAO;
 
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Reparacion;
 import javax.ejb.Stateless;
+import java.util.List;
 
 /**
  *
@@ -18,5 +20,11 @@ public class ReparacionDAO extends AbstractDAO<Reparacion> {
     public ReparacionDAO() {
         super(Reparacion.class);
     }
+
+    @Override
+    protected List<Reparacion> getAll() {
+        return null;
+    }
+
 
 }

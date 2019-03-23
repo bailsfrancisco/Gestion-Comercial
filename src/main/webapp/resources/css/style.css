@@ -1,0 +1,42 @@
+
+#backhsp {
+    background-image: url("https://i0.wp.com/www.rowsdowr.com/wp-content/uploads/2012/10/homers-web-page.gif");
+    background-size:100%;
+}
+
+body{
+    background-color :#84c6e7;
+}
+
+#login_box {
+    padding-top: 5%;
+    color: black;
+}
+
+.login_form {
+    text-align: center;
+    margin-top: 5%;
+    padding: 10%;
+    border-radius: 25px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.ui-menuitem.ui-widget.ui-corner-all:last-child {
+    float: right;
+}
+
+.content{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f2f5f7;
+    padding: 5px 20px 20px 5px;
+    margin-top: 2%;
+}
+
+.ui-menu{
+    width: 100%;
+}
