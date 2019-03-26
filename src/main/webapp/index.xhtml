@@ -6,7 +6,6 @@
 
     <ui:define name="login">
         <div id="backhsp" style="height: 950px">
-
             <div  class="ui-g ui-fluid">
                 <div class="ui-g-4"/>
                 <div id="login_box" class="ui-g-4" >
@@ -18,20 +17,15 @@
                             <p:outputLabel for="user-email">Email</p:outputLabel>
                             <p:inputText type="email" styleClass="form-control" id="user-email" value="#{sessionBacking.email}"/>
                         </div>
-
                         <div>
                             <p:outputLabel for="user-password">Password</p:outputLabel>
-                            <p:password id="user-password" type="password" value="#{sessionBacking.password}" />
+                            <p:password id="user-password" value="#{sessionBacking.password}" />
                         </div>
                         <p:commandButton  action="#{sessionBacking.login()}" type="submit" value="Ingresar"/>
                     </h:form>
                 </div>
                 <div class="ui-g-4"/>
             </div>
-
         </div>
-
     </ui:define>
-
-
 </ui:composition>
