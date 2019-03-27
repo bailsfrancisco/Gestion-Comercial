@@ -1,15 +1,13 @@
 package ar.com.gestioncomercial.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "usuario")
 @NamedQueries({
 		@NamedQuery(
-			name = "Usuario.findByEmailAndPassword",
-			query = "select u from Usuario u where u.email = :email and u.password = :password"
+			name = "Usuario.findByNombreAndPassword",
+			query = "select u from Usuario u where u.nombreUsuario = :nombreUsuario and u.password = :password"
 		),
 		@NamedQuery(
 			name="Usuario.getAll",
@@ -19,7 +17,7 @@ public class Usuario extends AbstractEntity {
 
 
 	@Column(name = "nombre")
-	private String nombre;
+	private String nombreUsuario;
 
 	@Column(name = "password")
 	private String password;
@@ -27,29 +25,24 @@ public class Usuario extends AbstractEntity {
 	@Column(name = "administrador")
 	private boolean administrador;
 
-	@Column(name = "email")
-	private String email;
-
 	public Usuario() {
 
 	}
 
-	public Usuario(String nombre, String password, boolean administrador, String email) {
-		this.nombre = nombre;
+	public Usuario(String nombreUsuario, String password, boolean administrador, String email) {
+		this.nombreUsuario = nombreUsuario;
 
 		this.password = password;
 
 		this.administrador = administrador;
-
-		this.email = email;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreUsuario() {
+		return nombreUsuario;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 
 	public boolean isAdministrador() {
@@ -66,14 +59,6 @@ public class Usuario extends AbstractEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 
