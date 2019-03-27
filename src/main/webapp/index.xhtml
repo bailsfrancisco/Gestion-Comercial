@@ -14,11 +14,11 @@
                     </div>
                     <h:form  styleClass="login_form">
                         <div>
-                            <p:outputLabel for="user-email">Email</p:outputLabel>
-                            <p:inputText type="email" styleClass="form-control" id="user-email" value="#{sessionBacking.email}"/>
+                            <p:outputLabel for="user-name">Nombre de Usuario:</p:outputLabel>
+                            <p:inputText  styleClass="form-control" id="user-name" value="#{sessionBacking.nombreUsuario}"/>
                         </div>
                         <div>
-                            <p:outputLabel for="user-password">Password</p:outputLabel>
+                            <p:outputLabel for="user-password">Password:</p:outputLabel>
                             <p:password id="user-password" value="#{sessionBacking.password}" />
                         </div>
                         <p:commandButton  action="#{sessionBacking.login()}" type="submit" value="Ingresar"/>

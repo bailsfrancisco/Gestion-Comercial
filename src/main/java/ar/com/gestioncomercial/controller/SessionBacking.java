@@ -16,7 +16,7 @@ public class SessionBacking implements Serializable {
 
 
 
-    private String email;
+    private String nombreUsuario;
     private String password;
 
     private Usuario usuario = null;
@@ -28,26 +28,26 @@ public class SessionBacking implements Serializable {
     private URLMap urlMap;
 
     public String login(){
-        usuario = usuarioDAO.findByEmailAndPassword(this.email, this.password);
+        usuario = usuarioDAO.findByNombreAndPassword(this.nombreUsuario, this.password);
 
         return (usuario!=null) ? urlMap.getWELCOME() + URLMap.getFacesRedirect() : null;
     }
 
     public String logout(){
         this.usuario = null;
-        this.email = null;
+        this.nombreUsuario = null;
         this.password = null;
 
         return urlMap.getINDEX() +  URLMap.getFacesRedirect();
 
     }
 
-    public String getEmail() {
-        return email;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getPassword() {

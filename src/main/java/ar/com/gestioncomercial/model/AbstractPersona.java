@@ -1,11 +1,6 @@
 package ar.com.gestioncomercial.model;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "persona")
@@ -29,6 +24,9 @@ public abstract class AbstractPersona extends AbstractEntity {
     private String observaciones;
 
     private String celular;
+
+    @OneToOne
+    private Usuario usuario;
 
     public AbstractPersona() {
 
