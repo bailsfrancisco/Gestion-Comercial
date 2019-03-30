@@ -5,9 +5,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+/**
+ *
+ * @author bailsfrancisco
+ * @param <T>
+ */
 public abstract class AbstractDAO<T> {
 
-    final Class<T> typeParameter;
+    private final Class<T> typeParameter;
 
     @PersistenceContext(unitName = "PU")
     protected EntityManager em;

@@ -1,11 +1,18 @@
 package ar.com.gestioncomercial.model;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 //  CATEGORIAS PARA FILTRAN EN BUSQUEDA PRODUCTOS Y PROVEEDORES
 
 @Entity
 @Table(name = "categoria")
+@NamedQueries({
+    @NamedQuery(
+            name = "Categoria.getAll",
+            query = "select c from Categoria c"),
+})
 public class Categoria extends AbstractEntity {
 
     private String nombre;

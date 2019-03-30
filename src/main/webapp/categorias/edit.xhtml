@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../template.xhtml">
+    <ui:define name="head">
+        <f:metadata>
+            <f:viewParam name="id" value="#{categoriaBacking.categoria}"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="content">
+        <h2>Actualizar los datos de la categoria</h2>
+        <br />
+        <p:panelGrid columns="1" styleClass="">
+            <p:outputLabel value="Nombre"/>
+
+            <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
+
+            <p:commandButton value="Actualizar"
+                             action="#{categoriaBacking.update()}"
+                             update="messages"/>
+
+            <p:button value="Cancelar" outcome="#{categoriaBacking.urlMap.getIndexCategorias()}"/>
+        </p:panelGrid>
+    </ui:define>
+</ui:composition>

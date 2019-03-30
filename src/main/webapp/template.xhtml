@@ -10,17 +10,38 @@
         <f:view contentType="text/html">
             <h:form>
                 <p:growl id="messages" autoUpdate="true"/>
+
                 <p:menubar>
                     <c:choose>
+
                         <c:when test="#{sessionBacking.usuario.administrador}">
+                            <p:submenu label="Usuarios">
+                                <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexUsuarios()}"/>
+                                <p:menuitem value="Nuevo" url="#{sessionBacking.urlMap.getNewUsuario()}"/>
+                            </p:submenu>
+
+                            <p:submenu label="Categorias">
+                                <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexCategorias()}"/>
+                                <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewCategoria()}"/>
+                            </p:submenu>
+
+                            <p:menuitem  value="Mis Reparaciones" action="#{sessionBacking.urlMap.getWELCOME()}"/>
+
                         </c:when>
+
                         <c:otherwise>
+                            <p:submenu label="Usuarios">
+                                <p:menuitem  value="Listar" url="#{sessionBacking.urlMap.getIndexUsuarios()}" />
+                            </p:submenu>
+                            <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
                         </c:otherwise>
+
                     </c:choose>
-                    <p:submenu styleClass="nav-items" label="#{sessionBacking.usuario.nombre}" >
-                        <p:menuitem  value="Mis Reparaciones" action="#{sessionBacking.urlMap.getWELCOME()}"/>
+
+                    <p:submenu styleClass="nav-items" label="#{sessionBacking.usuario.nombreUsuario}" >
                         <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
                     </p:submenu>
+
                 </p:menubar>
                 <div id="content" class="content">
                     <ui:insert name="content"/>

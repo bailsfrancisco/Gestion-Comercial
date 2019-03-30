@@ -5,23 +5,27 @@
                 template="/base.xhtml">
 
     <ui:define name="login">
+        <h:head>
+            <title>Login</title>
+        </h:head>
         <div id="backhsp" style="height: 950px">
-            <div  class="ui-g ui-fluid">
+            <div class="ui-g ui-fluid">
                 <div class="ui-g-4"/>
-                <div id="login_box" class="ui-g-4" >
+                <div id="login_box" class="ui-g-4">
                     <div class="text-center">
                         <h1>Bienvenido</h1>
                     </div>
-                    <h:form  styleClass="login_form">
+                    <h:form styleClass="login_form">
                         <div>
                             <p:outputLabel for="user-name">Nombre de Usuario:</p:outputLabel>
-                            <p:inputText  styleClass="form-control" id="user-name" value="#{sessionBacking.nombreUsuario}"/>
+                            <p:inputText styleClass="form-control" id="user-name"
+                                         value="#{sessionBacking.nombreUsuario}"/>
                         </div>
                         <div>
                             <p:outputLabel for="user-password">Password:</p:outputLabel>
-                            <p:password id="user-password" value="#{sessionBacking.password}" />
+                            <p:password id="user-password" value="#{sessionBacking.password}"/>
                         </div>
-                        <p:commandButton  action="#{sessionBacking.login()}" type="submit" value="Ingresar"/>
+                        <p:commandButton action="#{sessionBacking.login()}" type="submit" value="Ingresar"/>
                     </h:form>
                 </div>
                 <div class="ui-g-4"/>

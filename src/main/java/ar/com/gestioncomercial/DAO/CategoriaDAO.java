@@ -5,10 +5,10 @@
  */
 package ar.com.gestioncomercial.DAO;
 
-import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Categoria;
 import javax.ejb.Stateless;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -21,9 +21,14 @@ public class CategoriaDAO extends AbstractDAO<Categoria> {
         super(Categoria.class);
     }
 
+    public List getAllCategorias() {
+        return getAll();
+    }
+
     @Override
     protected List<Categoria> getAll() {
-        return null;
+        Query query = em.createNamedQuery("Categoria.getAll");
+        return query.getResultList();
     }
 
 }
