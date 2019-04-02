@@ -70,6 +70,7 @@ public class ClienteBacking implements Serializable, CRUDBacking<Cliente> {
     @Override
     public String update() {
         try {
+            usuarioController.update(cliente.getUsuario());
             clienteController.update(cliente);
             return URLMap.getIndexClientes() + URLMap.getFacesRedirect();
         } catch (Exception e) {

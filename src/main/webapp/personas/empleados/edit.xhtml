@@ -19,6 +19,16 @@
             </f:facet>
         </p:panelGrid>
         <ui:include src="form.xhtml"/>
+        <p:panelGrid columns="2" layout="grid">
+            <p:outputLabel value="Nombre"/>
+            <p:inputText value="#{empleadoBacking.empleado.usuario.nombreUsuario}"/>
+
+            <p:outputLabel value="Contraseña"/>
+            <p:inputText value="#{empleadoBacking.empleado.usuario.password}"/>
+
+            <p:selectBooleanCheckbox value="#{empleadoBacking.usuario.administrador}" itemLabel="Administrador"/>
+
+        </p:panelGrid>
         <p:commandButton value="Actualizar"
                          action="#{empleadoBacking.update()}"
                          update="messages"/>
