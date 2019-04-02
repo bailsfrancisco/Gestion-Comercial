@@ -14,7 +14,7 @@
  */
 package ar.com.gestioncomercial.auth;
 
-import ar.com.gestioncomercial.controller.SessionBacking;
+import ar.com.gestioncomercial.backing.SessionBacking;
 import ar.com.gestioncomercial.model.Usuario;
 import ar.com.gestioncomercial.utils.URLMap;
 

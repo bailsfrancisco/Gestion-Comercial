@@ -2,16 +2,21 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="./../template.xhtml">
+                template="./../template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
     <ui:define name="head">
+        <h:head>
+            <title>Editar categoria</title>
+        </h:head>
         <f:metadata>
             <f:viewParam name="id" value="#{categoriaBacking.categoria}"/>
         </f:metadata>
     </ui:define>
     <ui:define name="content">
-        <h2>Actualizar los datos de la categoria</h2>
-        <br />
-        <p:panelGrid columns="1" styleClass="">
+        <p:panelGrid columns="2" styleClass="">
+            <f:facet name="header">
+                <h:outputText value="Actualizar los datos de la categoria"></h:outputText>
+            </f:facet>
             <p:outputLabel value="Nombre"/>
 
             <p:inputText value="#{categoriaBacking.categoria.nombre}"/>

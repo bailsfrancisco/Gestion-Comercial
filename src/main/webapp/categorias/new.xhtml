@@ -4,13 +4,18 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="./../template.xhtml">
-
+    <ui:define name="head">
+        <h:head>
+            <title>Nueva categoria</title>
+        </h:head>
+    </ui:define>
     <ui:define name="content">
-        <h2>Ingrese los datos del nuevo objetivo</h2>
-        <br />
         <p:panelGrid columns="2" styleClass="">
-            <p:outputLabel for="cat-nombre" value="Nonbre"/>
-            <p:inputText id="cat-nombre" value="Nombre"/>
+            <f:facet name="header">
+                <h:outputText value="Ingrese la nueva categoria"></h:outputText>
+            </f:facet>
+            <p:outputLabel for="cat-nombre" value="Nombre"/>
+            <p:inputText id="cat-nombre" value="#{categoriaBacking.nombre}"/>
             <p:commandButton value="Guardar"
                              action="#{categoriaBacking.create()}"
                              update="messages"/>

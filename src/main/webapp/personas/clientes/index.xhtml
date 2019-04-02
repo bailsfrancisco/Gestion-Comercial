@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="../../template.xhtml">
+    <ui:define name="head">
+        <h:head>
+            <title>Clientes</title>
+        </h:head>
+    </ui:define>
+    <ui:define name="content">
+        <p:panel>
+            <f:facet name="header">
+                <h:outputText value="Clientes"></h:outputText>
+            </f:facet>
+
+            <p:dataTable id="clientes"
+                         value="#{clienteBacking.all}"
+                         var="cliente">
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{cliente.nombre}"/>
+                </p:column>
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{cliente.telefono}"/>
+                </p:column>
+                <p:column headerText="Celular">
+                    <h:outputText value="#{cliente.celular}"/>
+                </p:column>
+                <p:column headerText="E-mail">
+                    <h:outputText value="#{cliente.mail}"/>
+                </p:column>
+                <p:column headerText="Domicilio">
+                    <h:outputText value="#{cliente.direccion}"/>
+                </p:column>
+                <p:column headerText="CUIT-CUIL">
+                    <h:outputText value="#{cliente.cuitCuil}"/>
+                </p:column>
+                <p:column headerText="Observaciones">
+                    <h:outputText value="#{cliente.observaciones}"/>
+                </p:column>
+                <p:column headerText="Categoria IVA">
+                    <h:outputText value="#{cliente.categoriaIVA}"/>
+                </p:column>
+                <p:column headerText="Reparaciones">
+                    <h:outputText value="#{cliente.reparaciones}"/>
+                </p:column>
+                <p:column headerText="Solicitud de reparaciones">
+                    <h:outputText value="#{cliente.solicitudReparaciones}"/>
+                </p:column>
+                <c:if test="#{sessionBacking.usuario.administrador}">
+                    <p:column>
+                        <h:link outcome="#{sessionBacking.urlMap.getEditCliente()}" value="Editar">
+                            <f:param name="id" value="#{cliente.id}" />
+                        </h:link>
+                    </p:column>
+                    <p:column>
+                        <p:commandLink actionListener="#{clienteBacking.delete(cliente)}"
+                                       value="Borrar"
+                                       update="clientes">
+                            <p:confirm header="Confirmation"
+                                       message="Desea eliminar el cliente #{cliente.nombre}?"
+                                       icon="ui-icon-alert" />
+                        </p:commandLink>
+                    </p:column>
+                </c:if>
+            </p:dataTable>
+
+            <c:if test="#{sessionBacking.usuario.administrador}">
+                <p:button value="Crear" outcome="#{sessionBacking.urlMap.getNewCliente()}"/>
+            </c:if>
+        </p:panel>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </p:confirmDialog>
+    </ui:define>
+</ui:composition>

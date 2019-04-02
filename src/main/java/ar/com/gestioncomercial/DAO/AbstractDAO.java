@@ -37,5 +37,13 @@ public abstract class AbstractDAO<T> {
         return em.find(typeParameter, id);
     }
 
+    public void flush() {
+        em.flush();
+    }
+
+    public void refresh(T t) {
+        em.refresh(t);
+    }
+
     protected abstract List<T> getAll();
 }

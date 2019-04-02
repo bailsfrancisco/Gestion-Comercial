@@ -1,13 +1,20 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="./../template.xhtml">
-
+                template="./../template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="head">
+        <h:head>
+            <title>Nuevo usuario</title>
+        </h:head>
+    </ui:define>
     <ui:define name="content">
-        <h2>Ingrese los datos del nuevo usuario</h2>
-        <br />
         <p:panelGrid columns="2" layout="grid">
-            <p:outputLabel value="Nombre"/>
+            <f:facet name="header">
+                <h:outputText value="Ingrese los datos del nuevo usuario"></h:outputText>
+            </f:facet>
+            <p:outputLabel value="Nombre de usuario"/>
             <p:inputText value="#{usuarioBacking.user.nombreUsuario}"/>
 
             <p:outputLabel value="Contraseña"/>

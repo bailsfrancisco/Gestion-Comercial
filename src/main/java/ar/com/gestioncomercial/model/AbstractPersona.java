@@ -9,6 +9,11 @@ import javax.persistence.*;
         name = "tipo_persona",
         discriminatorType = DiscriminatorType.STRING
 )
+@NamedQueries({
+    @NamedQuery(
+            name = "persona.getAll",
+            query = "select p from AbstractPersona p")
+})
 public abstract class AbstractPersona extends AbstractEntity {
 
     private String nombre;

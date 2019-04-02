@@ -25,14 +25,17 @@
                                 <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewCategoria()}"/>
                             </p:submenu>
 
+                            <p:submenu label="Personas">
+                                <p:menuitem value="Empleados" url="#{sessionBacking.urlMap.getIndexEmpleados()}"/>
+                                <p:menuitem value="Clientes" url="#{sessionBacking.urlMap.getIndexClientes()}"/>
+                                <p:menuitem value="Proveedores" url="#{sessionBacking.urlMap.getIndexProveedores()}"/>
+                            </p:submenu>
+
                             <p:menuitem  value="Mis Reparaciones" action="#{sessionBacking.urlMap.getWELCOME()}"/>
 
                         </c:when>
 
                         <c:otherwise>
-                            <p:submenu label="Usuarios">
-                                <p:menuitem  value="Listar" url="#{sessionBacking.urlMap.getIndexUsuarios()}" />
-                            </p:submenu>
                             <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
                         </c:otherwise>
 

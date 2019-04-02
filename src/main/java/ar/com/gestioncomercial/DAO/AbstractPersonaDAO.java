@@ -8,6 +8,7 @@ package ar.com.gestioncomercial.DAO;
 import ar.com.gestioncomercial.model.AbstractPersona;
 import javax.ejb.Stateless;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -20,8 +21,17 @@ public class AbstractPersonaDAO extends AbstractDAO<AbstractPersona> {
         super(AbstractPersona.class);
     }
 
+    public AbstractPersona findByName() {
+        return null;
+    }
+
+    public List<AbstractPersona> getAllPersonas() {
+        return getAll();
+    }
+
     @Override
     protected List<AbstractPersona> getAll() {
-        return null;
+        Query query = em.createNamedQuery("persona.getAll");
+        return query.getResultList();
     }
 }

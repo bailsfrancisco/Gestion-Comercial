@@ -2,9 +2,16 @@ package ar.com.gestioncomercial.model;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
 @DiscriminatorValue("empleado_id")
+@NamedQueries({
+    @NamedQuery(
+            name = "empleado.getAllEmpleados",
+            query = "select e from Empleado e")
+})
 public class Empleado extends AbstractPersona {
 
     private Float porcentajeComision;

@@ -4,9 +4,16 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
 @DiscriminatorValue("proveedor_id")
+@NamedQueries({
+    @NamedQuery(
+            name = "proveedor.getAllProveedores",
+            query = "select p from Proveedor p")
+})
 public class Proveedor extends AbstractPersona {
 
     @ManyToOne(optional = false)

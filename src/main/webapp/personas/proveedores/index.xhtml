@@ -1,0 +1,97 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="../../template.xhtml">
+    <ui:define name="head">
+        <h:head>
+            <title>Proveedores</title>
+        </h:head>
+    </ui:define>
+    <ui:define name="content">
+        <p:panel>
+            <f:facet name="header">
+                <h:outputText value="Proveedores"></h:outputText>
+            </f:facet>
+            <p:dataTable id="proveedores"
+                         value="#{proveedorBacking.all}"
+                         var="proveedor">
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{proveedor.nombre}"/>
+                </p:column>
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{proveedor.telefono}"/>
+                </p:column>
+                <p:column headerText="Celular">
+                    <h:outputText value="#{proveedor.celular}"/>
+                </p:column>
+                <p:column headerText="E-mail">
+                    <h:outputText value="#{proveedor.mail}"/>
+                </p:column>
+                <p:column headerText="Domicilio">
+                    <h:outputText value="#{proveedor.direccion}"/>
+                </p:column>
+                <p:column headerText="CUIT-CUIL">
+                    <h:outputText value="#{proveedor.cuitCuil}"/>
+                </p:column>
+                <p:column headerText="Observaciones">
+                    <h:outputText value="#{proveedor.observaciones}"/>
+                </p:column>
+                <p:column headerText="Categoria">
+                    <h:outputText value="#{proveedor.categoria}"/>
+                </p:column>
+                <p:column headerText="Producto">
+                    <h:outputText value="#{proveedor.producto}"/>
+                </p:column>
+                <p:column headerText="Razon social">
+                    <h:outputText value="#{proveedor.razonSocial}"/>
+                </p:column>
+                <p:column headerText="Calificacion">
+                    <h:outputText value="#{proveedor.calificacion}"/>
+                </p:column>
+                <p:column headerText="Estado">
+                    <h:outputText value="#{proveedor.estado}"/>
+                </p:column>
+                <p:column headerText="Condicion IVA">
+                    <h:outputText value="#{proveedor.condicionIva}"/>
+                </p:column>
+                <p:column headerText="Retencion IVA">
+                    <h:outputText value="#{proveedor.retencionIva}"/>
+                </p:column>
+                <p:column headerText="Cuenta contable">
+                    <h:outputText value="#{proveedor.cuentaContable}"/>
+                </p:column>
+                <p:column headerText="CBU">
+                    <h:outputText value="#{proveedor.cbu}"/>
+                </p:column>
+                <c:if test="#{sessionBacking.usuario.administrador}">
+                    <p:column>
+                        <h:link outcome="#{sessionBacking.urlMap.getEditProveedor()}" value="Editar">
+                            <f:param name="id" value="#{proveedor.id}" />
+                        </h:link>
+                    </p:column>
+                    <p:column>
+                        <p:commandLink actionListener="#{proveedorBacking.delete(proveedor)}"
+                                       value="Borrar"
+                                       update="proveedores">
+                            <p:confirm header="Confirmation"
+                                       message="Desea eliminar el proveedor #{proveedor.nombre}?"
+                                       icon="ui-icon-alert" />
+                        </p:commandLink>
+                    </p:column>
+                </c:if>
+            </p:dataTable>
+
+            <c:if test="#{sessionBacking.usuario.administrador}">
+                <p:button value="Crear" outcome="#{sessionBacking.urlMap.getNewProveedor()}"/>
+            </c:if>
+        </p:panel>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </p:confirmDialog>
+    </ui:define>
+</ui:composition>

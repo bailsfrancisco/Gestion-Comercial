@@ -4,13 +4,20 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("cliente_id")
+@NamedQueries({
+    @NamedQuery(
+            name = "cliente.getAllClientes",
+            query = "select c from Cliente c")
+})
 public class Cliente extends AbstractPersona {
 
-    private Integer categoriaIVA;
+    private String categoriaIVA;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<Reparacion> reparaciones;
@@ -22,24 +29,24 @@ public class Cliente extends AbstractPersona {
 
     }
 
-    public Cliente(Integer categoriaIVA, List<Reparacion> reparaciones, List<SolicitudReparacion> solicitudReparaciones) {
+    public Cliente(String categoriaIVA, List<Reparacion> reparaciones, List<SolicitudReparacion> solicitudReparaciones) {
         this.categoriaIVA = categoriaIVA;
         this.reparaciones = reparaciones;
         this.solicitudReparaciones = solicitudReparaciones;
     }
 
-    public Cliente(Integer categoriaIVA, List<Reparacion> reparaciones, List<SolicitudReparacion> solicitudReparaciones, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
+    public Cliente(String categoriaIVA, List<Reparacion> reparaciones, List<SolicitudReparacion> solicitudReparaciones, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
         super(nombre, telefono, mail, direccion, cuitCuil, observaciones, celular);
         this.categoriaIVA = categoriaIVA;
         this.reparaciones = reparaciones;
         this.solicitudReparaciones = solicitudReparaciones;
     }
 
-    public Integer getCategoriaIVA() {
+    public String getCategoriaIVA() {
         return categoriaIVA;
     }
 
-    public void setCategoriaIVA(Integer categoriaIVA) {
+    public void setCategoriaIVA(String categoriaIVA) {
         this.categoriaIVA = categoriaIVA;
     }
 

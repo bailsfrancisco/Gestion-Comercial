@@ -5,10 +5,10 @@
  */
 package ar.com.gestioncomercial.DAO;
 
-import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Cliente;
 import javax.ejb.Stateless;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -21,9 +21,13 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
         super(Cliente.class);
     }
 
-    @Override
-    protected List<Cliente> getAll() {
-        return null;
+    public List<Cliente> getAllClientes() {
+        return getAll();
     }
 
+    @Override
+    protected List<Cliente> getAll() {
+        Query query = em.createNamedQuery("cliente.getAllClientes");
+        return query.getResultList();
+    }
 }

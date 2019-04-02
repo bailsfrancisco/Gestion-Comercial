@@ -5,10 +5,10 @@
  */
 package ar.com.gestioncomercial.DAO;
 
-import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Proveedor;
 import javax.ejb.Stateless;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -21,9 +21,13 @@ public class ProveedorDAO extends AbstractDAO<Proveedor> {
         super(Proveedor.class);
     }
 
-    @Override
-    protected List<Proveedor> getAll() {
-        return null;
+    public List<Proveedor> getAllProveedores() {
+        return getAll();
     }
 
+    @Override
+    protected List<Proveedor> getAll() {
+        Query query = em.createNamedQuery("proveedor.getAllProveedores");
+        return query.getResultList();
+    }
 }

@@ -23,7 +23,29 @@ public class URLMap implements Serializable {
     private static final String CATEGORIAS = "/categorias/";
     private static final String INDEX_CATEGORIAS = CATEGORIAS + _INDEX;
     private static final String NEW_CATEGORIA = CATEGORIAS + _NEW;
-    private static final String EDIT_CATEGORIA = CATEGORIAS + "edit.xhtml";
+    private static final String EDIT_CATEGORIA = CATEGORIAS + _EDIT;
+
+    // URLS para personas
+    private static final String PERSONAS = "/personas/";
+    private static final String INDEX_PERSONAS_ALL = PERSONAS + _INDEX;
+
+    // URLS para clientes
+    private static final String CLIENTES = "/personas/clientes/";
+    private static final String INDEX_CLIENTES = CLIENTES + _INDEX;
+    private static final String NEW_CLIENTE = CLIENTES + _NEW;
+    private static final String EDIT_CLIENTE = CLIENTES + _EDIT;
+
+    // URLS para empleados
+    private static final String EMPLEADOS = "/personas/empleados/";
+    private static final String INDEX_EMPLEADOS = EMPLEADOS + _INDEX;
+    private static final String NEW_EMPLEADO = EMPLEADOS + _NEW;
+    private static final String EDIT_EMPLEADO = EMPLEADOS + _EDIT;
+
+    // URLS para proveedores
+    private static final String PROVEEDORES = "/personas/proveedores/";
+    private static final String INDEX_PROVEEDORES = PROVEEDORES + _INDEX;
+    private static final String NEW_PROVEEDOR = PROVEEDORES + _NEW;
+    private static final String EDIT_PROVEEDOR = PROVEEDORES + _EDIT;
 
     private static final String FACES_REDIRECT = "?faces-redirect=true";
 
@@ -57,6 +79,46 @@ public class URLMap implements Serializable {
 
     public static String getEditCategoria() {
         return EDIT_CATEGORIA;
+    }
+
+    public static String getIndexPersonas() {
+        return INDEX_PERSONAS_ALL;
+    }
+
+    public static String getIndexClientes() {
+        return INDEX_CLIENTES;
+    }
+
+    public static String getNewCliente() {
+        return NEW_CLIENTE;
+    }
+
+    public static String getEditCliente() {
+        return EDIT_CLIENTE;
+    }
+
+    public static String getIndexEmpleados() {
+        return INDEX_EMPLEADOS;
+    }
+
+    public static String getNewEmpleado() {
+        return NEW_EMPLEADO;
+    }
+
+    public static String getEditEmpleado() {
+        return EDIT_EMPLEADO;
+    }
+
+    public static String getIndexProveedores() {
+        return INDEX_PROVEEDORES;
+    }
+
+    public static String getNewProveedor() {
+        return NEW_PROVEEDOR;
+    }
+
+    public static String getEditProveedor() {
+        return EDIT_PROVEEDOR;
     }
 
     public static String getFacesRedirect() {
