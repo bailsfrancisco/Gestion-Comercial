@@ -13,43 +13,14 @@
         </f:metadata>
     </ui:define>
     <ui:define name="content">
-        <p:panelGrid columns="2" styleClass="">
+        <p:panelGrid columns="2" layout="grid">
             <f:facet name="header">
                 <h:outputText value="Actualizar los datos del proveedor"></h:outputText>
             </f:facet>
-            <p:outputLabel value="Nombre"/>
-            <p:inputText value="#{proveedorBacking.proveedor.nombre}"/>
-            <p:outputLabel value="Telefono"/>
-            <p:inputText value="#{proveedorBacking.proveedor.telefono}"/>
-            <p:outputLabel value="Celular"/>
-            <p:inputText value="#{proveedorBacking.proveedor.celular}"/>
-            <p:outputLabel value="E-mail"/>
-            <p:inputText value="#{proveedorBacking.proveedor.mail}"/>
-            <p:outputLabel value="Domicilio"/>
-            <p:inputText value="#{proveedorBacking.proveedor.direccion}"/>
-            <p:outputLabel value="CUIT-CUIL"/>
-            <p:inputText value="#{proveedorBacking.proveedor.cuitCuil}"/>
-            <p:outputLabel value="Obeservaciones"/>
-            <p:inputText value="#{proveedorBacking.proveedor.observaciones}"/>
-            <p:outputLabel value="Categoria"/>
-            <p:inputText value="#{proveedorBacking.proveedor.categoria}"/>
-            <p:outputLabel value="Producto"/>
-            <p:inputText value="#{proveedorBacking.proveedor.producto}"/>
-            <p:outputLabel value="Razon social"/>
-            <p:inputText value="#{proveedorBacking.proveedor.razonSocial}"/>
-            <p:outputLabel value="Calificacion"/>
-            <p:inputText value="#{proveedorBacking.proveedor.calificacion}"/>
-            <p:outputLabel value="Estado"/>
-            <p:inputText value="#{proveedorBacking.proveedor.estado}"/>
-            <p:outputLabel value="Condicion IVA"/>
-            <p:inputText value="#{proveedorBacking.proveedor.condicionIva}"/>
-            <p:outputLabel value="Retencion IVA"/>
-            <p:inputText value="#{proveedorBacking.proveedor.retencionIva}"/>
-            <p:outputLabel value="Cuenta contable"/>
-            <p:inputText value="#{proveedorBacking.proveedor.cuentaContable}"/>
-            <p:outputLabel value="CBU"/>
-            <p:inputText value="#{proveedorBacking.proveedor.cbu}"/>
         </p:panelGrid>
+
+        <ui:include src="form.xhtml"/>
+
         <p:commandButton value="Actualizar"
                          action="#{proveedorBacking.update()}"
                          update="messages"/>

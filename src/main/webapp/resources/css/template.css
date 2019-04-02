@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02-abr-2019, 15:52:17
+    Author     : Bails Francisco
+*/
+
+.image1{
+    height:500px;
+    width:1200px;
+    background:
+        url(../../resources/images/image1.jpg) center/cover;
+    background-repeat: no-repeat;
+}
+
+.image2{
+    height:500px;
+    width:1200px;
+    background:
+        url(../../resources/images/image2.jpg) center/cover;
+    background-repeat: no-repeat;
+}
+
+.fieldset_image{
+    overflow-x: hidden;
+}
+
+.panel_menu_div{
+    height: auto; /* Full-height: remove this if you want "auto" height */
+    width: auto; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding: 10px;
+}
+
+
+.content{
+    margin-left: 300px; /* Same as the width of the sidebar */
+}

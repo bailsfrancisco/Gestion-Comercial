@@ -10,11 +10,12 @@
         </h:head>
     </ui:define>
     <ui:define name="content">
-        <p:panelGrid columns="2" styleClass="">
+        <p:panelGrid columns="2" layout="grid">
             <f:facet name="header">
                 <h:outputText value="Ingrese la nueva categoria"/>
             </f:facet>
         </p:panelGrid>
+
         <ui:include src="form.xhtml"/>
 
         <p:commandButton value="Guardar"

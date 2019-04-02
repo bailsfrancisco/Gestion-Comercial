@@ -5,54 +5,66 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 template="/base.xhtml">
-
     <ui:define name="menu" >
         <f:view contentType="text/html">
-            <h:form>
-                <p:growl id="messages" autoUpdate="true"/>
+            <p:growl id="messages" autoUpdate="true"/>
+            <div class="fieldset_image">
+                <h:form>
+                    <p:fieldset legend="Electronic Junin">
+                        <p:menuButton style="float: right" class="menu_button" value="#{sessionBacking.usuario.nombreUsuario}">
+                            <p:menuitem value="Salir" action="#{sessionBacking.logout()}" />
+                        </p:menuButton>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:link outcome="#{sessionBacking.urlMap.getWELCOME()}">
+                                <p:graphicImage style="width: 50%" url="/resources/images/logo.png"/>
+                            </h:link>
+                            <h:outputText
+                                value="Servicio tecnico y accesorios" />
+                        </h:panelGrid>
+                    </p:fieldset>
+                </h:form>
+            </div>
 
-                <p:menubar>
-                    <c:choose>
+            <div class="panel_menu_div">
+                <p:panel id="panel_menu" header="Menu principal">
+                    <h:form>
+                        <p:menu id="menu">
+                            <c:choose>
+                                <c:when test="#{sessionBacking.usuario.administrador}">
+                                    <p:submenu label="Usuarios">
+                                        <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexUsuarios()}"/>
+                                        <p:menuitem value="Nuevo" url="#{sessionBacking.urlMap.getNewUsuario()}"/>
+                                    </p:submenu>
+                                    <p:submenu label="Categorias">
+                                        <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexCategorias()}"/>
+                                        <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewCategoria()}"/>
+                                    </p:submenu>
+                                    <p:submenu label="Personas">
+                                        <p:menuitem value="Empleados" url="#{sessionBacking.urlMap.getIndexEmpleados()}"/>
+                                        <p:menuitem value="Clientes" url="#{sessionBacking.urlMap.getIndexClientes()}"/>
+                                        <p:menuitem value="Proveedores" url="#{sessionBacking.urlMap.getIndexProveedores()}"/>
+                                    </p:submenu>
+                                </c:when>
 
-                        <c:when test="#{sessionBacking.usuario.administrador}">
-                            <p:submenu label="Usuarios">
-                                <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexUsuarios()}"/>
-                                <p:menuitem value="Nuevo" url="#{sessionBacking.urlMap.getNewUsuario()}"/>
-                            </p:submenu>
+                                <c:otherwise>
+                                    <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
+                                </c:otherwise>
+                            </c:choose>
+                        </p:menu>
+                    </h:form>
+                </p:panel>
+            </div>
 
-                            <p:submenu label="Categorias">
-                                <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexCategorias()}"/>
-                                <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewCategoria()}"/>
-                            </p:submenu>
 
-                            <p:submenu label="Personas">
-                                <p:menuitem value="Empleados" url="#{sessionBacking.urlMap.getIndexEmpleados()}"/>
-                                <p:menuitem value="Clientes" url="#{sessionBacking.urlMap.getIndexClientes()}"/>
-                                <p:menuitem value="Proveedores" url="#{sessionBacking.urlMap.getIndexProveedores()}"/>
-                            </p:submenu>
+            <div id="content" class="content">
+                <ui:insert name="content"/>
+            </div>
 
-                            <p:menuitem  value="Mis Reparaciones" action="#{sessionBacking.urlMap.getWELCOME()}"/>
 
-                        </c:when>
+            <div id="bottom">
+                <ui:insert name="bottom"/>
+            </div>
 
-                        <c:otherwise>
-                            <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
-                        </c:otherwise>
-
-                    </c:choose>
-
-                    <p:submenu styleClass="nav-items" label="#{sessionBacking.usuario.nombreUsuario}" >
-                        <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
-                    </p:submenu>
-
-                </p:menubar>
-                <div id="content" class="content">
-                    <ui:insert name="content"/>
-                </div>
-                <div id="bottom">
-                    <ui:insert name="bottom"/>
-                </div>
-            </h:form>
         </f:view>
     </ui:define>
 </ui:composition>
