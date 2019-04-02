@@ -1,9 +1,12 @@
 package ar.com.gestioncomercial.backing;
 
-import ar.com.gestioncomercial.DAO.UsuarioDAO;
+import ar.com.gestioncomercial.controller.UsuarioController;
+import ar.com.gestioncomercial.exception.NullOrEmptyException;
 import ar.com.gestioncomercial.model.Usuario;
+import ar.com.gestioncomercial.utils.StringUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 import ar.com.gestioncomercial.utils.JSFUtils;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -11,40 +14,53 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJBException;
 
 @Named
 @ViewScoped
 public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
 
+    private static final Logger logger = Logger.getLogger(UsuarioBacking.class.getName());
+
     private Usuario usuario;
 
     @PostConstruct
-    public void init() {
+    public void init(){
         this.usuario = new Usuario();
     }
 
     @EJB
-    private UsuarioDAO usuarioDAO;
-
-    @EJB
-    private URLMap urlMap;
+    private UsuarioController usuarioController;
 
     @Inject
     private SessionBacking sessionBacking;
 
-    private List<Usuario> getUsers() {
-        return usuarioDAO.getAllUsers();
+    @EJB
+    private URLMap urlMap;
+
+    private List<Usuario> getUsers(){
+        return usuarioController.getAll();
     }
 
     @Override
-    public String create() {
-        try {
-            usuarioDAO.create(usuario);
+    public String create(){
+        try{
+            StringUtils.areNullOrEmpty(usuario.getNombreUsuario(),
+                    usuario.getPassword());
+
+            usuarioController.create(usuario);
+
             return URLMap.getIndexUsuarios() + URLMap.getFacesRedirect();
-        } catch (EJBException e) {
-            return null;
+        }catch(EJBException e){
+            logger.log(Level.SEVERE, e.getMessage());
+
+        } catch (NullOrEmptyException e){
+            logger.log(Level.SEVERE, e.getMessage());
+            JSFUtils.createFacesMessage("Campos: Nombre de usuario y Password no pueden ser nulos");
         }
+        return null;
     }
 
     @Override
@@ -53,22 +69,23 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
     }
 
     @Override
-    public String update() {
-        try {
-            usuarioDAO.update(usuario);
-            return urlMap.getIndexUsuarios() + URLMap.getFacesRedirect();
-        } catch (Exception e) {
+    public String update(){
+        try{
+            usuarioController.update(usuario);
+            return URLMap.getIndexUsuarios() + URLMap.getFacesRedirect();
+        }catch(Exception e){
             return null;
         }
     }
 
-    @Override
-    public void delete(Usuario usuario) {
-        if (!sessionBacking.getUsuario().equals(usuario)) {
-            usuarioDAO.delete(usuario);
-        } else {
+
+    public void delete(Usuario usuario){
+        if(!sessionBacking.getUsuario().equals(usuario)){
+            usuarioController.delete(usuario);
+        }else{
             JSFUtils.createFacesMessage("No te podes borrar a vos mismo!!!");
         }
+
     }
 
     @Override

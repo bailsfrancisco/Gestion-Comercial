@@ -21,7 +21,7 @@ public class CategoriaDAO extends AbstractDAO<Categoria> {
         super(Categoria.class);
     }
 
-    public List getAllCategorias() {
+    public List<Categoria> getAllCategorias() {
         return getAll();
     }
 

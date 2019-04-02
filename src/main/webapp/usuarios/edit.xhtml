@@ -15,20 +15,15 @@
     <ui:define name="content">
         <p:panelGrid columns="2" styleClass="">
             <f:facet name="header">
-                <h:outputText value="Actualizar los datos del usuario"></h:outputText>
+                <h:outputText value="Actualizar los datos del usuario"/>
             </f:facet>
-            <p:outputLabel value="Nombre de usuario"/>
-            <p:inputText value="#{usuarioBacking.user.nombreUsuario}"/>
-
-            <p:outputLabel value="Contraseña"/>
-            <p:inputText  value="#{usuarioBacking.user.password}"/>
-
-            <p:selectBooleanCheckbox value="#{usuarioBacking.user.administrador}" itemLabel="Administrador"/>
-
         </p:panelGrid>
+
+        <ui:include src="form.xhtml"/>
+
         <p:commandButton value="Actualizar"
                          action="#{usuarioBacking.update()}"
                          update="messages"/>
-        <p:button value="Cancelar" outcome="#{usuarioBacking.urlMap.getIndexUsuarios()}"/>
+        <p:button value="Cancelar" outcome="#{sessionBacking.urlMap.getIndexUsuarios()}"/>
     </ui:define>
 </ui:composition>

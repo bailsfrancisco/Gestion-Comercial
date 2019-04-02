@@ -49,11 +49,11 @@ public class URLMap implements Serializable {
 
     private static final String FACES_REDIRECT = "?faces-redirect=true";
 
-    public String getINDEX() {
+    public static String getINDEX() {
         return INDEX;
     }
 
-    public String getWELCOME() {
+    public static String  getWELCOME() {
         return WELCOME;
     }
 

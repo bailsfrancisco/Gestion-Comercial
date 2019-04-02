@@ -7,6 +7,8 @@ package ar.com.gestioncomercial.backing;
 
 import ar.com.gestioncomercial.DAO.AbstractPersonaDAO;
 import ar.com.gestioncomercial.DAO.ProveedorDAO;
+import ar.com.gestioncomercial.controller.ProveedorController;
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Proveedor;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
@@ -33,22 +35,19 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
     }
 
     @EJB
-    private AbstractPersonaDAO abstractPersonaDAO;
-
-    @EJB
-    private ProveedorDAO proveedorDAO;
+    private ProveedorController proveedorController;
 
     @EJB
     private URLMap urlMap;
 
     private List<Proveedor> getProveedores() {
-        return proveedorDAO.getAllProveedores();
+        return proveedorController.getAll();
     }
 
     @Override
     public String create() {
         try {
-            abstractPersonaDAO.create(proveedor);
+            proveedorController.create(proveedor);
             return URLMap.getIndexProveedores() + URLMap.getFacesRedirect();
         } catch (EJBException e) {
             return null;
@@ -63,7 +62,7 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
     @Override
     public String update() {
         try {
-            abstractPersonaDAO.update(proveedor);
+            proveedorController.update(proveedor);
             return URLMap.getIndexProveedores() + URLMap.getFacesRedirect();
         } catch (Exception e) {
             return null;
@@ -72,7 +71,7 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
 
     @Override
     public void delete(Proveedor entity) {
-        abstractPersonaDAO.delete(entity);
+        proveedorController.delete(entity);
     }
 
     @Override
@@ -86,22 +85,6 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
 
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
-    }
-
-    public AbstractPersonaDAO getAbstractPersonaDAO() {
-        return abstractPersonaDAO;
-    }
-
-    public void setAbstractPersonaDAO(AbstractPersonaDAO abstractPersonaDAO) {
-        this.abstractPersonaDAO = abstractPersonaDAO;
-    }
-
-    public ProveedorDAO getProveedorDAO() {
-        return proveedorDAO;
-    }
-
-    public void setProveedorDAO(ProveedorDAO proveedorDAO) {
-        this.proveedorDAO = proveedorDAO;
     }
 
     public URLMap getUrlMap() {

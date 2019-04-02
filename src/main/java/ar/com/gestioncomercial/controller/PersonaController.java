@@ -14,15 +14,4 @@ import java.util.List;
  */
 public interface PersonaController {
 
-    void insertarPersona(AbstractPersona persona);
-
-    AbstractPersona obtenerPersona(AbstractPersona persona);
-
-    AbstractPersona obtenerPersonaById(Long id);
-
-    void actualizarPersona(AbstractPersona persona);
-
-    void borrarPersona(AbstractPersona persona);
-
-    List<AbstractPersona> obtenerPersonas();
 }

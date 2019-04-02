@@ -15,17 +15,15 @@
     <ui:define name="content">
         <p:panelGrid columns="2" styleClass="">
             <f:facet name="header">
-                <h:outputText value="Actualizar los datos de la categoria"></h:outputText>
+                <h:outputText value="Actualizar los datos de la categoria"/>
             </f:facet>
-            <p:outputLabel value="Nombre"/>
-
-            <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
+        </p:panelGrid>
+        <ui:include src="form.xhtml"/>
 
             <p:commandButton value="Actualizar"
                              action="#{categoriaBacking.update()}"
                              update="messages"/>
 
-            <p:button value="Cancelar" outcome="#{categoriaBacking.urlMap.getIndexCategorias()}"/>
-        </p:panelGrid>
+            <p:button value="Cancelar" outcome="#{sessionBacking.urlMap.getIndexCategorias()}"/>
     </ui:define>
 </ui:composition>

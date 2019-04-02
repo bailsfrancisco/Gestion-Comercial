@@ -5,8 +5,7 @@
  */
 package ar.com.gestioncomercial.backing;
 
-import ar.com.gestioncomercial.DAO.AbstractPersonaDAO;
-import ar.com.gestioncomercial.DAO.EmpleadoDAO;
+import ar.com.gestioncomercial.controller.EmpleadoController;
 import ar.com.gestioncomercial.model.Empleado;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
@@ -33,22 +32,19 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
     }
 
     @EJB
-    private AbstractPersonaDAO abstractPersonaDAO;
-
-    @EJB
-    private EmpleadoDAO empleadoDAO;
+    private EmpleadoController empleadoController;
 
     @EJB
     private URLMap urlMap;
 
     private List<Empleado> getEmpleados() {
-        return empleadoDAO.getAllEmpleados();
+        return empleadoController.getAll();
     }
 
     @Override
     public String create() {
         try {
-            abstractPersonaDAO.create(empleado);
+            empleadoController.create(empleado);
             return URLMap.getIndexEmpleados() + URLMap.getFacesRedirect();
         } catch (EJBException e) {
             return null;
@@ -63,7 +59,7 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
     @Override
     public String update() {
         try {
-            abstractPersonaDAO.update(empleado);
+            empleadoController.update(empleado);
             return URLMap.getIndexEmpleados() + URLMap.getFacesRedirect();
         } catch (Exception e) {
             return null;
@@ -72,7 +68,7 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
 
     @Override
     public void delete(Empleado entity) {
-        abstractPersonaDAO.delete(entity);
+        empleadoController.delete(entity);
     }
 
     @Override
@@ -86,22 +82,6 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
 
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
-    }
-
-    public AbstractPersonaDAO getAbstractPersonaDAO() {
-        return abstractPersonaDAO;
-    }
-
-    public void setAbstractPersonaDAO(AbstractPersonaDAO abstractPersonaDAO) {
-        this.abstractPersonaDAO = abstractPersonaDAO;
-    }
-
-    public EmpleadoDAO getEmpleadoDAO() {
-        return empleadoDAO;
-    }
-
-    public void setEmpleadoDAO(EmpleadoDAO empleadoDAO) {
-        this.empleadoDAO = empleadoDAO;
     }
 
     public URLMap getUrlMap() {

@@ -27,7 +27,7 @@ public class UsuarioDAO extends AbstractDAO<Usuario>{
         return user;
     }
 
-    public List getAllUsers(){
+    public List<Usuario> getAllUsers(){
         return getAll();
     }
 

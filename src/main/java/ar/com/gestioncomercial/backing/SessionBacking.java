@@ -1,8 +1,10 @@
 package ar.com.gestioncomercial.backing;
 
+
+import ar.com.gestioncomercial.controller.UsuarioController;
 import ar.com.gestioncomercial.model.Usuario;
-import ar.com.gestioncomercial.DAO.UsuarioDAO;
 import ar.com.gestioncomercial.utils.URLMap;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -18,23 +20,23 @@ public class SessionBacking implements Serializable {
     private Usuario usuario = null;
 
     @EJB
-    private UsuarioDAO usuarioDAO;
+    private UsuarioController usuarioController;
 
     @EJB
     private URLMap urlMap;
 
-    public String login() {
-        usuario = usuarioDAO.findByNombreAndPassword(this.nombreUsuario, this.password);
+    public String login(){
+        usuario = usuarioController.findByNombreAndPassword(this.nombreUsuario, this.password);
 
-        return (usuario != null) ? urlMap.getWELCOME() + URLMap.getFacesRedirect() : null;
+        return (usuario!=null) ? URLMap.getWELCOME() + URLMap.getFacesRedirect() : null;
     }
 
-    public String logout() {
+    public String logout(){
         this.usuario = null;
         this.nombreUsuario = null;
         this.password = null;
 
-        return urlMap.getINDEX() + URLMap.getFacesRedirect();
+        return URLMap.getINDEX() +  URLMap.getFacesRedirect();
 
     }
 

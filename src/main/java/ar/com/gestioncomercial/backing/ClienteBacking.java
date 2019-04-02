@@ -5,8 +5,8 @@
  */
 package ar.com.gestioncomercial.backing;
 
-import ar.com.gestioncomercial.DAO.AbstractPersonaDAO;
-import ar.com.gestioncomercial.DAO.ClienteDAO;
+import ar.com.gestioncomercial.controller.ClienteController;
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Cliente;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
@@ -33,22 +33,19 @@ public class ClienteBacking implements Serializable, CRUDBacking<Cliente> {
     }
 
     @EJB
-    private AbstractPersonaDAO abstractPersonaDAO;
-
-    @EJB
-    private ClienteDAO clienteDAO;
+    private ClienteController clienteController;
 
     @EJB
     private URLMap urlMap;
 
     private List<Cliente> getClientes() {
-        return clienteDAO.getAllClientes();
+        return clienteController.getAll();
     }
 
     @Override
     public String create() {
         try {
-            abstractPersonaDAO.create(cliente);
+            clienteController.create(cliente);
             return URLMap.getIndexClientes() + URLMap.getFacesRedirect();
         } catch (EJBException e) {
             return null;
@@ -63,7 +60,7 @@ public class ClienteBacking implements Serializable, CRUDBacking<Cliente> {
     @Override
     public String update() {
         try {
-            abstractPersonaDAO.update(cliente);
+            clienteController.update(cliente);
             return URLMap.getIndexClientes() + URLMap.getFacesRedirect();
         } catch (Exception e) {
             return null;
@@ -72,7 +69,7 @@ public class ClienteBacking implements Serializable, CRUDBacking<Cliente> {
 
     @Override
     public void delete(Cliente entity) {
-        abstractPersonaDAO.delete(entity);
+        clienteController.delete(entity);
     }
 
     @Override
@@ -86,22 +83,6 @@ public class ClienteBacking implements Serializable, CRUDBacking<Cliente> {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    public AbstractPersonaDAO getAbstractPersonaDAO() {
-        return abstractPersonaDAO;
-    }
-
-    public void setAbstractPersonaDAO(AbstractPersonaDAO abstractPersonaDAO) {
-        this.abstractPersonaDAO = abstractPersonaDAO;
-    }
-
-    public ClienteDAO getClienteDAO() {
-        return clienteDAO;
-    }
-
-    public void setClienteDAO(ClienteDAO clienteDAO) {
-        this.clienteDAO = clienteDAO;
     }
 
     public URLMap getUrlMap() {
