@@ -6,7 +6,9 @@
 package ar.com.gestioncomercial.backing;
 
 import ar.com.gestioncomercial.controller.EmpleadoController;
+import ar.com.gestioncomercial.controller.UsuarioController;
 import ar.com.gestioncomercial.model.Empleado;
+import ar.com.gestioncomercial.model.Usuario;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
 import java.util.List;
@@ -25,14 +27,19 @@ import javax.inject.Named;
 public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
 
     private Empleado empleado;
+    private Usuario usuario;
 
     @PostConstruct
     public void init() {
         this.empleado = new Empleado();
+        this.usuario = new Usuario();
     }
 
     @EJB
     private EmpleadoController empleadoController;
+    
+    @EJB
+    private UsuarioController usuarioController;
 
     @EJB
     private URLMap urlMap;
@@ -44,7 +51,10 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
     @Override
     public String create() {
         try {
+            usuarioController.create(usuario);
+            empleado.setUsuario(usuario);
             empleadoController.create(empleado);
+            
             return URLMap.getIndexEmpleados() + URLMap.getFacesRedirect();
         } catch (EJBException e) {
             return null;
@@ -90,5 +100,13 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
 
     public void setUrlMap(URLMap urlMap) {
         this.urlMap = urlMap;
+    }
+    
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
