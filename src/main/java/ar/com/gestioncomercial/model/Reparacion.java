@@ -1,15 +1,15 @@
 package ar.com.gestioncomercial.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
 
 @Entity
 @Table(name = "reparacion")
+@NamedQueries({
+        @NamedQuery(
+                name = "reparacion.getAllReparaciones",
+                query = "select r from Reparacion r")
+})
 public class Reparacion extends AbstractEntity {
 
     private String diagnostico;

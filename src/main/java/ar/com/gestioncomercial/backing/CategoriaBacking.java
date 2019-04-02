@@ -53,6 +53,7 @@ public class CategoriaBacking implements Serializable, CRUDBacking<Categoria> {
             return URLMap.getIndexCategorias() + URLMap.getFacesRedirect();
 
         } catch (EJBException e) {
+            JSFUtils.createFacesMessage("Ocurrio un Error");
             logger.log(Level.SEVERE, e.getMessage());
 
         } catch (NullOrEmptyException e){
@@ -74,6 +75,7 @@ public class CategoriaBacking implements Serializable, CRUDBacking<Categoria> {
             return URLMap.getIndexCategorias() + URLMap.getFacesRedirect();
         } catch (EJBException e) {
             logger.log(Level.SEVERE, e.getMessage());
+            JSFUtils.createFacesMessage("Ocurrio un Error");
             return null;
         }
     }
@@ -97,6 +99,7 @@ public class CategoriaBacking implements Serializable, CRUDBacking<Categoria> {
 
         } catch (EJBException e) {
             logger.log(Level.SEVERE, e.getMessage());
+            JSFUtils.createFacesMessage("Ocurrio un Error");
             return null;
         }
     }

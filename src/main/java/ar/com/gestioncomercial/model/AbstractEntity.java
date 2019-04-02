@@ -1,11 +1,8 @@
 package ar.com.gestioncomercial.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
@@ -14,8 +11,11 @@ public abstract class AbstractEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime fechaAlta;
+    @Column(name="fechaAlta")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaAlta;
 
+    @Version
     private Long version;
 
     public Long getId() {
@@ -26,11 +26,11 @@ public abstract class AbstractEntity implements Serializable {
         this.id = id;
     }
 
-    public LocalDateTime getFechaAlta() {
+    public Date getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(LocalDateTime fechaAlta) {
+    public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
@@ -67,6 +67,7 @@ public abstract class AbstractEntity implements Serializable {
             return false;
         }
     }
+
 
     @Override
     public String toString() {

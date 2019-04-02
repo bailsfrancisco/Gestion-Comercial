@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "categoria")
 @NamedQueries({
     @NamedQuery(
-            name = "Categoria.getAll",
+            name = "categoria.getAll",
             query = "select c from Categoria c"),
 })
 public class Categoria extends AbstractEntity {

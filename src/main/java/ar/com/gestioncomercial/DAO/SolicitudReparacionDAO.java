@@ -8,6 +8,7 @@ package ar.com.gestioncomercial.DAO;
 import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.SolicitudReparacion;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -23,7 +24,12 @@ public class SolicitudReparacionDAO extends AbstractDAO<SolicitudReparacion> {
 
     @Override
     protected List<SolicitudReparacion> getAll() {
-        return null;
+        Query query = em.createNamedQuery("solicitudReparacion.getAllSolicitudes");
+        return query.getResultList();
+    }
+
+    public List<SolicitudReparacion> getSolicitudesReparacion(){
+        return getAll();
     }
 
 }
