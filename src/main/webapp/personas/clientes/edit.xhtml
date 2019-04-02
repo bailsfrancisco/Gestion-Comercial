@@ -13,31 +13,22 @@
         </f:metadata>
     </ui:define>
     <ui:define name="content">
-        <p:panelGrid columns="2" styleClass="">
+        <p:panelGrid columns="2" >
             <f:facet name="header">
-                <h:outputText value="Actualizar los datos del cliente"></h:outputText>
+                <h:outputText value="Actualizar los datos del cliente"/>
             </f:facet>
-            <p:outputLabel value="Nombre"/>
-            <p:inputText value="#{clienteBacking.cliente.nombre}"/>
-            <p:outputLabel value="Telefono"/>
-            <p:inputText value="#{clienteBacking.cliente.telefono}"/>
-            <p:outputLabel value="Celular"/>
-            <p:inputText value="#{clienteBacking.cliente.celular}"/>
-            <p:outputLabel value="E-mail"/>
-            <p:inputText value="#{clienteBacking.cliente.mail}"/>
-            <p:outputLabel value="Domicilio"/>
-            <p:inputText value="#{clienteBacking.cliente.direccion}"/>
-            <p:outputLabel value="CUIT-CUIL"/>
-            <p:inputText value="#{clienteBacking.cliente.cuitCuil}"/>
-            <p:outputLabel value="Obeservaciones"/>
-            <p:inputText value="#{clienteBacking.cliente.observaciones}"/>
-            <p:outputLabel value="Categoria IVA"/>
-            <p:inputText value="#{clienteBacking.cliente.categoriaIVA}"/>
-            <p:outputLabel value="Reparaciones"/>
-            <p:inputText value="#{clienteBacking.cliente.reparaciones}"/>
-            <p:outputLabel value="Solicitud de reparaciones"/>
-            <p:inputText value="#{clienteBacking.cliente.solicitudReparaciones}"/>
         </p:panelGrid>
+
+        <ui:include src="form.xhtml"/>
+        
+         <p:panelGrid columns="2" layout="grid">
+            <p:outputLabel value="Nombre Usuario"/>
+            <p:inputText value="#{clienteBacking.cliente.usuario.nombreUsuario}"/>
+
+            <p:outputLabel value="Password"/>
+            <p:inputText value="#{clienteBacking.cliente.usuario.password}"/>
+        </p:panelGrid>
+
         <p:commandButton value="Actualizar"
                          action="#{clienteBacking.update()}"
                          update="messages"/>

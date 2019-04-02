@@ -17,24 +17,17 @@
             <f:facet name="header">
                 <h:outputText value="Actualizar los datos del empelado"></h:outputText>
             </f:facet>
+        </p:panelGrid>
+        <ui:include src="form.xhtml"/>
+        <p:panelGrid columns="2" layout="grid">
             <p:outputLabel value="Nombre"/>
-            <p:inputText value="#{empleadoBacking.empleado.nombre}"/>
-            <p:outputLabel value="Telefono"/>
-            <p:inputText value="#{empleadoBacking.empleado.telefono}"/>
-            <p:outputLabel value="Celular"/>
-            <p:inputText value="#{empleadoBacking.empleado.celular}"/>
-            <p:outputLabel value="E-mail"/>
-            <p:inputText value="#{empleadoBacking.empleado.mail}"/>
-            <p:outputLabel value="Domicilio"/>
-            <p:inputText value="#{empleadoBacking.empleado.direccion}"/>
-            <p:outputLabel value="CUIT-CUIL"/>
-            <p:inputText value="#{empleadoBacking.empleado.cuitCuil}"/>
-            <p:outputLabel value="Obeservaciones"/>
-            <p:inputText value="#{empleadoBacking.empleado.observaciones}"/>
-            <p:outputLabel value="Porcentaje de comision"/>
-            <p:inputText value="#{empleadoBacking.empleado.porcentajeComision}"/>
-            <p:outputLabel value="Sueldo base"/>
-            <p:inputText value="#{empleadoBacking.empleado.sueldoBase}"/>
+            <p:inputText value="#{empleadoBacking.empleado.usuario.nombreUsuario}"/>
+
+            <p:outputLabel value="Contraseña"/>
+            <p:inputText value="#{empleadoBacking.empleado.usuario.password}"/>
+
+            <p:selectBooleanCheckbox value="#{empleadoBacking.usuario.administrador}" itemLabel="Administrador"/>
+
         </p:panelGrid>
         <p:commandButton value="Actualizar"
                          action="#{empleadoBacking.update()}"
