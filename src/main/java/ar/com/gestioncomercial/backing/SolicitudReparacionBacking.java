@@ -10,13 +10,14 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Named
 @ViewScoped
-public class SolicitudReparacionBacking implements CRUDBacking<SolicitudReparacion> {
+public class SolicitudReparacionBacking implements Serializable, CRUDBacking<SolicitudReparacion> {
 
     private static final Logger logger = Logger.getLogger(SolicitudReparacionBacking.class.getName());
 
