@@ -14,25 +14,9 @@
             <f:facet name="header">
                 <h:outputText value="Ingrese los datos del nuevo empleado"></h:outputText>
             </f:facet>
-            <p:outputLabel value="Nombre"/>
-            <p:inputText value="#{empleadoBacking.empleado.nombre}"/>
-            <p:outputLabel value="Telefono"/>
-            <p:inputText value="#{empleadoBacking.empleado.telefono}"/>
-            <p:outputLabel value="Celular"/>
-            <p:inputText value="#{empleadoBacking.empleado.celular}"/>
-            <p:outputLabel value="E-mail"/>
-            <p:inputText value="#{empleadoBacking.empleado.mail}"/>
-            <p:outputLabel value="Domicilio"/>
-            <p:inputText value="#{empleadoBacking.empleado.direccion}"/>
-            <p:outputLabel value="CUIT-CUIL"/>
-            <p:inputText value="#{empleadoBacking.empleado.cuitCuil}"/>
-            <p:outputLabel value="Obeservaciones"/>
-            <p:inputText value="#{empleadoBacking.empleado.observaciones}"/>
-            <p:outputLabel value="Porcentaje de comision"/>
-            <p:inputText value="#{empleadoBacking.empleado.porcentajeComision}"/>
-            <p:outputLabel value="Sueldo base"/>
-            <p:inputText value="#{empleadoBacking.empleado.sueldoBase}"/>
+            
         </p:panelGrid>
+        <ui:include src="form.xhtml"/>
         <p:commandButton value="Guardar"
                          action="#{empleadoBacking.create()}"
                          update="messages"/>
