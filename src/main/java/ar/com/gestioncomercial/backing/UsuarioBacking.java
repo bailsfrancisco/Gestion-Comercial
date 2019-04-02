@@ -72,7 +72,7 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
     public String update(){
         try{
             usuarioController.update(usuario);
-            return URLMap.getIndexUsuarios() + URLMap.getFacesRedirect();
+            return URLMap.getIndexReparaciones() + URLMap.getFacesRedirect();
         }catch(Exception e){
             return null;
         }

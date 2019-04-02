@@ -1,13 +1,15 @@
 package ar.com.gestioncomercial.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 //TODO: AMPLIAR
 @Entity
 @Table(name = "solicitud_reparacion")
+@NamedQueries({
+        @NamedQuery(
+                name = "solicitudReparacion.getAllSolicitudes",
+                query = "select s from SolicitudReparacion s")
+})
 public class SolicitudReparacion extends AbstractEntity {
 
     private String descripcionFallo;

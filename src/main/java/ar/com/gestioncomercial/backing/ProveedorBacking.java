@@ -5,14 +5,14 @@
  */
 package ar.com.gestioncomercial.backing;
 
-import ar.com.gestioncomercial.DAO.AbstractPersonaDAO;
-import ar.com.gestioncomercial.DAO.ProveedorDAO;
 import ar.com.gestioncomercial.controller.ProveedorController;
-import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Proveedor;
+import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -26,6 +26,8 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
+
+    private static final Logger logger = Logger.getLogger(ProveedorBacking.class.getName());
 
     private Proveedor proveedor;
 
@@ -50,6 +52,8 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
             proveedorController.create(proveedor);
             return URLMap.getIndexProveedores() + URLMap.getFacesRedirect();
         } catch (EJBException e) {
+            logger.log(Level.SEVERE, e.getMessage());
+            JSFUtils.createFacesMessage("Ocurrio un Error");
             return null;
         }
     }
@@ -65,13 +69,20 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
             proveedorController.update(proveedor);
             return URLMap.getIndexProveedores() + URLMap.getFacesRedirect();
         } catch (Exception e) {
+            logger.log(Level.SEVERE, e.getMessage());
+            JSFUtils.createFacesMessage("Ocurrio un Error");
             return null;
         }
     }
 
     @Override
     public void delete(Proveedor entity) {
-        proveedorController.delete(entity);
+        try{
+            proveedorController.delete(entity);
+        }catch(Exception e){
+            logger.log(Level.SEVERE, e.getMessage());
+            JSFUtils.createFacesMessage("Ocurrio un Error");
+        }
     }
 
     @Override

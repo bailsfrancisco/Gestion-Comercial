@@ -27,7 +27,7 @@ public class CategoriaDAO extends AbstractDAO<Categoria> {
 
     @Override
     protected List<Categoria> getAll() {
-        Query query = em.createNamedQuery("Categoria.getAll");
+        Query query = em.createNamedQuery("categoria.getAll");
         return query.getResultList();
     }
 
