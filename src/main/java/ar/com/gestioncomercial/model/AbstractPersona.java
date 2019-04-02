@@ -102,4 +102,12 @@ public abstract class AbstractPersona extends AbstractEntity {
     public void setCelular(String celular) {
         this.celular = celular;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }
