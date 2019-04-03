@@ -33,7 +33,7 @@ and open the template in the editor.
     width: auto; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     left: 0;
-    //overflow-x: hidden; /* Disable horizontal scroll */
+    /*overflow-x: hidden;*/ /* Disable horizontal scroll */
     padding: 10px;
 }
 

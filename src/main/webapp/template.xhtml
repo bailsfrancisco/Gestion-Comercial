@@ -5,29 +5,32 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 template="/base.xhtml">
-    <ui:define name="menu" >
-        <f:view contentType="text/html">
-            <p:growl id="messages" autoUpdate="true"/>
-            <div class="fieldset_image">
-                <h:form>
-                    <p:fieldset legend="Electronic Junin">
-                        <p:menuButton style="float: right" class="menu_button" value="#{sessionBacking.usuario.nombreUsuario}">
-                            <p:menuitem value="Salir" action="#{sessionBacking.logout()}" />
-                        </p:menuButton>
-                        <h:panelGrid columns="2" cellpadding="5">
-                            <h:link outcome="#{sessionBacking.urlMap.getWELCOME()}">
-                                <p:graphicImage style="width: 50%" url="/resources/images/logo.png"/>
-                            </h:link>
-                            <h:outputText
-                                value="Servicio tecnico y accesorios" />
-                        </h:panelGrid>
-                    </p:fieldset>
-                </h:form>
-            </div>
 
-            <div class="panel_menu_div">
-                <p:panel id="panel_menu" header="Menu principal">
-                    <h:form>
+    <ui:define name="menu" >
+
+
+        <div class="fieldset_image">
+            <h:form>
+                <p:fieldset legend="Electronic Junin">
+                    <p:menuButton style="float: right" class="menu_button" value="#{sessionBacking.usuario.nombreUsuario}">
+                        <p:menuitem value="Salir" action="#{sessionBacking.logout()}" />
+                    </p:menuButton>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:link outcome="#{sessionBacking.urlMap.getWELCOME()}">
+                            <p:graphicImage style="width: 50%" url="/resources/images/logo.png"/>
+                        </h:link>
+                        <h:outputText
+                            value="Servicio tecnico y accesorios" />
+                    </h:panelGrid>
+                </p:fieldset>
+            </h:form>
+        </div>
+
+        <div class="menu_div">
+            <f:view contentType="text/html">
+                <h:form>
+                    <p:growl id="messages" autoUpdate="true"/>
+                    <p:panel id="panel_menu" header="Menu principal">
                         <p:menu id="menu" toggleable="true">
                             <c:choose>
 
@@ -59,28 +62,34 @@
                                 </c:when>
 
                                 <c:otherwise>
-                                    <p:menuitem value="Solicitar reparacion" url="#{sessionBacking.urlMap.getNewSolicitud()}"/>
-                                    <p:menuitem value="Ver estado de mis reparaciones" url="#{sessionBacking.urlMap.getEstadoReparaciones()}"/>
-                                    <p:menuitem value="Ver productos" url="#{sessionBacking.urlMap.getIndexProductos()}"/>
-                                    <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
+
                                 </c:otherwise>
 
                             </c:choose>
+
+                            <p:submenu styleClass="nav-items" label="#{sessionBacking.usuario.nombreUsuario}" >
+                                <p:menuitem value="Solicitar reparacion" url="#{sessionBacking.urlMap.getNewSolicitud()}"/>
+                                <p:menuitem value="Ver estado de mis reparaciones" url="#{sessionBacking.urlMap}"/>
+                                <p:menuitem value="Ver productos" url="#{sessionBacking.urlMap}"/>
+                                <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
+                            </p:submenu>
+
                         </p:menu>
-                    </h:form>
-                </p:panel>
-            </div>
+                    </p:panel>
+
+                    <div id="content" class="content">
+                        <ui:insert name="content"/>
+                    </div>
 
 
-            <div id="content" class="content">
-                <ui:insert name="content"/>
-            </div>
+                    <div id="bottom" class="bottom">
+                        <ui:insert name="bottom"/>
+                    </div>
+
+                </h:form>
+            </f:view>
+        </div>
 
 
-            <div id="bottom">
-                <ui:insert name="bottom"/>
-            </div>
-
-        </f:view>
     </ui:define>
 </ui:composition>

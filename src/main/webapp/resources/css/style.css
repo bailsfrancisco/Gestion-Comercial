@@ -26,7 +26,7 @@ body{
 
 
 .ui-menuitem.ui-widget.ui-corner-all:last-child {
-    //float: right;
+    /*float: right;*/
 }
 
 
@@ -35,12 +35,12 @@ body{
     margin-left: auto;
     margin-right: auto;
     background-color: #f2f5f7;
-    //padding: 5px 20px 20px 5px;
+    /*padding: 5px 20px 20px 5px;*/
     margin-top: 2%;
-    //position: fixed;
+    /*position: fixed;*/
 }
 
 .ui-menu{
     width: 100%;
-    //position: fixed;
+    /*position: fixed;*/
 }
