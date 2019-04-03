@@ -2,16 +2,14 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 >
+    <p:panelGrid columns="2" layout="grid">
+        <p:outputLabel value="Nombre"/>
+        <p:inputText value="#{usuarioBacking.user.nombreUsuario}"/>
 
+        <p:outputLabel value="Contraseña"/>
+        <p:password value="#{usuarioBacking.user.password}"/>
 
-        <p:panelGrid columns="2" layout="grid">
-            <p:outputLabel value="Nombre"/>
-            <p:inputText value="#{usuarioBacking.user.nombreUsuario}"/>
+        <p:selectBooleanCheckbox value="#{usuarioBacking.user.administrador}" itemLabel="Administrador"/>
 
-            <p:outputLabel value="Contraseña"/>
-            <p:password value="#{usuarioBacking.user.password}"/>
-
-            <p:selectBooleanCheckbox value="#{usuarioBacking.user.administrador}" itemLabel="Administrador"/>
-
-        </p:panelGrid>
+    </p:panelGrid>
 </ui:composition>

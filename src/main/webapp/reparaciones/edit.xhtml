@@ -6,24 +6,24 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     <ui:define name="head">
         <h:head>
-            <title>Editar categoria</title>
+            <title>Editar reparacion</title>
         </h:head>
         <f:metadata>
-            <f:viewParam name="id" value="#{categoriaBacking.categoria}"/>
+            <f:viewParam name="id" value="#{reparacionBacking.reparacion}"/>
         </f:metadata>
     </ui:define>
     <ui:define name="content">
         <p:panelGrid columns="2" layout="grid">
             <f:facet name="header">
-                <h:outputText value="Actualizar los datos de la categoria"/>
+                <h:outputText value="Actualizar los datos de la reparacion"/>
             </f:facet>
         </p:panelGrid>
         <ui:include src="form.xhtml"/>
 
         <p:commandButton value="Actualizar"
-                         action="#{categoriaBacking.update()}"
+                         action="#{reparacionBacking.update()}"
                          update="messages"/>
 
-        <p:button value="Cancelar" outcome="#{sessionBacking.urlMap.getIndexCategorias()}"/>
+        <p:button value="Cancelar" outcome="#{sessionBacking.urlMap.getIndexReparaciones()}"/>
     </ui:define>
 </ui:composition>

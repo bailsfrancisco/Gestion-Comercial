@@ -1,29 +1,26 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="./../template.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                template="./../template.xhtml">
     <ui:define name="head">
         <h:head>
-            <title>Editar categoria</title>
+            <title>Nueva reparacion</title>
         </h:head>
-        <f:metadata>
-            <f:viewParam name="id" value="#{categoriaBacking.categoria}"/>
-        </f:metadata>
     </ui:define>
     <ui:define name="content">
         <p:panelGrid columns="2" layout="grid">
             <f:facet name="header">
-                <h:outputText value="Actualizar los datos de la categoria"/>
+                <h:outputText value="Ingrese la nueva reparacion"/>
             </f:facet>
         </p:panelGrid>
+
         <ui:include src="form.xhtml"/>
 
-        <p:commandButton value="Actualizar"
-                         action="#{categoriaBacking.update()}"
+        <p:commandButton value="Guardar"
+                         action="#{reparacionBacking.create()}"
                          update="messages"/>
-
-        <p:button value="Cancelar" outcome="#{sessionBacking.urlMap.getIndexCategorias()}"/>
+        <p:button value="Cancelar" outcome="#{sessionBacking.urlMap.getIndexReparaciones()}"/>
     </ui:define>
 </ui:composition>

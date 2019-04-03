@@ -56,10 +56,11 @@ public class CategoriaBacking implements Serializable, CRUDBacking<Categoria> {
             JSFUtils.createFacesMessage("Ocurrio un Error");
             logger.log(Level.SEVERE, e.getMessage());
 
-        } catch (NullOrEmptyException e){
+        } catch (NullOrEmptyException e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("El campo Nombre no puede ser nulo o contener espacios");
         }
+
         return null;
     }
 
@@ -119,4 +120,13 @@ public class CategoriaBacking implements Serializable, CRUDBacking<Categoria> {
     public void setUrlMap(URLMap urlMap) {
         this.urlMap = urlMap;
     }
+
+    public CategoriaController getCategoriaController() {
+        return categoriaController;
+    }
+
+    public void setCategoriaController(CategoriaController categoriaController) {
+        this.categoriaController = categoriaController;
+    }
+
 }

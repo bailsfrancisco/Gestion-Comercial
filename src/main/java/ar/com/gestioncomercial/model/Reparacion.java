@@ -25,7 +25,7 @@ public class Reparacion extends AbstractEntity {
 
     private Integer estadoReparacion;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "tecnico_id")
     private AbstractPersona tecnico;
 

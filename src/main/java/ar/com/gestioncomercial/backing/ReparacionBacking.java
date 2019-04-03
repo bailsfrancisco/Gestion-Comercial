@@ -24,20 +24,23 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
     private Reparacion reparacion;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         reparacion = new Reparacion();
     }
 
     @EJB
     private ReparacionController reparacionController;
 
+    @EJB
+    private URLMap urlMap;
+
     @Override
     public String create() {
-        try{
+        try {
             reparacionController.create(reparacion);
             return URLMap.getIndexReparaciones() + URLMap.getFacesRedirect();
 
-        }catch(EJBException e){
+        } catch (EJBException e) {
             logger.log(Level.SEVERE, e.getMessage());
 
         }
@@ -52,10 +55,10 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
 
     @Override
     public String update() {
-        try{
+        try {
             reparacionController.update(reparacion);
             return URLMap.getIndexUsuarios() + URLMap.getFacesRedirect();
-        }catch(Exception e){
+        } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("Ocurrio un Error");
             return null;
@@ -64,9 +67,9 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
 
     @Override
     public void delete(Reparacion entity) {
-        try{
+        try {
             reparacionController.delete(reparacion);
-        }catch(Exception e){
+        } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("Ocurrio un Error");
         }
@@ -83,5 +86,13 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
 
     public void setReparacion(Reparacion reparacion) {
         this.reparacion = reparacion;
+    }
+
+    public URLMap getUrlMap() {
+        return urlMap;
+    }
+
+    public void setUrlMap(URLMap urlMap) {
+        this.urlMap = urlMap;
     }
 }

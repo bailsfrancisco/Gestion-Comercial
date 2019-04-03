@@ -2,8 +2,6 @@ package ar.com.gestioncomercial.model;
 
 import javax.persistence.Entity;
 import java.util.Date;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -11,10 +9,7 @@ import javax.persistence.Temporal;
 @Table(name = "cotizacion")
 public class Cotizacion extends AbstractEntity {
 
-    @ManyToOne
-    @JoinColumn(name = "reparacion_id")
-    private Reparacion reparacion;
-
+    private String detalles;
     private Float precioTotal;
 
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -24,18 +19,9 @@ public class Cotizacion extends AbstractEntity {
 
     }
 
-    public Cotizacion(Reparacion reparacion, Float precioTotal, Date fechaVencimiento) {
-        this.reparacion = reparacion;
+    public Cotizacion(Float precioTotal, Date fechaVencimiento) {
         this.precioTotal = precioTotal;
         this.fechaVencimiento = fechaVencimiento;
-    }
-
-    public Reparacion getReparacion() {
-        return reparacion;
-    }
-
-    public void setReparacion(Reparacion reparacion) {
-        this.reparacion = reparacion;
     }
 
     public Float getPrecioTotal() {
@@ -54,4 +40,11 @@ public class Cotizacion extends AbstractEntity {
         this.fechaVencimiento = fechaVencimiento;
     }
 
+    public String getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(String detalles) {
+        this.detalles = detalles;
+    }
 }

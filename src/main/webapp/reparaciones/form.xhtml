@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:panelGrid columns="2" layout="grid">
+        <p:outputLabel value="Diagnostico"/>
+        <p:inputTextarea  autoResize="false" value="#{reparacionBacking.reparacion.diagnostico}"/>
+        <p:outputLabel value="Fecha de egreso"/>
+        <p:calendar value="#{reparacionBacking.reparacion.fechaEgreso}" pattern="dd-MM-yyyy"/>
+        <p:outputLabel value="Seña"/>
+        <p:inputText value="#{reparacionBacking.reparacion.senia}"/>
+        <p:outputLabel value="Observaciones"/>
+        <p:inputTextarea  autoResize="false" value="#{reparacionBacking.reparacion.observaciones}"/>
+        <p:outputLabel value="Precio de mano de obra"/>
+        <p:inputText value="#{reparacionBacking.reparacion.precioManoObra}"/>
+        <p:outputLabel value="Estado de la reparacion"/>
+        <p:inputText value="#{reparacionBacking.reparacion.estadoReparacion}"/>
+        <p:outputLabel value="Tecnico"/>
+        <p:inputText value="#{reparacionBacking.reparacion.tecnico}"/>
+        <p:outputLabel value="Cotizacion"/>
+        <p:inputText value="#{reparacionBacking.reparacion.cotizacion}"/>
+        <p:outputLabel value="Cliente"/>
+        <p:inputText value="#{reparacionBacking.reparacion.cliente}"/>
+        <p:outputLabel value="Solicitud de reparacion"/>
+        <p:inputText value="#{reparacionBacking.reparacion.solicitud_reparacion}"/>
+    </p:panelGrid>
+</ui:composition>

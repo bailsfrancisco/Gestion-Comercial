@@ -54,10 +54,16 @@ public class URLMap implements Serializable {
     private static final String EDIT_REPARACION = REPARACIONES + _EDIT;
 
     // URL para Solicitudes Reparacion
-    private static final String SOLICITUDES= "/solicitudes/";
+    private static final String SOLICITUDES = "/solicitudes/";
     private static final String INDEX_SOLICITUDES = SOLICITUDES + _INDEX;
     private static final String NEW_SOLICITUD = SOLICITUDES + _NEW;
     private static final String EDIT_SOLICITUD = SOLICITUDES + _EDIT;
+
+    // URL para Cotizaciones
+    private static final String COTIZACIONES = "/cotizaciones/";
+    private static final String INDEX_COTIZACIONES = COTIZACIONES + _INDEX;
+    private static final String NEW_COTIZACION = COTIZACIONES + _NEW;
+    private static final String EDIT_COTIZACION = COTIZACIONES + _EDIT;
 
     private static final String FACES_REDIRECT = "?faces-redirect=true";
 
@@ -65,7 +71,7 @@ public class URLMap implements Serializable {
         return INDEX;
     }
 
-    public static String  getWELCOME() {
+    public static String getWELCOME() {
         return WELCOME;
     }
 
@@ -160,4 +166,17 @@ public class URLMap implements Serializable {
     public static String getEditSolicitud() {
         return EDIT_SOLICITUD;
     }
+
+    public static String getIndexCotizaciones() {
+        return INDEX_COTIZACIONES;
+    }
+
+    public static String getNewCotizacion() {
+        return NEW_COTIZACION;
+    }
+
+    public static String getEditCotizacion() {
+        return EDIT_COTIZACION;
+    }
+
 }

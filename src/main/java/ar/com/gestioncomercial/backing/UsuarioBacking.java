@@ -27,7 +27,7 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
     private Usuario usuario;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         this.usuario = new Usuario();
     }
 
@@ -40,23 +40,23 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
     @EJB
     private URLMap urlMap;
 
-    private List<Usuario> getUsers(){
+    private List<Usuario> getUsers() {
         return usuarioController.getAll();
     }
 
     @Override
-    public String create(){
-        try{
+    public String create() {
+        try {
             StringUtils.areNullOrEmpty(usuario.getNombreUsuario(),
                     usuario.getPassword());
 
             usuarioController.create(usuario);
 
             return URLMap.getIndexUsuarios() + URLMap.getFacesRedirect();
-        }catch(EJBException e){
+        } catch (EJBException e) {
             logger.log(Level.SEVERE, e.getMessage());
 
-        } catch (NullOrEmptyException e){
+        } catch (NullOrEmptyException e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("Campos: Nombre de usuario y Password no pueden ser nulos");
         }
@@ -69,20 +69,19 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
     }
 
     @Override
-    public String update(){
-        try{
+    public String update() {
+        try {
             usuarioController.update(usuario);
             return URLMap.getIndexReparaciones() + URLMap.getFacesRedirect();
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
-
-    public void delete(Usuario usuario){
-        if(!sessionBacking.getUsuario().equals(usuario)){
+    public void delete(Usuario usuario) {
+        if (!sessionBacking.getUsuario().equals(usuario)) {
             usuarioController.delete(usuario);
-        }else{
+        } else {
             JSFUtils.createFacesMessage("No te podes borrar a vos mismo!!!");
         }
 

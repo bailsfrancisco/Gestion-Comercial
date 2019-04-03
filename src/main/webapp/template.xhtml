@@ -28,8 +28,9 @@
             <div class="panel_menu_div">
                 <p:panel id="panel_menu" header="Menu principal">
                     <h:form>
-                        <p:menu id="menu">
+                        <p:menu id="menu" toggleable="true">
                             <c:choose>
+
                                 <c:when test="#{sessionBacking.usuario.administrador}">
                                     <p:submenu label="Usuarios">
                                         <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexUsuarios()}"/>
@@ -44,11 +45,26 @@
                                         <p:menuitem value="Clientes" url="#{sessionBacking.urlMap.getIndexClientes()}"/>
                                         <p:menuitem value="Proveedores" url="#{sessionBacking.urlMap.getIndexProveedores()}"/>
                                     </p:submenu>
+                                    <p:submenu label="Reparaciones">
+                                        <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexReparaciones()}"/>
+                                        <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewReparacion()}"/>
+                                    </p:submenu>
+                                    <p:submenu label="Solicitud de reparaciones">
+                                        <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexSolicitudes()}"/>
+                                    </p:submenu>
+                                    <p:submenu label="Cotizaciones">
+                                        <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexCotizaciones()}"/>
+                                        <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewCotizacion()}"/>
+                                    </p:submenu>
                                 </c:when>
 
                                 <c:otherwise>
+                                    <p:menuitem value="Solicitar reparacion" url="#{sessionBacking.urlMap.getNewSolicitud()}"/>
+                                    <p:menuitem value="Ver estado de mis reparaciones" url="#{sessionBacking.urlMap.getEstadoReparaciones()}"/>
+                                    <p:menuitem value="Ver productos" url="#{sessionBacking.urlMap.getIndexProductos()}"/>
                                     <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
                                 </c:otherwise>
+
                             </c:choose>
                         </p:menu>
                     </h:form>
