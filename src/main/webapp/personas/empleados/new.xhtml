@@ -14,7 +14,7 @@
             <f:facet name="header">
                 <h:outputText value="Ingrese los datos del nuevo empleado"></h:outputText>
             </f:facet>
-            
+
         </p:panelGrid>
         <ui:include src="form.xhtml"/>
         <p:panelGrid columns="2" layout="grid">
@@ -27,9 +27,11 @@
             <p:selectBooleanCheckbox value="#{empleadoBacking.usuario.administrador}" itemLabel="Administrador"/>
 
         </p:panelGrid>
-        <p:commandButton value="Guardar"
-                         action="#{empleadoBacking.create()}"
-                         update="messages"/>
-        <p:button value="Cancelar" outcome="#{empleadoBacking.urlMap.getIndexEmpleados()}"/>
+        <p:panel>
+            <p:commandButton value="Guardar"
+                             action="#{empleadoBacking.create()}"
+                             update="messages"/>
+            <p:button value="Cancelar" outcome="#{empleadoBacking.urlMap.getIndexEmpleados()}"/>
+        </p:panel>
     </ui:define>
 </ui:composition>

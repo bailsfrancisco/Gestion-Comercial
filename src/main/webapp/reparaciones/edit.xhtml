@@ -19,11 +19,12 @@
             </f:facet>
         </p:panelGrid>
         <ui:include src="form.xhtml"/>
+        <p:panel>
+            <p:commandButton value="Actualizar"
+                             action="#{reparacionBacking.update()}"
+                             update="messages"/>
 
-        <p:commandButton value="Actualizar"
-                         action="#{reparacionBacking.update()}"
-                         update="messages"/>
-
-        <p:button value="Cancelar" outcome="#{sessionBacking.urlMap.getIndexReparaciones()}"/>
+            <p:button value="Cancelar" outcome="#{sessionBacking.urlMap.getIndexReparaciones()}"/>
+        </p:panel>
     </ui:define>
 </ui:composition>

@@ -17,10 +17,11 @@
         </p:panelGrid>
 
         <ui:include src="form.xhtml"/>
-
-        <p:commandButton value="Guardar"
-                         action="#{proveedorBacking.create()}"
-                         update="messages"/>
-        <p:button value="Cancelar" outcome="#{proveedorBacking.urlMap.getIndexProveedores()}"/>
+        <p:panel>
+            <p:commandButton value="Guardar"
+                             action="#{proveedorBacking.create()}"
+                             update="messages"/>
+            <p:button value="Cancelar" outcome="#{proveedorBacking.urlMap.getIndexProveedores()}"/>
+        </p:panel>
     </ui:define>
 </ui:composition>

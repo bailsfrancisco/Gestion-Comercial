@@ -6,9 +6,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "solicitud_reparacion")
 @NamedQueries({
-        @NamedQuery(
-                name = "solicitudReparacion.getAllSolicitudes",
-                query = "select s from SolicitudReparacion s")
+    @NamedQuery(
+            name = "solicitudReparacion.getAllSolicitudes",
+            query = "select s from SolicitudReparacion s")
 })
 public class SolicitudReparacion extends AbstractEntity {
 
@@ -17,6 +17,10 @@ public class SolicitudReparacion extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @OneToOne(optional = false)
+    @JoinColumn(name = "cotizacion_id")
+    private Cotizacion cotizacion;
 
     public SolicitudReparacion() {
 
@@ -42,4 +46,13 @@ public class SolicitudReparacion extends AbstractEntity {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    public Cotizacion getCotizacion() {
+        return cotizacion;
+    }
+
+    public void setCotizacion(Cotizacion cotizacion) {
+        this.cotizacion = cotizacion;
+    }
+
 }

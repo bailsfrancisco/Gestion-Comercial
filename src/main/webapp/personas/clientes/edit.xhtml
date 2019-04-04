@@ -20,18 +20,19 @@
         </p:panelGrid>
 
         <ui:include src="form.xhtml"/>
-        
-         <p:panelGrid columns="2" layout="grid">
+
+        <p:panelGrid columns="2" layout="grid">
             <p:outputLabel value="Nombre Usuario"/>
             <p:inputText value="#{clienteBacking.cliente.usuario.nombreUsuario}"/>
 
             <p:outputLabel value="Password"/>
             <p:inputText value="#{clienteBacking.cliente.usuario.password}"/>
         </p:panelGrid>
-
-        <p:commandButton value="Actualizar"
-                         action="#{clienteBacking.update()}"
-                         update="messages"/>
-        <p:button value="Cancelar" outcome="#{clienteBacking.urlMap.getIndexClientes()}"/>
+        <p:panel>
+            <p:commandButton value="Actualizar"
+                             action="#{clienteBacking.update()}"
+                             update="messages"/>
+            <p:button value="Cancelar" outcome="#{clienteBacking.urlMap.getIndexClientes()}"/>
+        </p:panel>
     </ui:define>
 </ui:composition>

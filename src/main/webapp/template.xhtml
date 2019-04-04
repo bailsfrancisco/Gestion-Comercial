@@ -5,22 +5,20 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 template="/base.xhtml">
-
     <ui:define name="menu" >
 
-
-        <div class="fieldset_image">
+        <div class="header_div">
             <h:form>
                 <p:fieldset legend="Electronic Junin">
-                    <p:menuButton style="float: right" class="menu_button" value="#{sessionBacking.usuario.nombreUsuario}">
-                        <p:menuitem value="Salir" action="#{sessionBacking.logout()}" />
+                    <p:menuButton style="float: right;" class="menu_button" value="#{sessionBacking.usuario.nombreUsuario}" icon="fa fa-home">
+                        <p:menuitem icon="fa fa-sign-out" value="Salir" action="#{sessionBacking.logout()}" />
                     </p:menuButton>
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:link outcome="#{sessionBacking.urlMap.getWELCOME()}">
                             <p:graphicImage style="width: 50%" url="/resources/images/logo.png"/>
                         </h:link>
-                        <h:outputText
-                            value="Servicio tecnico y accesorios" />
+                        <p:outputLabel><i class="fa fa-wrench" aria-hidden="true"></i> Servicio tecnico y accesorios
+                        </p:outputLabel>
                     </h:panelGrid>
                 </p:fieldset>
             </h:form>
@@ -35,7 +33,7 @@
                             <c:choose>
 
                                 <c:when test="#{sessionBacking.usuario.administrador}">
-                                    <p:submenu label="Usuarios">
+                                    <p:submenu label="Usuarios" icon="fa fa-user">
                                         <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexUsuarios()}"/>
                                         <p:menuitem value="Nuevo" url="#{sessionBacking.urlMap.getNewUsuario()}"/>
                                     </p:submenu>
@@ -67,29 +65,19 @@
 
                             </c:choose>
 
-                            <p:submenu styleClass="nav-items" label="#{sessionBacking.usuario.nombreUsuario}" >
+                            <p:submenu  icon="fa fa-user" label="#{sessionBacking.usuario.nombreUsuario}" >
                                 <p:menuitem value="Solicitar reparacion" url="#{sessionBacking.urlMap.getNewSolicitud()}"/>
                                 <p:menuitem value="Ver estado de mis reparaciones" url="#{sessionBacking.urlMap}"/>
                                 <p:menuitem value="Ver productos" url="#{sessionBacking.urlMap}"/>
                                 <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
                             </p:submenu>
-
                         </p:menu>
                     </p:panel>
-
-                    <div id="content" class="content">
-                        <ui:insert name="content"/>
-                    </div>
-
-
-                    <div id="bottom" class="bottom">
-                        <ui:insert name="bottom"/>
-                    </div>
-
                 </h:form>
             </f:view>
         </div>
-
-
+        <div class="content_div">
+            <ui:insert name="content"/>
+        </div>
     </ui:define>
 </ui:composition>

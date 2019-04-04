@@ -6,9 +6,9 @@ import java.util.Date;
 @Entity
 @Table(name = "reparacion")
 @NamedQueries({
-        @NamedQuery(
-                name = "reparacion.getAllReparaciones",
-                query = "select r from Reparacion r")
+    @NamedQuery(
+            name = "reparacion.getAllReparaciones",
+            query = "select r from Reparacion r")
 })
 public class Reparacion extends AbstractEntity {
 
@@ -27,16 +27,19 @@ public class Reparacion extends AbstractEntity {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "tecnico_id")
-    private AbstractPersona tecnico;
+    private Empleado tecnico;
 
+    /*
     @OneToOne(optional = false)
     @JoinColumn(name = "cotizacion_id")
     private Cotizacion cotizacion;
-
+     */
+    /*
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-
+     */
+    
     @OneToOne(optional = false)
     @JoinColumn(name = "solicitud_reparacion_id")
     private SolicitudReparacion solicitud_reparacion;
@@ -45,7 +48,7 @@ public class Reparacion extends AbstractEntity {
 
     }
 
-    public Reparacion(String diagnostico, Date fechaEgreso, Float senia, String observaciones, Float precioManoObra, Integer estadoReparacion, AbstractPersona tecnico, Cotizacion cotizacion, Cliente cliente, SolicitudReparacion solicitud_reparacion) {
+    public Reparacion(String diagnostico, Date fechaEgreso, Float senia, String observaciones, Float precioManoObra, Integer estadoReparacion, Empleado tecnico, SolicitudReparacion solicitud_reparacion) {
         this.diagnostico = diagnostico;
         this.fechaEgreso = fechaEgreso;
         this.senia = senia;
@@ -53,8 +56,8 @@ public class Reparacion extends AbstractEntity {
         this.precioManoObra = precioManoObra;
         this.estadoReparacion = estadoReparacion;
         this.tecnico = tecnico;
-        this.cotizacion = cotizacion;
-        this.cliente = cliente;
+        //this.cotizacion = cotizacion;
+        //this.cliente = cliente;
         this.solicitud_reparacion = solicitud_reparacion;
     }
 
@@ -110,25 +113,26 @@ public class Reparacion extends AbstractEntity {
         return tecnico;
     }
 
-    public void setTecnico(Cliente tecnico) {
+    public void setTecnico(Empleado tecnico) {
         this.tecnico = tecnico;
     }
 
+    /*
     public Cotizacion getCotizacion() {
         return cotizacion;
     }
 
     public void setCotizacion(Cotizacion cotizacion) {
         this.cotizacion = cotizacion;
-    }
-
+    }*/
+    /*
     public AbstractPersona getCliente() {
         return cliente;
     }
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
+    }*/
 
     public SolicitudReparacion getSolicitud_reparacion() {
         return solicitud_reparacion;

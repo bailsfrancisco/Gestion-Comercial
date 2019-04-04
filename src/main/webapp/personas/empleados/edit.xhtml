@@ -29,9 +29,11 @@
             <p:selectBooleanCheckbox value="#{empleadoBacking.usuario.administrador}" itemLabel="Administrador"/>
 
         </p:panelGrid>
-        <p:commandButton value="Actualizar"
-                         action="#{empleadoBacking.update()}"
-                         update="messages"/>
-        <p:button value="Cancelar" outcome="#{empleadoBacking.urlMap.getIndexEmpleados()}"/>
+        <p:panel>
+            <p:commandButton value="Actualizar"
+                             action="#{empleadoBacking.update()}"
+                             update="messages"/>
+            <p:button value="Cancelar" outcome="#{empleadoBacking.urlMap.getIndexEmpleados()}"/>
+        </p:panel>
     </ui:define>
 </ui:composition>

@@ -17,10 +17,11 @@
         </p:panelGrid>
 
         <ui:include src="form.xhtml"/>
-
-        <p:commandButton value="Guardar"
-                         action="#{reparacionBacking.create()}"
-                         update="messages"/>
-        <p:button value="Cancelar" outcome="#{sessionBacking.urlMap.getIndexReparaciones()}"/>
+        <p:panel>
+            <p:commandButton value="Guardar"
+                             action="#{reparacionBacking.create()}"
+                             update="messages"/>
+            <p:button value="Cancelar" outcome="#{sessionBacking.urlMap.getIndexReparaciones()}"/>
+        </p:panel>
     </ui:define>
 </ui:composition>

@@ -7,29 +7,69 @@
     <ui:define name="login">
         <h:head>
             <title>Login</title>
-        </h:head>
-        <div id="backhsp" style="height: 950px">
-            <div class="ui-g ui-fluid">
-                <div class="ui-g-4"/>
-                <div id="login_box" class="ui-g-4">
-                    <div class="text-center">
-                        <h1>Bienvenido</h1>
-                    </div>
-                    <h:form styleClass="login_form">
-                        <div>
-                            <p:outputLabel for="user-name">Usuario</p:outputLabel>
-                            <p:inputText styleClass="form-control" id="user-name"
-                                         value="#{sessionBacking.nombreUsuario}"/>
-                        </div>
-                        <div>
-                            <p:outputLabel for="user-password">Contraseña</p:outputLabel>
-                            <p:password id="user-password" value="#{sessionBacking.password}"/>
-                        </div>
-                        <p:commandButton action="#{sessionBacking.login()}" type="submit" value="Ingresar"/>
-                    </h:form>
-                </div>
-                <div class="ui-g-4"/>
-            </div>
+        </h:head>    
+        <div class="header_div_login">
+            <h:form>
+                <p:fieldset legend="Electronic Junin"   style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:link outcome="#{sessionBacking.urlMap.getINDEX()}">
+                            <p:graphicImage style="width: 50%" url="/resources/images/logo.png"/>
+                        </h:link>
+                        <p:outputLabel><i class="fa fa-wrench" aria-hidden="true"></i> Servicio tecnico y accesorios
+                        </p:outputLabel>
+                    </h:panelGrid>
+                </p:fieldset>
+            </h:form>
         </div>
+        <p:panel>
+            <div id="backhsp" style="height: 950px">
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-4"/>
+                    <div id="login_box" class="ui-g-4">
+                        <div class="text-center">
+                            <h1>Bienvenidos</h1>
+                        </div>
+                        <h:form styleClass="login_form">
+                            <div>
+                                <p:outputLabel for="user-name"><i class="fa fa-user-circle" aria-hidden="true" style="padding-bottom: 10px"></i> Usuario</p:outputLabel>
+                                <p:inputText styleClass="form-control" id="user-name"
+                                             value="#{sessionBacking.nombreUsuario}"/>
+                            </div>
+                            <br/>
+                            <div>
+                                <p:outputLabel for="user-password"><i class="fa fa-lock" aria-hidden="true" style="padding-bottom: 10px"></i> Contraseña</p:outputLabel>
+                                <p:password id="user-password" value="#{sessionBacking.password}"/>
+                            </div>
+                            <br/>
+                            <p:commandButton icon="fa fa-sign-in" style="color: black" action="#{sessionBacking.login()}" type="submit" value="Ingresar"/>
+                        </h:form>
+                    </div>
+                    <div class="ui-g-4"/>
+                </div>
+                <div class="div_trab">
+                    <p:outputLabel id="bottom_label_trabajamos" value="¿Como trabajamos?"/>
+                </div>
+
+                <br/>
+
+                <div class="bottom">
+                    <div>
+                        <p:outputLabel style="float: left">
+                            <i class="fa fa-mobile" aria-hidden="true" style="color: #ff9900; padding-right: 10px;"></i> 
+                            <p:outputLabel id="bottom_label_1" value="TRAE TU EQUIPO"/>
+                        </p:outputLabel>
+                        <p:outputLabel style="float:center">
+                            <i class="fa fa-wrench" aria-hidden="true" style="color: #ff9900; padding-right: 10px;"></i> 
+                            <p:outputLabel id="bottom_label_2" value="LO REPARAMOS" />
+                        </p:outputLabel>
+                        <p:outputLabel style="float:right">
+                            <i class="fa fa-home" aria-hidden="true" style="color: #ff9900; padding-right: 10px;"></i> 
+                            <p:outputLabel id="bottom_label_3" value="TE LO LLEVAS"/>
+                        </p:outputLabel>
+                    </div>
+                </div>
+
+            </div>
+        </p:panel>
     </ui:define>
 </ui:composition>
