@@ -60,24 +60,23 @@
                                 </c:when>
 
                                 <c:otherwise>
-
+                                    <p:submenu  icon="fa fa-user" label="#{sessionBacking.usuario.nombreUsuario}" >
+                                        <p:menuitem value="Solicitar reparacion" url="#{sessionBacking.urlMap.getNewSolicitud()}"/>
+                                        <p:menuitem value="Ver estado de mis reparaciones" url="#{sessionBacking.urlMap}"/>
+                                        <p:menuitem value="Ver productos" url="#{sessionBacking.urlMap}"/>
+                                        <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
+                                    </p:submenu>
                                 </c:otherwise>
 
                             </c:choose>
 
-                            <p:submenu  icon="fa fa-user" label="#{sessionBacking.usuario.nombreUsuario}" >
-                                <p:menuitem value="Solicitar reparacion" url="#{sessionBacking.urlMap.getNewSolicitud()}"/>
-                                <p:menuitem value="Ver estado de mis reparaciones" url="#{sessionBacking.urlMap}"/>
-                                <p:menuitem value="Ver productos" url="#{sessionBacking.urlMap}"/>
-                                <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
-                            </p:submenu>
                         </p:menu>
                     </p:panel>
+                    <div class="content_div">
+                        <ui:insert name="content"/>
+                    </div>
                 </h:form>
             </f:view>
-        </div>
-        <div class="content_div">
-            <ui:insert name="content"/>
         </div>
     </ui:define>
 </ui:composition>
