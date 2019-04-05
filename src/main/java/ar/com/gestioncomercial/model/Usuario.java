@@ -8,14 +8,15 @@ import javax.persistence.*;
     @NamedQuery(
             name = "Usuario.findByNombreAndPassword",
             query = "select u from Usuario u where u.nombreUsuario = :nombreUsuario and u.password = :password"
-    ),
+    )
+    ,
     @NamedQuery(
             name = "Usuario.getAll",
             query = "select u from Usuario u")
 })
 public class Usuario extends AbstractEntity {
 
-    @Column(name = "nombreUsuario", unique = true, nullable = false)
+    @Column(name = "nombreUsuario")
     private String nombreUsuario;
 
     @Column(name = "password")
@@ -28,7 +29,8 @@ public class Usuario extends AbstractEntity {
 
     }
 
-    public Usuario(String nombreUsuario, String password, boolean administrador, String email) {
+    public Usuario(String nombreUsuario, String password, boolean administrador) {
+
         this.nombreUsuario = nombreUsuario;
 
         this.password = password;

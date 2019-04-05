@@ -1,12 +1,11 @@
 .image1{
-    height:500px;
-    width:500px;
+    height:100vh;
     background:
         url(../../resources/images/image1.jpg) center/cover;
-    background-repeat: no-repeat;
-    float:right;
+
 }
 
+/*
 .image2{
     height:500px;
     width:1200px;
@@ -14,18 +13,8 @@
         url(../../resources/images/image2.jpg) center/cover;
     background-repeat: no-repeat;
 
-}
+}*/
 
-
-.menu_div{
-    padding-top: 2%;
-    width: 40%;
-    position: absolute;
-}
-
-.imagenes{
-    padding-top: 2%;
-    padding-left: auto;
-    padding-bottom: 0;
-
+.ui-layout-unit-content {
+    overflow:hidden !important;
 }

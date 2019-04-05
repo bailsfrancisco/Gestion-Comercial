@@ -13,6 +13,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +50,6 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
         try {
             StringUtils.areNullOrEmpty(usuario.getNombreUsuario(),
                     usuario.getPassword());
-
             usuarioController.create(usuario);
 
             return URLMap.getIndexUsuarios() + URLMap.getFacesRedirect();
