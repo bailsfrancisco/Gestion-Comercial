@@ -33,42 +33,47 @@
 
                 <f:view contentType="text/html">
                     <h:form>
+                        <p:growl id="messages" autoUpdate="true"/>
                         <p:panel id="panel_menu">
-                            <p:menu id="menu" toggleable="false">
+                            <p:menu id="menu" toggleable="true">
                                 <c:choose>
 
                                     <c:when test="#{sessionBacking.usuario.administrador}">
                                         <p:submenu label="Usuarios" icon="fa fa-user">
-                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexUsuarios()}"/>
-                                            <p:menuitem value="Nuevo" url="#{sessionBacking.urlMap.getNewUsuario()}"/>
+                                            <p:menuitem value="Listar" action="#{sessionBacking.urlMap.getIndexUsuarios()}"/>
+                                            <p:menuitem value="Nuevo" action="#{sessionBacking.urlMap.getNewUsuario()}"/>
                                         </p:submenu>
                                         <p:submenu label="Categorias">
-                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexCategorias()}"/>
-                                            <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewCategoria()}"/>
+                                            <p:menuitem value="Listar" action="#{sessionBacking.urlMap.getIndexCategorias()}"/>
+                                            <p:menuitem value="Nueva" action="#{sessionBacking.urlMap.getNewCategoria()}"/>
+                                        </p:submenu>
+                                        <p:submenu label="Productos">
+                                            <p:menuitem value="Listar" action="#{sessionBacking.urlMap.getIndexProductos()}"/>
+                                            <p:menuitem value="Nuevo" action="#{sessionBacking.urlMap.getNewProducto()}"/>
                                         </p:submenu>
                                         <p:submenu label="Personas">
-                                            <p:menuitem value="Empleados" url="#{sessionBacking.urlMap.getIndexEmpleados()}"/>
-                                            <p:menuitem value="Clientes" url="#{sessionBacking.urlMap.getIndexClientes()}"/>
-                                            <p:menuitem value="Proveedores" url="#{sessionBacking.urlMap.getIndexProveedores()}"/>
+                                            <p:menuitem value="Empleados" action="#{sessionBacking.urlMap.getIndexEmpleados()}"/>
+                                            <p:menuitem value="Clientes" action="#{sessionBacking.urlMap.getIndexClientes()}"/>
+                                            <p:menuitem value="Proveedores" action="#{sessionBacking.urlMap.getIndexProveedores()}"/>
                                         </p:submenu>
                                         <p:submenu label="Reparaciones">
-                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexReparaciones()}"/>
-                                            <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewReparacion()}"/>
+                                            <p:menuitem value="Listar" action="#{sessionBacking.urlMap.getIndexReparaciones()}"/>
+                                            <p:menuitem value="Nueva" action="#{sessionBacking.urlMap.getNewReparacion()}"/>
                                         </p:submenu>
                                         <p:submenu label="Solicitud de reparaciones">
-                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexSolicitudes()}"/>
+                                            <p:menuitem value="Listar" action="#{sessionBacking.urlMap.getIndexSolicitudes()}"/>
                                         </p:submenu>
                                         <p:submenu label="Cotizaciones">
-                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexCotizaciones()}"/>
-                                            <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewCotizacion()}"/>
+                                            <p:menuitem value="Listar" action="#{sessionBacking.urlMap.getIndexCotizaciones()}"/>
+                                            <p:menuitem value="Nueva" action="#{sessionBacking.urlMap.getNewCotizacion()}"/>
                                         </p:submenu>
                                     </c:when>
 
                                     <c:otherwise>
                                         <p:submenu  icon="fa fa-user" label="#{sessionBacking.usuario.nombreUsuario}" >
-                                            <p:menuitem value="Solicitar reparacion" url="#{sessionBacking.urlMap.getNewSolicitud()}"/>
-                                            <p:menuitem value="Ver estado de mis reparaciones" url="#{sessionBacking.urlMap}"/>
-                                            <p:menuitem value="Ver productos" url="#{sessionBacking.urlMap}"/>
+                                            <p:menuitem value="Solicitar reparacion" action="#{sessionBacking.urlMap.getNewSolicitud()}"/>
+                                            <p:menuitem value="Ver estado de mis reparaciones" action="#{sessionBacking.urlMap}"/>
+                                            <p:menuitem value="Ver productos" action="#{sessionBacking.urlMap}"/>
                                             <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
                                         </p:submenu>
                                     </c:otherwise>

@@ -5,11 +5,18 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "producto")
+@NamedQueries({
+    @NamedQuery(
+            name = "producto.getAll",
+            query = "select p from Producto p"),
+})
 public class Producto extends AbstractEntity {
 
     private String nombre;

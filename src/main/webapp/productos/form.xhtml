@@ -1,16 +1,26 @@
-<?xml version="1.0" encoding="windows-1252"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:panelGrid columns="2" layout="grid">
+
+        <p:outputLabel value="Nombre"/>
+        <p:inputText value="#{productoBacking.producto.nombre}"/>
+        
+        <p:outputLabel value="Codigo"/>
+        <p:inputText value="#{productoBacking.producto.codigo}"/>
+        
+        <p:outputLabel value="Descripcion"/>
+        <p:inputTextarea autoResize="false" value="#{productoBacking.producto.descripcion}"/>
+        
+        <p:outputLabel value="Precio"/>
+        <p:inputText value="#{productoBacking.producto.precioUnitario}"/>
+        
+        <p:outputLabel value="Stock minimo"/>
+        <p:inputText value="#{productoBacking.producto.stockMinimo}"/>
+        
+        <p:outputLabel value="Stock actual"/>
+        <p:inputText value="#{productoBacking.producto.stockActual}"/>
+
+    </p:panelGrid>
+</ui:composition>

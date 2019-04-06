@@ -9,6 +9,11 @@ import java.util.Date;
     @NamedQuery(
             name = "reparacion.getAllReparaciones",
             query = "select r from Reparacion r")
+    ,
+    @NamedQuery(
+            name = "reparacion.findByEstado",
+            query = "SELECT r FROM Reparacion as r WHERE r.estado = :estado"
+    )
 })
 public class Reparacion extends AbstractEntity {
 
@@ -23,23 +28,19 @@ public class Reparacion extends AbstractEntity {
 
     private Float precioManoObra;
 
+    @Enumerated(EnumType.STRING)
+    private Estado estado;
+
     private Integer estadoReparacion;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "tecnico_id")
     private Empleado tecnico;
 
-    /*
-    @OneToOne(optional = false)
-    @JoinColumn(name = "cotizacion_id")
-    private Cotizacion cotizacion;
-     */
-    /*
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-     */
-    
+
     @OneToOne(optional = false)
     @JoinColumn(name = "solicitud_reparacion_id")
     private SolicitudReparacion solicitud_reparacion;
@@ -48,16 +49,16 @@ public class Reparacion extends AbstractEntity {
 
     }
 
-    public Reparacion(String diagnostico, Date fechaEgreso, Float senia, String observaciones, Float precioManoObra, Integer estadoReparacion, Empleado tecnico, SolicitudReparacion solicitud_reparacion) {
+    public Reparacion(String diagnostico, Date fechaEgreso, Float senia, String observaciones, Float precioManoObra, Integer estadoReparacion, Estado estado, Cliente cliente, Empleado tecnico, SolicitudReparacion solicitud_reparacion) {
         this.diagnostico = diagnostico;
         this.fechaEgreso = fechaEgreso;
         this.senia = senia;
         this.observaciones = observaciones;
         this.precioManoObra = precioManoObra;
         this.estadoReparacion = estadoReparacion;
+        this.estado = estado;
+        this.cliente = cliente;
         this.tecnico = tecnico;
-        //this.cotizacion = cotizacion;
-        //this.cliente = cliente;
         this.solicitud_reparacion = solicitud_reparacion;
     }
 
@@ -101,6 +102,14 @@ public class Reparacion extends AbstractEntity {
         this.precioManoObra = precioManoObra;
     }
 
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
     public Integer getEstadoReparacion() {
         return estadoReparacion;
     }
@@ -117,28 +126,19 @@ public class Reparacion extends AbstractEntity {
         this.tecnico = tecnico;
     }
 
-    /*
-    public Cotizacion getCotizacion() {
-        return cotizacion;
-    }
-
-    public void setCotizacion(Cotizacion cotizacion) {
-        this.cotizacion = cotizacion;
-    }*/
-    /*
-    public AbstractPersona getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }*/
-
     public SolicitudReparacion getSolicitud_reparacion() {
         return solicitud_reparacion;
     }
 
     public void setSolicitud_reparacion(SolicitudReparacion solicitud_reparacion) {
         this.solicitud_reparacion = solicitud_reparacion;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

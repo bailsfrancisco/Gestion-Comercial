@@ -7,76 +7,55 @@
                 template="./../template.xhtml">
     <ui:define name="head">
         <h:head>
-            <title>Reparaciones</title>
+            <title>Productos</title>
         </h:head>
     </ui:define>
     <ui:define name="content">
         <p:panel>
             <f:facet name="header">
-                <h:outputText value="Reparaciones"/>
+                <h:outputText value="Productos"/>
             </f:facet>
             <c:when test="#{sessionBacking.usuario.administrador}">
-                <p:dataTable id="reparaciones"
-                             value="#{reparacionBacking.getAll()}"
-                             var="reparacion">
-                    <p:column headerText="Diagnostico">
-                        <h:outputText value="#{reparacion.diagnostico}"/>
+                <p:dataTable id="productos"
+                             value="#{productoBacking.getAll()}"
+                             var="producto">
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{producto.nombre}"/>
                     </p:column>
-                    <p:column headerText="Fecha de egreso">
-                        <h:outputText value="#{reparacion.fechaEgreso}"/>
+                    <p:column headerText="Codigo">
+                        <h:outputText value="#{producto.codigo}"/>
                     </p:column>
-                    <p:column headerText="Senia">
-                        <h:outputText value="#{reparacion.senia}"/>
+                    <p:column headerText="Descripcion">
+                        <h:outputText value="#{producto.descripcion}"/>
                     </p:column>
-                    <p:column headerText="Observaciones">
-                        <h:outputText value="#{reparacion.observaciones}"/>
+                    <p:column headerText="Precio">
+                        <h:outputText value="#{producto.precioUnitario}"/>
                     </p:column>
-                    <p:column headerText="Precio de mano de obra">
-                        <h:outputText value="#{reparacion.precioManoObra}"/>
+                    <p:column headerText="Stock minimo">
+                        <h:outputText value="#{producto.stockMinimo}"/>
                     </p:column>
-                    <p:column headerText="Estado de la reparacion">
-                        <h:outputText value="#{reparacion.estadoReparacion}"/>
+                    <p:column headerText="Stock actual">
+                        <h:outputText value="#{producto.stockActual}"/>
                     </p:column>
                     <p:column>
-                        <h:link styleClass="ui-icon-pencil" outcome="#{reparacionBacking.urlMap.getEditReparacion()}" value="Editar">
-                            <f:param name="id" value="#{reparacion.id}" />
+                        <h:link styleClass="ui-icon-pencil" outcome="#{productoBacking.urlMap.getEditProducto()}" value="Editar">
+                            <f:param name="id" value="#{producto.id}" />
                         </h:link>
                     </p:column>
                     <p:column>
-                        <p:commandLink actionListener="#{reparacionBacking.delete(reparacion)}"
+                        <p:commandLink actionListener="#{productoBacking.delete(producto)}"
                                        value="Borrar"
-                                       update="reparaciones">
+                                       update="productos">
                             <p:confirm header="Confirmation"
-                                       message="Desea eliminar la reparacion de #{reparacion.cliente}? "
+                                       message="Desea eliminar el producto #{producto.nombre}? "
                                        icon="ui-icon-alert" />
                         </p:commandLink>
                     </p:column>
                 </p:dataTable>
                 <c:if test="#{sessionBacking.usuario.administrador}">
-                    <p:button value="Crear" outcome="#{categoriaBacking.urlMap.getNewCategoria()}"/>
+                    <p:button value="Crear" outcome="#{productoBacking.urlMap.getNewProducto()}"/>
                 </c:if>
             </c:when>
-            <c:otherwise>
-                <p:dataTable id="mis_reparaciones"
-                             value="#{reparacionBacking.getAll()}"
-                             var="reparacion">
-                    <p:column headerText="Diagnostico">
-                        <h:outputText value="#{reparacion.diagnostico}"/>
-                    </p:column>
-                    <p:column headerText="Fecha de egreso">
-                        <h:outputText value="#{reparacion.fechaEgreso}"/>
-                    </p:column>
-                    <p:column headerText="Senia">
-                        <h:outputText value="#{reparacion.senia}"/>
-                    </p:column>
-                    <p:column headerText="Observaciones">
-                        <h:outputText value="#{reparacion.observaciones}"/>
-                    </p:column>
-                    <p:column headerText="Estado de la reparacion">
-                        <h:outputText value="#{reparacion.estadoReparacion}"/>
-                    </p:column>
-                </p:dataTable>
-            </c:otherwise>
         </p:panel>
         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
             <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />

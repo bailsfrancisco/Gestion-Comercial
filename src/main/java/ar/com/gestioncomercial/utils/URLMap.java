@@ -65,6 +65,12 @@ public class URLMap implements Serializable {
     private static final String NEW_COTIZACION = COTIZACIONES + _NEW;
     private static final String EDIT_COTIZACION = COTIZACIONES + _EDIT;
 
+    // URL para Productos
+    private static final String PRODUCTOS = "/productos/";
+    private static final String INDEX_PRODUCTOS = PRODUCTOS + _INDEX;
+    private static final String NEW_PRODUCTO = PRODUCTOS + _NEW;
+    private static final String EDIT_PRODUCTO = PRODUCTOS + _EDIT;
+
     private static final String FACES_REDIRECT = "?faces-redirect=true";
 
     public static String getINDEX() {
@@ -177,6 +183,18 @@ public class URLMap implements Serializable {
 
     public static String getEditCotizacion() {
         return EDIT_COTIZACION;
+    }
+
+    public static String getIndexProductos() {
+        return INDEX_PRODUCTOS;
+    }
+
+    public static String getNewProducto() {
+        return NEW_PRODUCTO;
+    }
+
+    public static String getEditProducto() {
+        return EDIT_PRODUCTO;
     }
 
 }

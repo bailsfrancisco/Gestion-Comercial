@@ -5,10 +5,10 @@
  */
 package ar.com.gestioncomercial.DAO;
 
-import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Producto;
 import javax.ejb.Stateless;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -21,9 +21,14 @@ public class ProductoDAO extends AbstractDAO<Producto> {
         super(Producto.class);
     }
 
+    public List<Producto> getAllProductos() {
+        return getAll();
+    }
+
     @Override
     protected List<Producto> getAll() {
-        return null;
+        Query query = em.createNamedQuery("producto.getAll");
+        return query.getResultList();
     }
 
 }
