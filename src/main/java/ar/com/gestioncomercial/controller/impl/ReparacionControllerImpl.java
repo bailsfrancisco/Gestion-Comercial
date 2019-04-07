@@ -2,6 +2,7 @@ package ar.com.gestioncomercial.controller.impl;
 
 import ar.com.gestioncomercial.DAO.ReparacionDAO;
 import ar.com.gestioncomercial.controller.ReparacionController;
+import ar.com.gestioncomercial.model.Estado;
 import ar.com.gestioncomercial.model.Reparacion;
 
 import javax.ejb.EJB;
@@ -42,5 +43,10 @@ public class ReparacionControllerImpl implements ReparacionController {
     @Override
     public List<Reparacion> getAll() {
         return reparacionDAO.getAllReparaciones();
+    }
+
+    @Override
+    public Estado[] getEstados() {
+        return Estado.values();
     }
 }

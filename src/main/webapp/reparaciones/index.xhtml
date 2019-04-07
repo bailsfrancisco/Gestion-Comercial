@@ -40,7 +40,7 @@
                     <h:outputText value="#{reparacion.estado}"/>
                 </p:column>
                 <p:column headerText="Tecnico">
-                    <h:outputText value="#{reparacion.tecnico}"/>
+                    <h:outputText value="#{reparacion.tecnico.nombre}"/>
                 </p:column>
                 <p:column headerText="Solicitud de reparacion">
                     <h:outputText value="#{reparacion.solicitud_reparacion}"/>
@@ -56,7 +56,7 @@
                                        value="Borrar"
                                        update="reparaciones">
                             <p:confirm header="Confirmation"
-                                       message="Desea eliminar la reparacion de #{reparacion.cliente}? "
+                                       message="Desea eliminar la reparacion de #{reparacion}? "
                                        icon="ui-icon-alert" />
                         </p:commandLink>
                     </p:column>

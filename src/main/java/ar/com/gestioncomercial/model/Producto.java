@@ -1,14 +1,7 @@
 package ar.com.gestioncomercial.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "producto")
@@ -35,7 +28,11 @@ public class Producto extends AbstractEntity {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
+    @ManyToMany
+    @JoinTable(name = "producto_proveedor",
+            joinColumns = @JoinColumn(name = "producto_id"),
+            inverseJoinColumns= @JoinColumn(name = "proveedor_id")
+    )
     private List<Proveedor> proveedores;
 
     public Producto() {

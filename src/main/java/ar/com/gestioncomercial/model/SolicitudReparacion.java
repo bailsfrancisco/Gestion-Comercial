@@ -16,7 +16,7 @@ public class SolicitudReparacion extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    private AbstractPersona cliente;
 
     @OneToOne(optional = false)
     @JoinColumn(name = "cotizacion_id")

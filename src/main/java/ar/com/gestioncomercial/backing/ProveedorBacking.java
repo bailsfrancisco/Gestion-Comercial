@@ -5,11 +5,14 @@
  */
 package ar.com.gestioncomercial.backing;
 
+import ar.com.gestioncomercial.controller.ProductoController;
 import ar.com.gestioncomercial.controller.ProveedorController;
+import ar.com.gestioncomercial.model.Producto;
 import ar.com.gestioncomercial.model.Proveedor;
 import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,9 +34,15 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
 
     private Proveedor proveedor;
 
+    private List<Long> productosIds;
+
+    @EJB
+    private ProductoController productoController;
+
     @PostConstruct
     public void init() {
         this.proveedor = new Proveedor();
+        this.productosIds = new ArrayList<>();
     }
 
     @EJB
@@ -56,6 +65,26 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
             JSFUtils.createFacesMessage("Ocurrio un Error");
             return null;
         }
+    }
+
+    public void agregarProductos(){
+
+        if(proveedor.getProductos()==null){
+            proveedor.setProductos(new ArrayList<>());
+        }
+        productosIds.forEach(
+                id -> {
+                    Producto producto = productoController.retrievebyId(id);
+                    if (!proveedor.getProductos().contains(producto)){
+                        proveedor.addProducto(producto);
+                    }
+                }
+        );
+        productosIds = new ArrayList<>();
+    }
+
+    public void quitarProducto(Producto producto){
+        this.proveedor.getProductos().remove(producto);
     }
 
     @Override
@@ -104,5 +133,13 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
 
     public void setUrlMap(URLMap urlMap) {
         this.urlMap = urlMap;
+    }
+
+    public List<Long> getProductosIds() {
+        return productosIds;
+    }
+
+    public void setProductosIds(List<Long> productosIds) {
+        this.productosIds = productosIds;
     }
 }

@@ -1,6 +1,7 @@
 package ar.com.gestioncomercial.backing;
 
 import ar.com.gestioncomercial.controller.ReparacionController;
+import ar.com.gestioncomercial.model.Estado;
 import ar.com.gestioncomercial.model.Reparacion;
 import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.URLMap;
@@ -73,6 +74,10 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("Ocurrio un Error");
         }
+    }
+
+    public Estado[] getEstados(){
+        return reparacionController.getEstados();
     }
 
     @Override

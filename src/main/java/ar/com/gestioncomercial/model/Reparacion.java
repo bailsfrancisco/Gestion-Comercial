@@ -35,11 +35,11 @@ public class Reparacion extends AbstractEntity {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "tecnico_id")
-    private Empleado tecnico;
+    private AbstractPersona tecnico;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    private AbstractPersona cliente;
 
     @OneToOne(optional = false)
     @JoinColumn(name = "solicitud_reparacion_id")
@@ -122,7 +122,7 @@ public class Reparacion extends AbstractEntity {
         return tecnico;
     }
 
-    public void setTecnico(Empleado tecnico) {
+    public void setTecnico(AbstractPersona tecnico) {
         this.tecnico = tecnico;
     }
 
@@ -134,7 +134,7 @@ public class Reparacion extends AbstractEntity {
         this.solicitud_reparacion = solicitud_reparacion;
     }
 
-    public Cliente getCliente() {
+    public AbstractPersona getCliente() {
         return cliente;
     }
 

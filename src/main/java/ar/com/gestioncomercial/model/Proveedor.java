@@ -1,11 +1,7 @@
 package ar.com.gestioncomercial.model;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("proveedor_id")
@@ -20,9 +16,12 @@ public class Proveedor extends AbstractPersona {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @ManyToOne
-    @JoinColumn(name = "producto_id")
-    private Producto producto;
+    @ManyToMany
+    @JoinTable(name = "producto_proveedor",
+            joinColumns = @JoinColumn(name = "proveedor_id"),
+            inverseJoinColumns= @JoinColumn(name = "producto_id")
+    )
+    private List<Producto> productos;
 
     private String razonSocial;
 
@@ -73,12 +72,12 @@ public class Proveedor extends AbstractPersona {
         this.categoria = categoria;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public List<Producto> getProductos() {
+        return productos;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
 
     public String getRazonSocial() {
@@ -135,5 +134,9 @@ public class Proveedor extends AbstractPersona {
 
     public void setCbu(String cbu) {
         this.cbu = cbu;
+    }
+
+    public void addProducto(Producto producto){
+        this.productos.add(producto);
     }
 }

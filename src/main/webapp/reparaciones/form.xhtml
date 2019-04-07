@@ -1,7 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <p:panelGrid columns="2" layout="grid">
         <p:outputLabel value="Diagnostico"/>
@@ -15,19 +14,27 @@
         <p:outputLabel value="Precio de mano de obra"/>
         <p:inputText value="#{reparacionBacking.reparacion.precioManoObra}"/>
         <p:outputLabel value="Estado"/>
-        <p:inputText value="#{reparacionBacking.reparacion.estado}"/>
+        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.estado}">
+            <f:selectItems value="#{reparacionBacking.estados}"
+                           var="estado" itemLabel="#{estado}" itemValue="#{estado}"/>
+        </p:selectOneMenu>
 
 
         <p:outputLabel value="Tecnico "/>
-        <p:selectOneMenu value="#{reparacionBacking.reparacion}">
+        <p:selectOneMenu value="#{reparacionBacking.reparacion.tecnico}">
             <f:selectItem itemLabel="Seleccionar tecnico" itemValue="" noSelectionOption="true"/>
-            <f:selectItems value="#{reparacionBacking.reparacion.tecnicos}" />
+            <f:selectItems value="#{empleadoBacking.all}" />
         </p:selectOneMenu>
 
 
 
 
         <p:outputLabel value="Solicitud de reparacion"/>
-        <p:inputText value="#{reparacionBacking.reparacion.solicitud_reparacion}"/>
+        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.solicitud_reparacion}">
+            <f:selectItems value="#{solicitudReparacionBacking.all}"
+                           var="solicitud" itemLabel="#{solicitud.descripcionFallo}"/>
+        </p:selectOneMenu>
+
+
     </p:panelGrid>
 </ui:composition>
