@@ -40,40 +40,40 @@
 
                                     <c:when test="#{sessionBacking.usuario.administrador}">
                                         <p:submenu label="Usuarios" icon="fa fa-user">
-                                            <p:menuitem value="Listar" action="#{sessionBacking.urlMap.getIndexUsuarios()}"/>
-                                            <p:menuitem value="Nuevo" action="#{sessionBacking.urlMap.getNewUsuario()}"/>
+                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexUsuarios()}"/>
+                                            <p:menuitem value="Nuevo" url="#{sessionBacking.urlMap.getNewUsuario()}"/>
                                         </p:submenu>
                                         <p:submenu label="Categorias">
-                                            <p:menuitem value="Listar" action="#{sessionBacking.urlMap.getIndexCategorias()}"/>
-                                            <p:menuitem value="Nueva" action="#{sessionBacking.urlMap.getNewCategoria()}"/>
+                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexCategorias()}"/>
+                                            <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewCategoria()}"/>
                                         </p:submenu>
                                         <p:submenu label="Productos">
-                                            <p:menuitem value="Listar" action="#{sessionBacking.urlMap.getIndexProductos()}"/>
-                                            <p:menuitem value="Nuevo" action="#{sessionBacking.urlMap.getNewProducto()}"/>
+                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexProductos()}"/>
+                                            <p:menuitem value="Nuevo" url="#{sessionBacking.urlMap.getNewProducto()}"/>
                                         </p:submenu>
                                         <p:submenu label="Personas">
-                                            <p:menuitem value="Empleados" action="#{sessionBacking.urlMap.getIndexEmpleados()}"/>
-                                            <p:menuitem value="Clientes" action="#{sessionBacking.urlMap.getIndexClientes()}"/>
-                                            <p:menuitem value="Proveedores" action="#{sessionBacking.urlMap.getIndexProveedores()}"/>
+                                            <p:menuitem value="Empleados" url="#{sessionBacking.urlMap.getIndexEmpleados()}"/>
+                                            <p:menuitem value="Clientes" url="#{sessionBacking.urlMap.getIndexClientes()}"/>
+                                            <p:menuitem value="Proveedores" url="#{sessionBacking.urlMap.getIndexProveedores()}"/>
                                         </p:submenu>
                                         <p:submenu label="Reparaciones">
-                                            <p:menuitem value="Listar" action="#{sessionBacking.urlMap.getIndexReparaciones()}"/>
-                                            <p:menuitem value="Nueva" action="#{sessionBacking.urlMap.getNewReparacion()}"/>
+                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexReparaciones()}"/>
+                                            <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewReparacion()}"/>
                                         </p:submenu>
                                         <p:submenu label="Solicitud de reparaciones">
-                                            <p:menuitem value="Listar" action="#{sessionBacking.urlMap.getIndexSolicitudes()}"/>
+                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexSolicitudes()}"/>
                                         </p:submenu>
                                         <p:submenu label="Cotizaciones">
-                                            <p:menuitem value="Listar" action="#{sessionBacking.urlMap.getIndexCotizaciones()}"/>
-                                            <p:menuitem value="Nueva" action="#{sessionBacking.urlMap.getNewCotizacion()}"/>
+                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexCotizaciones()}"/>
+                                            <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewCotizacion()}"/>
                                         </p:submenu>
                                     </c:when>
 
                                     <c:otherwise>
                                         <p:submenu  icon="fa fa-user" label="#{sessionBacking.usuario.nombreUsuario}" >
-                                            <p:menuitem value="Solicitar reparacion" action="#{sessionBacking.urlMap.getNewSolicitud()}"/>
-                                            <p:menuitem value="Ver estado de mis reparaciones" action="#{sessionBacking.urlMap}"/>
-                                            <p:menuitem value="Ver productos" action="#{sessionBacking.urlMap}"/>
+                                            <p:menuitem value="Solicitar reparacion" url="#{sessionBacking.urlMap.getNewSolicitud()}"/>
+                                            <p:menuitem value="Ver estado de mis reparaciones" url="#{sessionBacking.urlMap}"/>
+                                            <p:menuitem value="Ver productos" url="#{sessionBacking.urlMap}"/>
                                             <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>
                                         </p:submenu>
                                     </c:otherwise>
@@ -98,8 +98,19 @@
                 </f:view>
             </p:layoutUnit>
 
-            <p:layoutUnit position="south" size="100" header="Datos como direccion, mails, telefonos, etc" resizable="false" closable="false" collapsible="false">
+            <p:layoutUnit position="south" size="120" header="Datos" resizable="false" closable="false" collapsible="true">
+                <div class="bottom">
+                    <div>
+                        <p:outputLabel style="float:left">
+                            <p:outputLabel id="bottom_label_2" value="Saavedra 18 | Junín | Buenos Aires | 0236-4336626" />
+                        </p:outputLabel>
 
+                        <p:outputLabel style="float:right">
+                            <a href="https://www.facebook.com/electronicjuninn/"><i class="fa fa-facebook-square" href="" aria-hidden="true" style="color: #ff9900; padding-right: 10px; size: 10px"></i></a>
+                            <a href="http://www.instagram.com/electronic_junin"><i class="fa fa-instagram" aria-hidden="true" style="color: #ff9900; padding-right: 10px;"></i></a>
+                        </p:outputLabel>
+                    </div>
+                </div>
             </p:layoutUnit>
 
         </p:layout>   

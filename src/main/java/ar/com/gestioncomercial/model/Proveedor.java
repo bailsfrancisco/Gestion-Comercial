@@ -12,14 +12,17 @@ import java.util.List;
 })
 public class Proveedor extends AbstractPersona {
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "categoria_id")
-    private Categoria categoria;
+    @ManyToMany
+    @JoinTable(name = "categoria_proveedor",
+            joinColumns = @JoinColumn(name = "categoria_id"),
+            inverseJoinColumns = @JoinColumn(name = "proveedor_id")
+    )
+    private List<Categoria> categorias;
 
     @ManyToMany
     @JoinTable(name = "producto_proveedor",
             joinColumns = @JoinColumn(name = "proveedor_id"),
-            inverseJoinColumns= @JoinColumn(name = "producto_id")
+            inverseJoinColumns = @JoinColumn(name = "producto_id")
     )
     private List<Producto> productos;
 
@@ -41,8 +44,7 @@ public class Proveedor extends AbstractPersona {
 
     }
 
-    public Proveedor(Categoria categoria, String razonSocial, Integer calificacion, String estado, String condicionIva, Float retencionIva, String cuentaContable, String cbu) {
-        this.categoria = categoria;
+    public Proveedor(String razonSocial, Integer calificacion, String estado, String condicionIva, Float retencionIva, String cuentaContable, String cbu) {
         this.razonSocial = razonSocial;
         this.calificacion = calificacion;
         this.estado = estado;
@@ -54,7 +56,6 @@ public class Proveedor extends AbstractPersona {
 
     public Proveedor(Categoria categoria, String razonSocial, Integer calificacion, String estado, String condicionIva, Float retencionIva, String cuentaContable, String cbu, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
         super(nombre, telefono, mail, direccion, cuitCuil, observaciones, celular);
-        this.categoria = categoria;
         this.razonSocial = razonSocial;
         this.calificacion = calificacion;
         this.estado = estado;
@@ -62,14 +63,6 @@ public class Proveedor extends AbstractPersona {
         this.retencionIva = retencionIva;
         this.cuentaContable = cuentaContable;
         this.cbu = cbu;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
     }
 
     public List<Producto> getProductos() {
@@ -136,7 +129,19 @@ public class Proveedor extends AbstractPersona {
         this.cbu = cbu;
     }
 
-    public void addProducto(Producto producto){
+    public void addProducto(Producto producto) {
         this.productos.add(producto);
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    public void addCategoria(Categoria categoria) {
+        this.categorias.add(categoria);
     }
 }

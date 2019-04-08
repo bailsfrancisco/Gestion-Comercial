@@ -2,6 +2,7 @@ package ar.com.gestioncomercial.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "reparacion")
@@ -31,11 +32,12 @@ public class Reparacion extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Estado estado;
 
-    private Integer estadoReparacion;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "tecnico_id")
-    private AbstractPersona tecnico;
+    @ManyToMany
+    @JoinTable(name = "reparacion_tecnico",
+            joinColumns = @JoinColumn(name = "reparacion_id"),
+            inverseJoinColumns = @JoinColumn(name = "empleado_id")
+    )
+    private List<Empleado> tecnicos;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "cliente_id")
@@ -49,16 +51,15 @@ public class Reparacion extends AbstractEntity {
 
     }
 
-    public Reparacion(String diagnostico, Date fechaEgreso, Float senia, String observaciones, Float precioManoObra, Integer estadoReparacion, Estado estado, Cliente cliente, Empleado tecnico, SolicitudReparacion solicitud_reparacion) {
+    public Reparacion(String diagnostico, Date fechaEgreso, Float senia, String observaciones, Float precioManoObra, Estado estado, Cliente cliente, List<Empleado> tecnicos, SolicitudReparacion solicitud_reparacion) {
         this.diagnostico = diagnostico;
         this.fechaEgreso = fechaEgreso;
         this.senia = senia;
         this.observaciones = observaciones;
         this.precioManoObra = precioManoObra;
-        this.estadoReparacion = estadoReparacion;
         this.estado = estado;
         this.cliente = cliente;
-        this.tecnico = tecnico;
+        this.tecnicos = tecnicos;
         this.solicitud_reparacion = solicitud_reparacion;
     }
 
@@ -110,20 +111,12 @@ public class Reparacion extends AbstractEntity {
         this.estado = estado;
     }
 
-    public Integer getEstadoReparacion() {
-        return estadoReparacion;
+    public List<Empleado> getTecnicos() {
+        return tecnicos;
     }
 
-    public void setEstadoReparacion(Integer estadoReparacion) {
-        this.estadoReparacion = estadoReparacion;
-    }
-
-    public AbstractPersona getTecnico() {
-        return tecnico;
-    }
-
-    public void setTecnico(AbstractPersona tecnico) {
-        this.tecnico = tecnico;
+    public void setProveedores(List<Empleado> tecnicos) {
+        this.tecnicos = tecnicos;
     }
 
     public SolicitudReparacion getSolicitud_reparacion() {

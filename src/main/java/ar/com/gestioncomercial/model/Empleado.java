@@ -1,12 +1,13 @@
 package ar.com.gestioncomercial.model;
 
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("empleado_id")
@@ -21,8 +22,12 @@ public class Empleado extends AbstractPersona {
 
     private Float sueldoBase;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tecnico")
-    private List<Reparacion> reparaciones_empleado;
+    @ManyToMany
+    @JoinTable(name = "reparacion_tecnico",
+            joinColumns = @JoinColumn(name = "empleado_id"),
+            inverseJoinColumns = @JoinColumn(name = "reparacion_id")
+    )
+    private List<Reparacion> reparaciones;
 
     public Empleado() {
 
@@ -55,11 +60,15 @@ public class Empleado extends AbstractPersona {
         this.sueldoBase = sueldoBase;
     }
 
-    public List<Reparacion> getReparaciones_empleado() {
-        return reparaciones_empleado;
+    public List<Reparacion> getReparaciones() {
+        return reparaciones;
     }
 
-    public void setReparaciones_empleado(List<Reparacion> reparaciones_empleado) {
-        this.reparaciones_empleado = reparaciones_empleado;
+    public void setReparaciones(List<Reparacion> reparaciones) {
+        this.reparaciones = reparaciones;
+    }
+
+    public void addReparacion(Reparacion reparacion) {
+        this.reparaciones.add(reparacion);
     }
 }

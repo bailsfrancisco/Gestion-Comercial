@@ -6,21 +6,17 @@
 package ar.com.gestioncomercial.controller.impl;
 
 import ar.com.gestioncomercial.DAO.AbstractPersonaDAO;
-import ar.com.gestioncomercial.controller.PersonaController;
 import ar.com.gestioncomercial.model.AbstractPersona;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.ejb.Stateless;
 
 /**
  *
  * @author Bails Francisco
  */
-@Stateless
-public abstract class AbstractPersonaControllerImpl  {
+public abstract class AbstractPersonaControllerImpl {
 
     private static final Logger logger = Logger.getLogger(AbstractPersonaControllerImpl.class.getName());
 
