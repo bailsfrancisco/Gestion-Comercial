@@ -5,8 +5,10 @@
  */
 package ar.com.gestioncomercial.backing;
 
+import ar.com.gestioncomercial.controller.CategoriaController;
 import ar.com.gestioncomercial.controller.ProductoController;
 import ar.com.gestioncomercial.controller.ProveedorController;
+import ar.com.gestioncomercial.model.Categoria;
 import ar.com.gestioncomercial.model.Producto;
 import ar.com.gestioncomercial.model.Proveedor;
 import ar.com.gestioncomercial.utils.JSFUtils;
@@ -35,6 +37,7 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
     private Proveedor proveedor;
 
     private List<Long> productosIds;
+    private List<Long> categoriasIds;
 
     @EJB
     private ProductoController productoController;
@@ -43,10 +46,14 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
     public void init() {
         this.proveedor = new Proveedor();
         this.productosIds = new ArrayList<>();
+        this.categoriasIds = new ArrayList<>();
     }
 
     @EJB
     private ProveedorController proveedorController;
+
+    @EJB
+    private CategoriaController categoriaController;
 
     @EJB
     private URLMap urlMap;
@@ -85,6 +92,26 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
 
     public void quitarProducto(Producto producto){
         this.proveedor.getProductos().remove(producto);
+    }
+
+    public void agregarCategorias(){
+
+        if(proveedor.getCategorias()==null){
+            proveedor.setCategorias(new ArrayList<>());
+        }
+        categoriasIds.forEach(
+                id -> {
+                    Categoria categoria = categoriaController.retrievebyId(id);
+                    if (!proveedor.getCategorias().contains(categoria)){
+                        proveedor.addCategoria(categoria);
+                    }
+                }
+        );
+        productosIds = new ArrayList<>();
+    }
+
+    public void quitarCategoria(Categoria categoria){
+        this.proveedor.getCategorias().remove(categoria);
     }
 
     @Override
@@ -141,5 +168,13 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
 
     public void setProductosIds(List<Long> productosIds) {
         this.productosIds = productosIds;
+    }
+
+    public List<Long> getCategoriasIds() {
+        return categoriasIds;
+    }
+
+    public void setCategoriasIds(List<Long> categoriasIds) {
+        this.categoriasIds = categoriasIds;
     }
 }

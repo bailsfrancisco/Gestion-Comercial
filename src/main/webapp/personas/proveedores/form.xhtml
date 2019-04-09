@@ -18,11 +18,28 @@
         <p:inputText value="#{proveedorBacking.proveedor.cuitCuil}"/>
         <p:outputLabel value="Observaciones"/>
         <p:inputText value="#{proveedorBacking.proveedor.observaciones}"/>
-        <p:outputLabel value="Categoria"/>
-        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{proveedorBacking.proveedor.categoria}">
+        <p:outputLabel value="Categorias"/>
+        <p:selectManyMenu scrollHeight="400" id="categorias_list" style="width: 95%;" filter="true" filterMatchMode="contains" value="#{proveedorBacking.categoriasIds}" showCheckbox="true">
             <f:selectItems value="#{categoriaBacking.all}"
-                           var="categoria" itemLabel="#{categoria.nombre}"/>
-        </p:selectOneMenu>
+                           var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.id}" />
+        </p:selectManyMenu>
+
+        <p:dataTable id="categorias_table"
+                     value="#{proveedorBacking.proveedor.categorias}"
+                     var="categoria">
+            <p:column headerText="nombre">
+                <h:outputText value="#{categoria.nombre}"/>
+            </p:column>
+            <p:column>
+                <p:commandLink actionListener="#{proveedorBacking.quitarCategoria(categoria)}"
+                               value="Quitar Producto" update="productos_table"/>
+            </p:column>
+
+        </p:dataTable>
+
+        <p:commandButton value="Agregar Categorias"
+                         actionListener="#{proveedorBacking.agregarCategorias()}"
+                         update="messages,productos_table"/>
 
         <p:outputLabel value="Productos"/>
         <p:selectManyMenu  scrollHeight="400" id="productos_list" style="width: 95%;" value="#{proveedorBacking.productosIds}"
