@@ -1,6 +1,7 @@
 package ar.com.gestioncomercial.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 //TODO: AMPLIAR
 @Entity
@@ -21,6 +22,9 @@ public class SolicitudReparacion extends AbstractEntity {
     @OneToOne(optional = false)
     @JoinColumn(name = "cotizacion_id")
     private Cotizacion cotizacion;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
+    private List<Image> fileNames;
 
     public SolicitudReparacion() {
 
@@ -55,4 +59,23 @@ public class SolicitudReparacion extends AbstractEntity {
         this.cotizacion = cotizacion;
     }
 
+    public void setCliente(AbstractPersona cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<Image> getFileNames() {
+        return fileNames;
+    }
+
+    public void setFileNames(List<Image> fileNames) {
+        this.fileNames = fileNames;
+    }
+
+    public void addFileName(Image fileName){
+        this.fileNames.add(fileName);
+    }
+
+    public void removeFileName(Image fileName){
+        this.fileNames.remove(fileName);
+    }
 }

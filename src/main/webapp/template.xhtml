@@ -33,7 +33,6 @@
 
                 <f:view contentType="text/html">
                     <h:form>
-                        <p:growl id="messages" autoUpdate="true"/>
                         <p:panel id="panel_menu">
                             <p:menu id="menu" toggleable="true">
                                 <c:choose>
@@ -89,7 +88,7 @@
 
             <p:layoutUnit position="center">
                 <f:view contentType="text/html">
-                    <h:form>
+                    <h:form enctype="multipart/form-data">
                         <div class="content_div">
                             <p:growl id="messages" autoUpdate="true"/>
                             <ui:insert name="content"/>
