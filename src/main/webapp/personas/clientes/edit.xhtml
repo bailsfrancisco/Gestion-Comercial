@@ -13,7 +13,7 @@
         </f:metadata>
     </ui:define>
     <ui:define name="content">
-        <p:panelGrid columns="2" >
+        <p:panelGrid columns="2" layout="grid" >
             <f:facet name="header">
                 <h:outputText value="Actualizar los datos del cliente"/>
             </f:facet>
@@ -22,6 +22,9 @@
         <ui:include src="form.xhtml"/>
 
         <p:panelGrid columns="2" layout="grid">
+            <f:facet name="header">
+                <h:outputText value="Asignar usuario para el cliente"/>
+            </f:facet>
             <p:outputLabel value="Nombre Usuario"/>
             <p:inputText value="#{clienteBacking.cliente.usuario.nombreUsuario}"/>
 

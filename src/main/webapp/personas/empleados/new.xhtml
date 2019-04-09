@@ -18,11 +18,14 @@
         </p:panelGrid>
         <ui:include src="form.xhtml"/>
         <p:panelGrid columns="2" layout="grid">
+            <f:facet name="header">
+                <h:outputText value="Asignar usuario para el empleado"/>
+            </f:facet>
             <p:outputLabel value="Nombre"/>
             <p:inputText value="#{empleadoBacking.usuario.nombreUsuario}"/>
 
             <p:outputLabel value="Contraseña"/>
-            <p:inputText value="#{empleadoBacking.usuario.password}"/>
+            <p:password value="#{empleadoBacking.usuario.password}"/>
 
             <p:selectBooleanCheckbox value="#{empleadoBacking.usuario.administrador}" itemLabel="Administrador"/>
 

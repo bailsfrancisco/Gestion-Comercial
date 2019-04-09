@@ -30,7 +30,7 @@ public abstract class AbstractPersona extends AbstractEntity {
 
     private String celular;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Usuario usuario;
 
     public AbstractPersona() {

@@ -32,12 +32,12 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
     @PostConstruct
     public void init() {
         this.empleado = new Empleado();
-            this.usuario = new Usuario();
-        }
-        
+        this.usuario = new Usuario();
+    }
+
     @EJB
     private EmpleadoController empleadoController;
-    
+
     @EJB
     private UsuarioController usuarioController;
 
@@ -51,10 +51,10 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
     @Override
     public String create() {
         try {
-            usuarioController.create(usuario);
+            //usuarioController.create(usuario);
             empleado.setUsuario(usuario);
             empleadoController.create(empleado);
-            
+
             return URLMap.getIndexEmpleados() + URLMap.getFacesRedirect();
         } catch (EJBException e) {
             return null;
@@ -102,7 +102,7 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
     public void setUrlMap(URLMap urlMap) {
         this.urlMap = urlMap;
     }
-    
+
     public Usuario getUsuario() {
         return usuario;
     }

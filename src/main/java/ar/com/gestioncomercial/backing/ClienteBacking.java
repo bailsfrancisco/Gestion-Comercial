@@ -52,7 +52,7 @@ public class ClienteBacking implements Serializable, CRUDBacking<Cliente> {
     @Override
     public String create() {
         try {
-            usuarioController.create(usuario);
+            //usuarioController.create(usuario);
             cliente.setUsuario(usuario);
             clienteController.create(cliente);
 
