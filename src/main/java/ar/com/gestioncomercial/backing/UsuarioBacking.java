@@ -58,7 +58,7 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
 
         } catch (NullOrEmptyException e) {
             logger.log(Level.SEVERE, e.getMessage());
-            JSFUtils.createFacesMessage("Campos: Nombre de usuario y Password no pueden ser nulos");
+            JSFUtils.createFacesMessage("Campos: Nombre de usuario y Contraseña no pueden ser nulos");
         }
         return null;
     }

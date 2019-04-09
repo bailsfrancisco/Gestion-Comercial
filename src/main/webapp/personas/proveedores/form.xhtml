@@ -10,8 +10,11 @@
         <p:inputText value="#{proveedorBacking.proveedor.telefono}"/>
         <p:outputLabel value="Celular"/>
         <p:inputText value="#{proveedorBacking.proveedor.celular}"/>
-        <p:outputLabel value="E-mail"/>
-        <p:inputText value="#{proveedorBacking.proveedor.mail}"/>
+        <p:inputText id="email" value="#{proveedorBacking.proveedor.mail}" validatorMessage="¡Ingrese un email valido!">
+            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+            <p:clientValidator />
+            <p:message for="email"/>
+        </p:inputText>
         <p:outputLabel value="Domicilio"/>
         <p:inputText value="#{proveedorBacking.proveedor.direccion}"/>
         <p:outputLabel value="CUIT-CUIL"/>

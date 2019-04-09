@@ -1,6 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <p:panelGrid columns="2" layout="grid">
         <p:outputLabel value="Nombre"/>
@@ -12,8 +13,12 @@
         <p:outputLabel value="Celular"/>
         <p:inputText value="#{clienteBacking.cliente.celular}"/>
 
-        <p:outputLabel value="E-mail"/>
-        <p:inputText value="#{clienteBacking.cliente.mail}"/>
+        <p:outputLabel for="@next" value="E-mail"/>
+        <p:inputText id="email" value="#{clienteBacking.cliente.mail}" validatorMessage="¡Ingrese un email valido!">
+            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+            <p:clientValidator />
+            <p:message for="email"/>
+        </p:inputText>
 
         <p:outputLabel value="Domicilio"/>
         <p:inputText value="#{clienteBacking.cliente.direccion}"/>
