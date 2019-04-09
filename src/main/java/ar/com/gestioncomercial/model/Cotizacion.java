@@ -1,12 +1,20 @@
 package ar.com.gestioncomercial.model;
 
+import java.util.Calendar;
 import javax.persistence.Entity;
 import java.util.Date;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
 @Table(name = "cotizacion")
+@NamedQueries({
+    @NamedQuery(
+            name = "cotizacion.getAll",
+            query = "select c from Cotizacion c")
+})
 public class Cotizacion extends AbstractEntity {
 
     private String detalles;
@@ -14,14 +22,18 @@ public class Cotizacion extends AbstractEntity {
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaVencimiento;
+    
 
     public Cotizacion() {
 
     }
 
-    public Cotizacion(Float precioTotal, Date fechaVencimiento) {
+    public Cotizacion(String detalle, Float precioTotal, Date fechaVencimiento) {
+        this.detalles = detalle;
         this.precioTotal = precioTotal;
         this.fechaVencimiento = fechaVencimiento;
+       
+     
     }
 
     public Float getPrecioTotal() {
@@ -32,12 +44,18 @@ public class Cotizacion extends AbstractEntity {
         this.precioTotal = precioTotal;
     }
 
-    public Date getFechaVencimiento() {
+    public Date getFechaVencimiento() {	
         return fechaVencimiento;
     }
 
     public void setFechaVencimiento(Date fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
+   //     Calendar calendar = Calendar.getInstance();
+	
+    //    calendar.setTime(fechaVencimiento); // Configuramos la fecha que se recibe
+	
+     /*   calendar.add(Calendar.DAY_OF_YEAR, 15);  // numero de días a añadir, o restar en caso de días<0
+        this.fechaVencimiento = calendar.getTime();//*/
+        this.fechaVencimiento= fechaVencimiento;
     }
 
     public String getDetalles() {
@@ -48,3 +66,4 @@ public class Cotizacion extends AbstractEntity {
         this.detalles = detalles;
     }
 }
+

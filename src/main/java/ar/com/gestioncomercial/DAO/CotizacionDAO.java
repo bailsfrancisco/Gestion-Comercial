@@ -9,6 +9,7 @@ import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Cotizacion;
 import javax.ejb.Stateless;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -23,7 +24,13 @@ public class CotizacionDAO extends AbstractDAO<Cotizacion> {
 
     @Override
     protected List<Cotizacion> getAll() {
-        return null;
+        Query query = em.createNamedQuery("cotizacion.getAll");
+        return query.getResultList();
     }
+    
+    public List<Cotizacion> getCotizacion(){
+        return getAll();
+    }
+
 
 }

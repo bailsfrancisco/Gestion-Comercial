@@ -1,16 +1,30 @@
-<?xml version="1.0" encoding="windows-1252"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="head">
+        <h:head>
+            <title>Editar cotizacion</title>
+        </h:head>
+        <f:metadata>
+            <f:viewParam name="id" value="#{cotizacionBacking.cotizacion}"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="content">
+        <p:panelGrid columns="2" layout="grid">
+            <f:facet name="header">
+                <h:outputText value="Actualizar los datos de la cotizacion"/>
+            </f:facet>
+        </p:panelGrid>
+        <ui:include src="form.xhtml"/>
+        <p:panel>
+            <p:commandButton value="Actualizar"
+                             action="#{cotizacionBacking.update()}"
+                             update="messages"/>
+
+            <p:button value="Cancelar" outcome="#{sessionBacking.urlMap.getIndexCotizaciones()}"/>
+        </p:panel>
+    </ui:define>
+</ui:composition>
