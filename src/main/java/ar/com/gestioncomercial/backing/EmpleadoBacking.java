@@ -14,6 +14,7 @@ import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.StringUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +41,8 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
     public void init() {
         this.empleado = new Empleado();
         this.usuario = new Usuario();
+        empleado.setFechaAlta(new Date());
+        usuario.setFechaAlta(new Date());
     }
 
     @EJB

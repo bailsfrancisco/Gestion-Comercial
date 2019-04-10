@@ -15,6 +15,7 @@ import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,6 +48,7 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
         this.proveedor = new Proveedor();
         this.productosIds = new ArrayList<>();
         this.categoriasIds = new ArrayList<>();
+        proveedor.setFechaAlta(new Date());
     }
 
     @EJB

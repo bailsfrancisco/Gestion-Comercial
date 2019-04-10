@@ -19,7 +19,7 @@
                          value="#{usuarioBacking.getAll()}"
                          var="user">
 
-                <p:column headerText="Nombre de usuario">
+                <p:column headerText="Nombre de usuario" filterBy="#{user.nombreUsuario}" footerText="contains" filterMatchMode="contains">
                     <h:outputText value="#{user.nombreUsuario}"/>
                 </p:column>
                 <c:if test="#{sessionBacking.usuario.administrador}">
