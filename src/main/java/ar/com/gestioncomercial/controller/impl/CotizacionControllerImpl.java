@@ -14,7 +14,6 @@ public class CotizacionControllerImpl implements CotizacionController {
     @EJB
     private CotizacionDAO cotizacionDAO;
 
-
     @Override
     public void create(Cotizacion entity) {
         cotizacionDAO.create(entity);
@@ -42,7 +41,7 @@ public class CotizacionControllerImpl implements CotizacionController {
 
     @Override
     public List<Cotizacion> getAll() {
-        return cotizacionDAO.getCotizacion();
+        return cotizacionDAO.getAllCotizaciones();
     }
 
     public CotizacionDAO getCotizacionDAO() {
@@ -53,4 +52,3 @@ public class CotizacionControllerImpl implements CotizacionController {
         this.cotizacionDAO = cotizacionDAO;
     }
 }
-

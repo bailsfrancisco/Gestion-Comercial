@@ -44,12 +44,6 @@
                 <p:column headerText="Categoria IVA">
                     <h:outputText value="#{cliente.categoriaIVA}"/>
                 </p:column>
-                <p:column headerText="Reparaciones">
-                    <h:outputText value="#{cliente.reparaciones}"/>
-                </p:column>
-                <p:column headerText="Solicitud de reparaciones">
-                    <h:outputText value="#{cliente.solicitudReparaciones}"/>
-                </p:column>
                 <c:if test="#{sessionBacking.usuario.administrador}">
                     <p:column>
                         <h:link outcome="#{sessionBacking.urlMap.getEditCliente()}" value="Editar">

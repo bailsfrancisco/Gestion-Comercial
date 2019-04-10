@@ -27,7 +27,7 @@ public class EmpleadoDAO extends AbstractDAO<Empleado> {
 
     @Override
     protected List<Empleado> getAll() {
-        Query query = em.createNamedQuery("empleado.getAllEmpleados");
+        Query query = em.createNamedQuery("empleado.getAll");
         return query.getResultList();
     }
 

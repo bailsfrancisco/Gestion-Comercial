@@ -12,6 +12,7 @@ import javax.ejb.EJBException;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,14 +39,13 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
     @Override
     public String create() {
         try {
+            reparacion.setFechaAlta(new Date());
             reparacionController.create(reparacion);
             return URLMap.getIndexReparaciones() + URLMap.getFacesRedirect();
-
         } catch (EJBException e) {
             logger.log(Level.SEVERE, e.getMessage());
-
+            JSFUtils.createFacesMessage("Ocurrio un Error");
         }
-        JSFUtils.createFacesMessage("Ocurrio un Error");
         return null;
     }
 
@@ -58,7 +58,7 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
     public String update() {
         try {
             reparacionController.update(reparacion);
-            return URLMap.getIndexUsuarios() + URLMap.getFacesRedirect();
+            return URLMap.getIndexReparaciones() + URLMap.getFacesRedirect();
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("Ocurrio un Error");
@@ -69,14 +69,14 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
     @Override
     public void delete(Reparacion entity) {
         try {
-            reparacionController.delete(reparacion);
+            reparacionController.delete(entity);
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("Ocurrio un Error");
         }
     }
 
-    public Estado[] getEstados(){
+    public Estado[] getEstados() {
         return reparacionController.getEstados();
     }
 

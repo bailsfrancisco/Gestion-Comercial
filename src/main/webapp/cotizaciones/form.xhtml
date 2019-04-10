@@ -4,18 +4,18 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <p:panelGrid columns="2" layout="grid">
-        
-        <p:outputLabel value="Fecha de alta"/>
-        <p:calendar disabled="true" size="10" value="#{cotizacionBacking.cotizacion.fechaAlta}" pattern="yyyy-MM-dd"/>
-        
         <p:outputLabel value="Detalles"/>
         <p:inputTextarea  autoResize="false" value="#{cotizacionBacking.cotizacion.detalles}"/>
-        
-        <p:outputLabel value="Fecha Vencimiento"/>
-        <p:calendar size="10"  value="#{cotizacionBacking.cotizacion.fechaVencimiento}" pattern="yyyy-MM-dd"/>
-        
-        <p:outputLabel value="Precio Total"/>
+
+        <p:outputLabel value="Fecha de alta"/>
+        <p:calendar disabled="true" size="10" value="#{cotizacionBacking.cotizacion.fechaAlta}" pattern="dd/MM/yyyy"/>
+
+
+        <p:outputLabel value="Fecha vencimiento"/>
+        <p:calendar size="10"  value="#{cotizacionBacking.cotizacion.fechaVencimiento}" pattern="dd/MM/yyyy"/>
+
+        <p:outputLabel value="Precio total"/>
         <p:inputText  size="10" value="#{cotizacionBacking.cotizacion.precioTotal}"/>
-        
+
     </p:panelGrid>
 </ui:composition>

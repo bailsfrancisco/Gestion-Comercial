@@ -1,4 +1,4 @@
- package ar.com.gestioncomercial.backing;
+package ar.com.gestioncomercial.backing;
 
 import ar.com.gestioncomercial.controller.CotizacionController;
 import ar.com.gestioncomercial.model.Cotizacion;
@@ -28,14 +28,13 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
     @PostConstruct
     public void init() {
         cotizacion = new Cotizacion();
-        
-        
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date()); // Configuramos la fecha que se recibe
-        calendar.add(Calendar.DAY_OF_YEAR, 15);  // numero de días a añadir, o restar en caso de días<0
+        calendar.add(Calendar.DAY_OF_YEAR, 15);  // numero de dias a aniadir, o restar en caso de dias<0
         cotizacion.setFechaVencimiento(calendar.getTime());
-      //  cotizacion.setFechaVencimiento(new Date());
-        
+        //  cotizacion.setFechaVencimiento(new Date());
+
         cotizacion.setFechaAlta(new Date());
     }
 
@@ -52,10 +51,11 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
             return URLMap.getIndexCotizaciones() + URLMap.getFacesRedirect();
 
         } catch (EJBException e) {
+            JSFUtils.createFacesMessage("Ocurrio un error");
             logger.log(Level.SEVERE, e.getMessage());
 
         }
-        JSFUtils.createFacesMessage("Ocurrio un error");
+
         return null;
     }
 
@@ -68,7 +68,7 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
     public String update() {
         try {
             cotizacionController.update(cotizacion);
-            return URLMap.getIndexCotizaciones()+ URLMap.getFacesRedirect();
+            return URLMap.getIndexCotizaciones() + URLMap.getFacesRedirect();
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("Ocurrio un Error");
@@ -79,10 +79,12 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
     @Override
     public void delete(Cotizacion entity) {
         try {
-            cotizacionController.delete(cotizacion);
+            cotizacionController.delete(entity);
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
-            JSFUtils.createFacesMessage("Ocurrio un Error");
+            JSFUtils.createFacesMessage(
+                    String.format("Se produjo un error al intentar borrar '%s', Por favor verifique que no hay solicitudes relacionadas a ella.",
+                            entity.getDetalles()));
         }
     }
 
@@ -105,5 +107,13 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
 
     public void setUrlMap(URLMap urlMap) {
         this.urlMap = urlMap;
+    }
+
+    public CotizacionController getCotizacionController() {
+        return cotizacionController;
+    }
+
+    public void setCotizacionController(CotizacionController cotizacionController) {
+        this.cotizacionController = cotizacionController;
     }
 }

@@ -2,7 +2,6 @@ package ar.com.gestioncomercial.controller.impl;
 
 import ar.com.gestioncomercial.DAO.EmpleadoDAO;
 import ar.com.gestioncomercial.controller.EmpleadoController;
-import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Empleado;
 
 import javax.ejb.EJB;

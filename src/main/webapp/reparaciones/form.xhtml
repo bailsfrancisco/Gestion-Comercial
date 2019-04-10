@@ -13,28 +13,24 @@
         <p:inputTextarea  autoResize="false" value="#{reparacionBacking.reparacion.observaciones}"/>
         <p:outputLabel value="Precio de mano de obra"/>
         <p:inputText value="#{reparacionBacking.reparacion.precioManoObra}"/>
+
         <p:outputLabel value="Estado"/>
         <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.estado}">
-            <f:selectItems value="#{reparacionBacking.estados}"
-                           var="estado" itemLabel="#{estado}" itemValue="#{estado}"/>
+            <f:selectItem itemLabel="Seleccionar estado" noSelectionOption="true"/>
+            <f:selectItems value="#{reparacionBacking.estados}"/>
         </p:selectOneMenu>
-
 
         <p:outputLabel value="Tecnico "/>
-        <p:selectOneMenu value="#{reparacionBacking.reparacion.tecnico}">
-            <f:selectItem itemLabel="Seleccionar tecnico" itemValue="" noSelectionOption="true"/>
-            <f:selectItems value="#{empleadoBacking.all}" />
+        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.tecnico}">
+            <f:selectItem itemLabel="Seleccionar tecnico" noSelectionOption="true"/>
+            <f:selectItems value="#{empleadoBacking.all}" var="empleado" itemLabel="#{empleado.nombre}"/>
         </p:selectOneMenu>
-
-
-
 
         <p:outputLabel value="Solicitud de reparacion"/>
         <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.solicitud_reparacion}">
-            <f:selectItems value="#{solicitudReparacionBacking.all}"
-                           var="solicitud" itemLabel="#{solicitud.descripcionFallo}"/>
+            <f:selectItem itemLabel="Seleccionar solicitud" noSelectionOption="true"/>
+            <f:selectItems value="#{solicitudReparacionBacking.all}" var="solicitud" itemLabel="#{solicitud.descripcionFallo}"/>
         </p:selectOneMenu>
-
 
     </p:panelGrid>
 </ui:composition>

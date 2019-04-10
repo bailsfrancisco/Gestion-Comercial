@@ -53,7 +53,7 @@ public class Cotizacion extends AbstractEntity {
 	
     //    calendar.setTime(fechaVencimiento); // Configuramos la fecha que se recibe
 	
-     /*   calendar.add(Calendar.DAY_OF_YEAR, 15);  // numero de días a añadir, o restar en caso de días<0
+     /*   calendar.add(Calendar.DAY_OF_YEAR, 15);  // numero de dias a aniadir, o restar en caso de dias<0
         this.fechaVencimiento = calendar.getTime();//*/
         this.fechaVencimiento= fechaVencimiento;
     }

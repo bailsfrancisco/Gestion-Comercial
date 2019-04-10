@@ -12,7 +12,7 @@ public abstract class AbstractEntity implements Serializable {
     private Long id;
 
     @Basic(optional = false)
-    @Column(name="fechaAlta")
+    @Column(name = "fechaAlta")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaAlta;
 
@@ -68,7 +68,6 @@ public abstract class AbstractEntity implements Serializable {
             return false;
         }
     }
-
 
     @Override
     public String toString() {

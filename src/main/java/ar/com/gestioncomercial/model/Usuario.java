@@ -16,7 +16,7 @@ import javax.persistence.*;
 })
 public class Usuario extends AbstractEntity {
 
-    @Column(name = "nombreUsuario")
+    @Column(name = "nombreUsuario", nullable = false)
     private String nombreUsuario;
 
     @Column(name = "password")
@@ -36,6 +36,7 @@ public class Usuario extends AbstractEntity {
         this.password = password;
 
         this.administrador = administrador;
+      
     }
 
     public String getNombreUsuario() {

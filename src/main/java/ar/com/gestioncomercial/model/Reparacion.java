@@ -32,12 +32,16 @@ public class Reparacion extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Estado estado;
 
+    /*
     @ManyToMany
     @JoinTable(name = "reparacion_tecnico",
             joinColumns = @JoinColumn(name = "reparacion_id"),
             inverseJoinColumns = @JoinColumn(name = "empleado_id")
     )
-    private List<Empleado> tecnicos;
+    private List<Empleado> tecnicos;*/
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "tecnico")
+    private AbstractPersona tecnico;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "cliente_id")
@@ -51,7 +55,7 @@ public class Reparacion extends AbstractEntity {
 
     }
 
-    public Reparacion(String diagnostico, Date fechaEgreso, Float senia, String observaciones, Float precioManoObra, Estado estado, Cliente cliente, List<Empleado> tecnicos, SolicitudReparacion solicitud_reparacion) {
+    public Reparacion(String diagnostico, Date fechaEgreso, Float senia, String observaciones, Float precioManoObra, Estado estado, Cliente cliente, Empleado tecnico, SolicitudReparacion solicitud_reparacion) {
         this.diagnostico = diagnostico;
         this.fechaEgreso = fechaEgreso;
         this.senia = senia;
@@ -59,7 +63,7 @@ public class Reparacion extends AbstractEntity {
         this.precioManoObra = precioManoObra;
         this.estado = estado;
         this.cliente = cliente;
-        this.tecnicos = tecnicos;
+        this.tecnico = tecnico;
         this.solicitud_reparacion = solicitud_reparacion;
     }
 
@@ -111,12 +115,12 @@ public class Reparacion extends AbstractEntity {
         this.estado = estado;
     }
 
-    public List<Empleado> getTecnicos() {
-        return tecnicos;
+    public AbstractPersona getTecnico() {
+        return tecnico;
     }
 
-    public void setProveedores(List<Empleado> tecnicos) {
-        this.tecnicos = tecnicos;
+    public void setTecnico(Empleado tecnico) {
+        this.tecnico = tecnico;
     }
 
     public SolicitudReparacion getSolicitud_reparacion() {

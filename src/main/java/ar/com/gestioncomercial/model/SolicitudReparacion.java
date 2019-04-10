@@ -19,7 +19,7 @@ public class SolicitudReparacion extends AbstractEntity {
     @JoinColumn(name = "cliente_id")
     private AbstractPersona cliente;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "cotizacion_id")
     private Cotizacion cotizacion;
 
@@ -71,11 +71,11 @@ public class SolicitudReparacion extends AbstractEntity {
         this.fileNames = fileNames;
     }
 
-    public void addFileName(Image fileName){
+    public void addFileName(Image fileName) {
         this.fileNames.add(fileName);
     }
 
-    public void removeFileName(Image fileName){
+    public void removeFileName(Image fileName) {
         this.fileNames.remove(fileName);
     }
 }

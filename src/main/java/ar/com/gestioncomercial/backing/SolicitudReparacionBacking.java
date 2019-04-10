@@ -48,7 +48,7 @@ public class SolicitudReparacionBacking implements Serializable, CRUDBacking<Sol
     private ImageController imageController;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         solicitudReparacion = new SolicitudReparacion();
         if (solicitudReparacion.getFileNames() == null) {
             solicitudReparacion.setFileNames(new ArrayList<>());
@@ -64,8 +64,8 @@ public class SolicitudReparacionBacking implements Serializable, CRUDBacking<Sol
         } catch (EJBException e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("Ocurrio un Error");
-            return null;
         }
+        return null;
     }
 
     @Override
@@ -75,10 +75,10 @@ public class SolicitudReparacionBacking implements Serializable, CRUDBacking<Sol
 
     @Override
     public String update() {
-        try{
+        try {
             solicitudReparacionController.update(solicitudReparacion);
             return URLMap.getIndexSolicitudes() + URLMap.getFacesRedirect();
-        }catch(Exception e){
+        } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("Ocurrio un Error");
             return null;
@@ -87,9 +87,9 @@ public class SolicitudReparacionBacking implements Serializable, CRUDBacking<Sol
 
     @Override
     public void delete(SolicitudReparacion entity) {
-        try{
+        try {
             solicitudReparacionController.delete(entity);
-        }catch(Exception e){
+        } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("Ocurrio un Error");
         }
@@ -101,20 +101,19 @@ public class SolicitudReparacionBacking implements Serializable, CRUDBacking<Sol
         return solicitudReparacionController.getAll();
     }
 
-    public void saveImage(FileUploadEvent event){
+    public void saveImage(FileUploadEvent event) {
         try (InputStream input = event.getFile().getInputstream()) {
-            String fileName = sessionBacking.getUsuario().getNombreUsuario() +
-                    "_" +
-                    new Date().toString() +
-                    "_" +
-                    event.getFile().getFileName();
+            String fileName = sessionBacking.getUsuario().getNombreUsuario()
+                    + "_"
+                    + new Date().toString()
+                    + "_"
+                    + event.getFile().getFileName();
             Files.copy(input, new File(IMAGES_PATH, fileName).toPath());
             Image image = new Image(fileName);
             image.setSolicitud(solicitudReparacion);
             imageController.create(image);
             solicitudReparacion.addFileName(image);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             JSFUtils.createFacesMessage("Ocurrio un Error al subir su Imagen");
         }
     }

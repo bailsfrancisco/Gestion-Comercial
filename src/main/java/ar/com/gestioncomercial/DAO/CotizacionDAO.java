@@ -28,7 +28,7 @@ public class CotizacionDAO extends AbstractDAO<Cotizacion> {
         return query.getResultList();
     }
     
-    public List<Cotizacion> getCotizacion(){
+    public List<Cotizacion> getAllCotizaciones(){
         return getAll();
     }
 

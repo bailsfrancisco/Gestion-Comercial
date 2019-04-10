@@ -43,7 +43,7 @@
                     <h:outputText value="#{reparacion.tecnico.nombre}"/>
                 </p:column>
                 <p:column headerText="Solicitud de reparacion">
-                    <h:outputText value="#{reparacion.solicitud_reparacion}"/>
+                    <h:outputText value="#{reparacion.solicitud_reparacion.descripcionFallo}"/>
                 </p:column>
                 <c:if test="#{sessionBacking.usuario.administrador}">
                     <p:column>
@@ -56,7 +56,7 @@
                                        value="Borrar"
                                        update="reparaciones">
                             <p:confirm header="Confirmation"
-                                       message="Desea eliminar la reparacion de #{reparacion}? "
+                                       message="Desea eliminar la reparacion de #{reparacion.solicitud_reparacion.cliente.nombre}? "
                                        icon="ui-icon-alert" />
                         </p:commandLink>
                     </p:column>

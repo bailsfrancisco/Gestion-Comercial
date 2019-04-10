@@ -16,22 +16,22 @@
             <f:facet name="header">
                 <h:outputText value="Cotizaciones"/>
             </f:facet>
-            <c:when test="#{sessionBacking.usuario.administrador}">
-                <p:dataTable id="cotizaciones"
-                             value="#{cotizacionBacking.getAll()}"
-                             var="cotizacion">
-                    <p:column headerText="Detalle">
-                        <h:outputText value="#{cotizacion.detalles}"/>
-                    </p:column>
-                    <p:column headerText="Fecha de alta">
-                        <h:outputText value="#{cotizacion.fechaAlta}"/>
-                    </p:column>
-                    <p:column headerText="fecha de vencimiento">
-                        <h:outputText value="#{cotizacion.fechaVencimiento}"/>
-                    </p:column>
-                    <p:column headerText="Precio">
-                        <h:outputText value="#{cotizacion.precioTotal}"/>
-                    </p:column>
+            <p:dataTable id="cotizaciones"
+                         value="#{cotizacionBacking.getAll()}"
+                         var="cotizacion">
+                <p:column headerText="Detalle">
+                    <h:outputText value="#{cotizacion.detalles}"/>
+                </p:column>
+                <p:column headerText="Fecha de alta">
+                    <h:outputText value="#{cotizacion.fechaAlta}"/>
+                </p:column>
+                <p:column headerText="Fecha de vencimiento">
+                    <h:outputText value="#{cotizacion.fechaVencimiento}"/>
+                </p:column>
+                <p:column headerText="Precio total">
+                    <h:outputText value="#{cotizacion.precioTotal}"/>
+                </p:column>
+                <c:if test="#{sessionBacking.usuario.administrador}">
                     <p:column>
                         <h:link styleClass="ui-icon-pencil" outcome="#{cotizacionBacking.urlMap.getEditCotizacion()}" value="Editar">
                             <f:param name="id" value="#{cotizacion.id}" />
@@ -42,33 +42,15 @@
                                        value="Borrar"
                                        update="cotizaciones">
                             <p:confirm header="Confirmation"
-                                       message="Desea eliminar la cotizacion de #{cotizacion.detalles}? "
+                                       message="Desea eliminar la cotizacion #{cotizacion.detalles}? "
                                        icon="ui-icon-alert" />
                         </p:commandLink>
                     </p:column>
-                </p:dataTable>
-                <c:if test="#{sessionBacking.usuario.administrador}">
-                    <p:button value="Crear" outcome="#{cotizacionBacking.urlMap.getNewCotizacion()}"/>
                 </c:if>
-          </c:when>
-            <c:otherwise>
-                <p:dataTable id="mis_cotizaciones"
-                             value="#{cotizacionBacking.getAll()}"
-                             var="cotizacion">
-                    <p:column headerText="Detalles">
-                        <h:outputText value="#{cotizacion.detalles}"/>
-                    </p:column>
-                    <p:column headerText="Fecha de ingreso">
-                        <h:outputText value="#{cotizacion.fechaAlta}"/>
-                    </p:column>
-                    <p:column headerText="Fecha vencimiiento">
-                        <h:outputText value="#{cotizacion.fechaVencimiento}"/>
-                    </p:column>
-                    <p:column headerText="Precio">
-                        <h:outputText value="#{cotizacion.precioTotal}"/>
-                    </p:column>
-                </p:dataTable>
-            </c:otherwise> 
+            </p:dataTable>
+            <c:if test="#{sessionBacking.usuario.administrador}">
+                <p:button value="Crear" outcome="#{cotizacionBacking.urlMap.getNewCotizacion()}"/>
+            </c:if>
         </p:panel>
         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
             <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
