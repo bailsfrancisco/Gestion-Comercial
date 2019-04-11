@@ -1,26 +1,33 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <p:panelGrid columns="2" layout="grid">
 
         <p:outputLabel value="Nombre"/>
         <p:inputText value="#{productoBacking.producto.nombre}"/>
-        
+
         <p:outputLabel value="Codigo"/>
         <p:inputText value="#{productoBacking.producto.codigo}"/>
-        
+
         <p:outputLabel value="Descripcion"/>
         <p:inputTextarea autoResize="false" value="#{productoBacking.producto.descripcion}"/>
-        
+
         <p:outputLabel value="Precio"/>
         <p:inputText value="#{productoBacking.producto.precioUnitario}"/>
-        
+
         <p:outputLabel value="Stock minimo"/>
         <p:inputText value="#{productoBacking.producto.stockMinimo}"/>
-        
+
         <p:outputLabel value="Stock actual"/>
         <p:inputText value="#{productoBacking.producto.stockActual}"/>
+
+        <p:outputLabel value="Categoria"/>
+        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{productoBacking.producto.categoria}">
+            <f:selectItem itemLabel="Seleccionar categoria" noSelectionOption="true"/>
+            <f:selectItems value="#{categoriaBacking.all}" var="categoria" itemLabel="#{categoria.nombre}"/>
+        </p:selectOneMenu>
 
     </p:panelGrid>
 </ui:composition>

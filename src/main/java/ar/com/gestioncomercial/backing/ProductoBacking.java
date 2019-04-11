@@ -12,6 +12,7 @@ import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.StringUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +37,7 @@ public class ProductoBacking implements Serializable, CRUDBacking<Producto> {
     @PostConstruct
     public void init() {
         this.producto = new Producto();
+        producto.setFechaAlta(new Date());
     }
 
     @EJB

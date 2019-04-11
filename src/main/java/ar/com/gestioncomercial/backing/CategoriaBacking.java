@@ -13,6 +13,7 @@ import ar.com.gestioncomercial.utils.StringUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,6 +38,7 @@ public class CategoriaBacking implements Serializable, CRUDBacking<Categoria> {
     @PostConstruct
     public void init() {
         this.categoria = new Categoria();
+        categoria.setFechaAlta(new Date());
     }
 
     @EJB
