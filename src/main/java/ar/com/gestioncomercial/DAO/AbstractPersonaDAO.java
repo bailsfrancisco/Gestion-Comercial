@@ -6,6 +6,8 @@
 package ar.com.gestioncomercial.DAO;
 
 import ar.com.gestioncomercial.model.AbstractPersona;
+import ar.com.gestioncomercial.model.Usuario;
+
 import javax.ejb.Stateless;
 import java.util.List;
 import javax.persistence.Query;
@@ -34,4 +36,20 @@ public class AbstractPersonaDAO extends AbstractDAO<AbstractPersona> {
         Query query = em.createNamedQuery("persona.getAll");
         return query.getResultList();
     }
+
+
+    public AbstractPersona getByUsuario(Usuario usuario) {
+        Query query = em.createNamedQuery("persona.getByUsuario");
+        query.setParameter("usuario", usuario);
+        try {
+            return (AbstractPersona) query.getSingleResult();
+        }catch (Exception e){
+            return null;
+        }
+
+    }
+
+
+
+
 }

@@ -1,6 +1,8 @@
 package ar.com.gestioncomercial.backing;
 
+import ar.com.gestioncomercial.controller.PersonaController;
 import ar.com.gestioncomercial.controller.UsuarioController;
+import ar.com.gestioncomercial.controller.impl.PersonaControllerImpl;
 import ar.com.gestioncomercial.exception.NullOrEmptyException;
 import ar.com.gestioncomercial.model.Usuario;
 import ar.com.gestioncomercial.utils.StringUtils;
@@ -35,6 +37,9 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
 
     @EJB
     private UsuarioController usuarioController;
+
+    @EJB
+    private PersonaController personaController;
 
     @Inject
     private SessionBacking sessionBacking;
@@ -81,11 +86,17 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
 
     @Override
     public void delete(Usuario usuario) {
-        if (!sessionBacking.getUsuario().equals(usuario)) {
-            usuarioController.delete(usuario);
+        if(personaController.getByUsuario(usuario)== null){
+            if (sessionBacking.getUsuario().equals(usuario)){
+                JSFUtils.createFacesMessage("No te podes borrar a vos mismo!");
+            }else {
+                usuarioController.delete(usuario);
+            }
+
         } else {
-            JSFUtils.createFacesMessage("No te podes borrar a vos mismo!");
+            JSFUtils.createFacesMessage("El usuario que intentaste borrar pertenece a un cliente o un empleado!");
         }
+
     }
 
     @Override

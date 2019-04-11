@@ -7,16 +7,11 @@
 
 
         <p:outputLabel value="Descripcion del fallo"/>
-        <p:inputTextarea autoResize="false" value="#{solicitudReparacionBacking.solicitudReparacion.descripcionFallo}"/>
-
-
-        <p:outputLabel value="Cliente "/>
-        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{solicitudReparacionBacking.solicitudReparacion.cliente}">
-            <f:selectItem itemLabel="Seleccionar cliente" noSelectionOption="true"/>
-            <f:selectItems value="#{clienteBacking.all}" var="cliente" itemLabel="#{cliente.nombre}"/>
-        </p:selectOneMenu>
+        <p:inputTextarea id="descripcion" autoResize="false" value="#{solicitudReparacionBacking.solicitudReparacion.descripcionFallo}"/>
+        <p:tooltip id="toolTipFocus" for="descripcion" showEvent="focus" hideEvent="blur" />
+    </p:panelGrid>
+    <p:panelGrid columns="2" layout="grid">
 
         <p:fileUpload fileUploadListener="#{solicitudReparacionBacking.saveImage}" multiple="true"  allowTypes="/(\.|\/)(gif|jpe?g|png|jpg)$/" label="Examinar..." uploadLabel="Subir Todos" cancelLabel="Cancelar" />
-
     </p:panelGrid>
 </ui:composition>

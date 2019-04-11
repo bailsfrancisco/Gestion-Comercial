@@ -5,6 +5,7 @@
  */
 package ar.com.gestioncomercial.DAO;
 
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Empleado;
 import javax.ejb.Stateless;
 import java.util.List;
@@ -15,18 +16,18 @@ import javax.persistence.Query;
  * @author Bails Francisco
  */
 @Stateless
-public class EmpleadoDAO extends AbstractDAO<Empleado> {
+public class EmpleadoDAO extends AbstractDAO<AbstractPersona> {
 
     public EmpleadoDAO() {
-        super(Empleado.class);
+        super(AbstractPersona.class);
     }
 
-    public List<Empleado> getAllEmpleados() {
+    public List<AbstractPersona> getAllEmpleados() {
         return getAll();
     }
 
     @Override
-    protected List<Empleado> getAll() {
+    protected List<AbstractPersona> getAll() {
         Query query = em.createNamedQuery("empleado.getAll");
         return query.getResultList();
     }

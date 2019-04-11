@@ -8,6 +8,7 @@ package ar.com.gestioncomercial.backing;
 import ar.com.gestioncomercial.controller.CategoriaController;
 import ar.com.gestioncomercial.controller.ProductoController;
 import ar.com.gestioncomercial.controller.ProveedorController;
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Categoria;
 import ar.com.gestioncomercial.model.CategoriaIVA;
 import ar.com.gestioncomercial.model.Producto;
@@ -32,7 +33,7 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
+public class ProveedorBacking implements Serializable, CRUDBacking<AbstractPersona> {
 
     private static final Logger logger = Logger.getLogger(ProveedorBacking.class.getName());
 
@@ -61,7 +62,7 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
     @EJB
     private URLMap urlMap;
 
-    private List<Proveedor> getProveedores() {
+    private List<AbstractPersona> getProveedores() {
         return proveedorController.getAll();
     }
 
@@ -134,9 +135,9 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
         }
     }
 
-    @Override
-    public void delete(Proveedor entity) {
-        try {
+
+    public void delete(AbstractPersona entity) {
+        try{
             proveedorController.delete(entity);
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
@@ -145,7 +146,7 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
     }
 
     @Override
-    public List<Proveedor> getAll() {
+    public List<AbstractPersona> getAll() {
         return getProveedores();
     }
 

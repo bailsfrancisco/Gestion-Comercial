@@ -2,6 +2,7 @@ package ar.com.gestioncomercial.controller.impl;
 
 import ar.com.gestioncomercial.DAO.ReparacionDAO;
 import ar.com.gestioncomercial.controller.ReparacionController;
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Estado;
 import ar.com.gestioncomercial.model.Reparacion;
 
@@ -48,5 +49,15 @@ public class ReparacionControllerImpl implements ReparacionController {
     @Override
     public Estado[] getEstados() {
         return Estado.values();
+    }
+
+    @Override
+    public List<Reparacion> findByEstado(Estado estado) {
+        return reparacionDAO.findByEstado(estado);
+    }
+
+    @Override
+    public List<Reparacion> findByCliente(AbstractPersona cliente) {
+        return reparacionDAO.findByCliente(cliente);
     }
 }

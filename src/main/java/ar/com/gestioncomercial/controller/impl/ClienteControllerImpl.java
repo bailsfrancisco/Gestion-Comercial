@@ -3,6 +3,7 @@ package ar.com.gestioncomercial.controller.impl;
 import ar.com.gestioncomercial.DAO.ClienteDAO;
 import ar.com.gestioncomercial.controller.ClienteController;
 import ar.com.gestioncomercial.model.CategoriaIVA;
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Cliente;
 
 import javax.ejb.EJB;
@@ -14,33 +15,34 @@ public class ClienteControllerImpl extends AbstractPersonaControllerImpl impleme
 
     @EJB
     private ClienteDAO clienteDAO;
-
-    @Override
+/*
+    //@Override
     public void create(Cliente entity) {
         super.create(entity);
     }
 
-    @Override
+    //@Override
     public Cliente retrieve(Cliente entity) {
         return (Cliente) super.retrieve(entity);
-    }
+    }*/
 
-    public Cliente retrievebyId(Long id) {
+    @Override
+    public AbstractPersona retrievebyId(Long id) {
         return clienteDAO.find(id);
     }
 
-    @Override
+    /*@Override
     public void update(Cliente entity) {
         super.update(entity);
     }
 
-    @Override
+    //@Override
     public void delete(Cliente entity) {
         super.delete(entity);
-    }
+    }*/
 
     @Override
-    public List<Cliente> getAll() {
+    public List<AbstractPersona> getAll() {
         return clienteDAO.getAllClientes();
     }
 

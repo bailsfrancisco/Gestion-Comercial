@@ -16,7 +16,7 @@ import javax.persistence.*;
 })
 public class Usuario extends AbstractEntity {
 
-    @Column(name = "nombreUsuario", nullable = false)
+    @Column(name = "nombreUsuario", unique = true)
     private String nombreUsuario;
 
     @Column(name = "password")

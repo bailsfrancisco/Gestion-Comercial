@@ -12,7 +12,10 @@ import javax.persistence.*;
 @NamedQueries({
     @NamedQuery(
             name = "persona.getAll",
-            query = "select p from AbstractPersona p")
+            query = "select p from AbstractPersona p"),
+    @NamedQuery(
+            name = "persona.getByUsuario",
+            query = "select p from AbstractPersona p where p.usuario = :usuario")
 })
 public abstract class AbstractPersona extends AbstractEntity {
 

@@ -8,6 +8,7 @@ package ar.com.gestioncomercial.backing;
 import ar.com.gestioncomercial.controller.EmpleadoController;
 import ar.com.gestioncomercial.controller.UsuarioController;
 import ar.com.gestioncomercial.exception.NullOrEmptyException;
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Empleado;
 import ar.com.gestioncomercial.model.Usuario;
 import ar.com.gestioncomercial.utils.JSFUtils;
@@ -30,7 +31,7 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
+public class EmpleadoBacking implements Serializable, CRUDBacking<AbstractPersona> {
 
     private static final Logger logger = Logger.getLogger(EmpleadoBacking.class.getName());
 
@@ -54,7 +55,7 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
     @EJB
     private URLMap urlMap;
 
-    private List<Empleado> getEmpleados() {
+    private List<AbstractPersona> getEmpleados() {
         return empleadoController.getAll();
     }
 
@@ -93,12 +94,12 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<Empleado> {
     }
 
     @Override
-    public void delete(Empleado entity) {
+    public void delete(AbstractPersona entity) {
         empleadoController.delete(entity);
     }
 
     @Override
-    public List<Empleado> getAll() {
+    public List<AbstractPersona> getAll() {
         return getEmpleados();
     }
 

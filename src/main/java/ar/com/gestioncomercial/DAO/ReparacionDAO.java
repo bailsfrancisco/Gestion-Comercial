@@ -5,6 +5,7 @@
  */
 package ar.com.gestioncomercial.DAO;
 
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Estado;
 import ar.com.gestioncomercial.model.Reparacion;
 import javax.ejb.Stateless;
@@ -36,6 +37,12 @@ public class ReparacionDAO extends AbstractDAO<Reparacion> {
     public List<Reparacion> findByEstado(Estado estado) {
         final Query query = em.createNamedQuery("reparacion.findByEstado");
         query.setParameter("estado", estado);
+        return query.getResultList();
+    }
+
+    public List<Reparacion> findByCliente(AbstractPersona cliente) {
+        final Query query = em.createNamedQuery("reparacion.findByCliente");
+        query.setParameter("cliente", cliente);
         return query.getResultList();
     }
 

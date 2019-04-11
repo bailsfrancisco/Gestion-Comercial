@@ -14,6 +14,10 @@ import java.util.List;
     @NamedQuery(
             name = "reparacion.findByEstado",
             query = "SELECT r FROM Reparacion as r WHERE r.estado = :estado"
+    ),
+    @NamedQuery(
+            name = "reparacion.findByCliente",
+            query = "SELECT r FROM Reparacion as r WHERE r.cliente = :cliente"
     )
 })
 public class Reparacion extends AbstractEntity {

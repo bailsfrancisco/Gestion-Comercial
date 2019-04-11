@@ -47,16 +47,16 @@ public class AuthorizationListener implements PhaseListener {
       currentUser = sessionBacking.getUsuario();
     }
     if(null != currentUser && !currentUser.isAdministrador()){
-      if(currentPage.matches(".*(new|edit).xhtml.*")){
+      if(currentPage.matches(".*(new|edit).xhtml.*")&& !currentPage.matches(".*/solicitudes/new\\.xhtml")){
         NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
-        nh.handleNavigation(facesContext, null, urlMap.getWELCOME() + urlMap.getFacesRedirect());
+        nh.handleNavigation(facesContext, null, URLMap.getWELCOME() + URLMap.getFacesRedirect());
       }
     }
 
     if(currentUser == null){
-      if(!currentPage.equals(urlMap.getINDEX())){
+      if(!currentPage.equals(URLMap.getINDEX())){
         NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
-        nh.handleNavigation(facesContext, null, urlMap.getINDEX() + urlMap.getFacesRedirect());
+      nh.handleNavigation(facesContext, null, URLMap.getINDEX() + URLMap.getFacesRedirect());
       }
     }
   }

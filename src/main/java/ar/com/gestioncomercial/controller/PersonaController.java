@@ -12,6 +12,7 @@ import java.util.List;
  *
  * @author Bails Francisco
  */
-public interface PersonaController {
+public interface PersonaController extends CrudController<AbstractPersona> {
 
+    AbstractPersona getByUsuario(Usuario usuario);
 }

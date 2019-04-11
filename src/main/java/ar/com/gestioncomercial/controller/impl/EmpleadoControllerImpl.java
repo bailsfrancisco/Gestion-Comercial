@@ -2,6 +2,7 @@ package ar.com.gestioncomercial.controller.impl;
 
 import ar.com.gestioncomercial.DAO.EmpleadoDAO;
 import ar.com.gestioncomercial.controller.EmpleadoController;
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Empleado;
 
 import javax.ejb.EJB;
@@ -14,34 +15,34 @@ public class EmpleadoControllerImpl extends AbstractPersonaControllerImpl implem
     @EJB
     private EmpleadoDAO empleadoDAO;
 
-    @Override
+/*    //@Override
     public void create(Empleado entity) {
         super.create(entity);
     }
 
-    @Override
+    //@Override
     public Empleado retrieve(Empleado entity) {
         return  (Empleado) super.retrieve(entity);
-    }
+    }*/
 
     @Override
-    public Empleado retrievebyId(Long id) {
+    public AbstractPersona retrievebyId(Long id) {
         return empleadoDAO.find(id);
     }
 
 
-    @Override
+/*    //@Override
     public void update(Empleado entity) {
         super.update(entity);
     }
 
-    @Override
+    //@Override
     public void delete(Empleado entity) {
         super.delete(entity);
-    }
+    }*/
 
     @Override
-    public List<Empleado> getAll() {
+    public List<AbstractPersona> getAll() {
         return empleadoDAO.getAllEmpleados();
     }
 }

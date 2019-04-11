@@ -7,6 +7,8 @@ package ar.com.gestioncomercial.controller.impl;
 
 import ar.com.gestioncomercial.DAO.AbstractPersonaDAO;
 import ar.com.gestioncomercial.model.AbstractPersona;
+import ar.com.gestioncomercial.model.Usuario;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -67,5 +69,9 @@ public abstract class AbstractPersonaControllerImpl {
         } catch (EJBException e) {
             logger.log(Level.SEVERE, e.getMessage());
         }
+    }
+
+    public AbstractPersona getByUsuario(Usuario usuario){
+        return  abstractPersonaDAO.getByUsuario(usuario);
     }
 }

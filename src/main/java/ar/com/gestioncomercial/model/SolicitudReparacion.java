@@ -23,6 +23,8 @@ public class SolicitudReparacion extends AbstractEntity {
     @JoinColumn(name = "cotizacion_id")
     private Cotizacion cotizacion;
 
+    private Estado estado;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
     private List<Image> fileNames;
 
@@ -77,5 +79,13 @@ public class SolicitudReparacion extends AbstractEntity {
 
     public void removeFileName(Image fileName) {
         this.fileNames.remove(fileName);
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 }
