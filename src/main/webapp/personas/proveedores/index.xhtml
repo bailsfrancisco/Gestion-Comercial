@@ -15,9 +15,12 @@
             <f:facet name="header">
                 <h:outputText value="Proveedores"></h:outputText>
             </f:facet>
+
             <p:dataTable id="proveedores"
                          value="#{proveedorBacking.all}"
-                         var="proveedor">
+                         var="proveedor"
+                         tableStyle="width:auto"
+                         emptyMessage="Aun no hay ningun valor cargado ...">
 
                 <p:column headerText="Nombre">
                     <h:outputText value="#{proveedor.nombre}"/>
@@ -40,23 +43,14 @@
                 <p:column headerText="Observaciones">
                     <h:outputText value="#{proveedor.observaciones}"/>
                 </p:column>
-                <p:column headerText="Categoria">
-                    <h:outputText value="#{proveedor.categoria}"/>
-                </p:column>
-                <p:column headerText="Producto">
-                    <h:outputText value="#{proveedor.producto}"/>
-                </p:column>
                 <p:column headerText="Razon social">
                     <h:outputText value="#{proveedor.razonSocial}"/>
                 </p:column>
                 <p:column headerText="Calificacion">
                     <h:outputText value="#{proveedor.calificacion}"/>
                 </p:column>
-                <p:column headerText="Estado">
-                    <h:outputText value="#{proveedor.estado}"/>
-                </p:column>
-                <p:column headerText="Condicion IVA">
-                    <h:outputText value="#{proveedor.condicionIva}"/>
+                <p:column headerText="Categoria IVA">
+                    <h:outputText value="#{proveedor.categoriaIVA}"/>
                 </p:column>
                 <p:column headerText="Retencion IVA">
                     <h:outputText value="#{proveedor.retencionIva}"/>

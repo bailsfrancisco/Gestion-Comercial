@@ -30,9 +30,8 @@ public class Proveedor extends AbstractPersona {
 
     private Integer calificacion;
 
-    private String estado;
-
-    private String condicionIva;
+    @Enumerated(EnumType.STRING)
+    private CategoriaIVA categoriaIVA;
 
     private Float retencionIva;
 
@@ -44,22 +43,20 @@ public class Proveedor extends AbstractPersona {
 
     }
 
-    public Proveedor(String razonSocial, Integer calificacion, String estado, String condicionIva, Float retencionIva, String cuentaContable, String cbu) {
+    public Proveedor(String razonSocial, Integer calificacion, CategoriaIVA categoriaIVA, Float retencionIva, String cuentaContable, String cbu) {
         this.razonSocial = razonSocial;
         this.calificacion = calificacion;
-        this.estado = estado;
-        this.condicionIva = condicionIva;
+        this.categoriaIVA = categoriaIVA;
         this.retencionIva = retencionIva;
         this.cuentaContable = cuentaContable;
         this.cbu = cbu;
     }
 
-    public Proveedor(Categoria categoria, String razonSocial, Integer calificacion, String estado, String condicionIva, Float retencionIva, String cuentaContable, String cbu, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
+    public Proveedor(Categoria categoria, String razonSocial, Integer calificacion, CategoriaIVA categoriaIVA, Float retencionIva, String cuentaContable, String cbu, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
         super(nombre, telefono, mail, direccion, cuitCuil, observaciones, celular);
         this.razonSocial = razonSocial;
         this.calificacion = calificacion;
-        this.estado = estado;
-        this.condicionIva = condicionIva;
+        this.categoriaIVA = categoriaIVA;
         this.retencionIva = retencionIva;
         this.cuentaContable = cuentaContable;
         this.cbu = cbu;
@@ -89,20 +86,12 @@ public class Proveedor extends AbstractPersona {
         this.calificacion = calificacion;
     }
 
-    public String getEstado() {
-        return estado;
+    public CategoriaIVA getCategoriaIVA() {
+        return categoriaIVA;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getCondicionIva() {
-        return condicionIva;
-    }
-
-    public void setCondicionIva(String condicionIva) {
-        this.condicionIva = condicionIva;
+    public void setCategoriaIVA(CategoriaIVA categoriaIVA) {
+        this.categoriaIVA = categoriaIVA;
     }
 
     public Float getRetencionIva() {

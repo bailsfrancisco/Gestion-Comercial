@@ -30,6 +30,7 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
     @PostConstruct
     public void init() {
         this.usuario = new Usuario();
+        usuario.setFechaAlta(new Date());
     }
 
     @EJB
@@ -78,13 +79,13 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
         }
     }
 
+    @Override
     public void delete(Usuario usuario) {
         if (!sessionBacking.getUsuario().equals(usuario)) {
             usuarioController.delete(usuario);
         } else {
-            JSFUtils.createFacesMessage("No te podes borrar a vos mismo!!!");
+            JSFUtils.createFacesMessage("No te podes borrar a vos mismo!");
         }
-
     }
 
     @Override

@@ -4,6 +4,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -17,7 +19,8 @@ import javax.persistence.OneToMany;
 })
 public class Cliente extends AbstractPersona {
 
-    private String categoriaIVA;
+    @Enumerated(EnumType.STRING)
+    private CategoriaIVA categoriaIVA;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<Reparacion> reparaciones;
@@ -29,24 +32,24 @@ public class Cliente extends AbstractPersona {
 
     }
 
-    public Cliente(String categoriaIVA, List<Reparacion> reparaciones, List<SolicitudReparacion> solicitudReparaciones) {
+    public Cliente(CategoriaIVA categoriaIVA, List<Reparacion> reparaciones, List<SolicitudReparacion> solicitudReparaciones) {
         this.categoriaIVA = categoriaIVA;
         this.reparaciones = reparaciones;
         this.solicitudReparaciones = solicitudReparaciones;
     }
 
-    public Cliente(String categoriaIVA, List<Reparacion> reparaciones, List<SolicitudReparacion> solicitudReparaciones, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
+    public Cliente(CategoriaIVA categoriaIVA, List<Reparacion> reparaciones, List<SolicitudReparacion> solicitudReparaciones, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
         super(nombre, telefono, mail, direccion, cuitCuil, observaciones, celular);
         this.categoriaIVA = categoriaIVA;
         this.reparaciones = reparaciones;
         this.solicitudReparaciones = solicitudReparaciones;
     }
 
-    public String getCategoriaIVA() {
+    public CategoriaIVA getCategoriaIVA() {
         return categoriaIVA;
     }
 
-    public void setCategoriaIVA(String categoriaIVA) {
+    public void setCategoriaIVA(CategoriaIVA categoriaIVA) {
         this.categoriaIVA = categoriaIVA;
     }
 

@@ -10,6 +10,7 @@
         <p:inputText value="#{proveedorBacking.proveedor.telefono}"/>
         <p:outputLabel value="Celular"/>
         <p:inputText value="#{proveedorBacking.proveedor.celular}"/>
+        <p:outputLabel value="E-mail"/>
         <p:inputText id="email" value="#{proveedorBacking.proveedor.mail}" validatorMessage="¡Ingrese un email valido!">
             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
             <p:clientValidator />
@@ -20,64 +21,18 @@
         <p:outputLabel value="CUIT-CUIL"/>
         <p:inputText value="#{proveedorBacking.proveedor.cuitCuil}"/>
         <p:outputLabel value="Observaciones"/>
-        <p:inputText value="#{proveedorBacking.proveedor.observaciones}"/>
-        <p:outputLabel value="Categorias"/>
-        <p:selectManyMenu scrollHeight="400" id="categorias_list" style="width: 95%;" filter="true" filterMatchMode="contains" value="#{proveedorBacking.categoriasIds}" showCheckbox="true">
-            <f:selectItems value="#{categoriaBacking.all}"
-                           var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.id}" />
-        </p:selectManyMenu>
-
-        <p:dataTable id="categorias_table"
-                     value="#{proveedorBacking.proveedor.categorias}"
-                     var="categoria">
-            <p:column headerText="nombre">
-                <h:outputText value="#{categoria.nombre}"/>
-            </p:column>
-            <p:column>
-                <p:commandLink actionListener="#{proveedorBacking.quitarCategoria(categoria)}"
-                               value="Quitar Producto" update="productos_table"/>
-            </p:column>
-
-        </p:dataTable>
-
-        <p:commandButton value="Agregar Categorias"
-                         actionListener="#{proveedorBacking.agregarCategorias()}"
-                         update="messages,productos_table"/>
-
-        <p:outputLabel value="Productos"/>
-        <p:selectManyMenu  scrollHeight="400" id="productos_list" style="width: 95%;" value="#{proveedorBacking.productosIds}"
-                           filter="true" filterMatchMode="contains" showCheckbox="true">
-            <f:selectItems value="#{productoBacking.all}"
-                           var="producto" itemLabel="#{producto.nombre}" itemValue="#{producto.id}"/>
-        </p:selectManyMenu>
-
-
-
-        <p:dataTable id="productos_table"
-                     value="#{proveedorBacking.proveedor.productos}"
-                     var="producto">
-            <p:column headerText="nombre">
-                <h:outputText value="#{producto.nombre}"/>
-            </p:column>
-            <p:column>
-                <p:commandLink actionListener="#{proveedorBacking.quitarProducto(producto)}"
-                               value="Quitar Producto" update="productos_table"/>
-            </p:column>
-
-        </p:dataTable>
-
-        <p:commandButton value="Agregar Producto"
-                         actionListener="#{proveedorBacking.agregarProductos()}"
-                         update="messages,productos_table"/>
-
+        <p:inputTextarea  autoResize="false" value="#{proveedorBacking.proveedor.observaciones}"/>
         <p:outputLabel value="Razon social"/>
         <p:inputText value="#{proveedorBacking.proveedor.razonSocial}"/>
         <p:outputLabel value="Calificacion"/>
         <p:inputText value="#{proveedorBacking.proveedor.calificacion}"/>
-        <p:outputLabel value="Estado"/>
-        <p:inputText value="#{proveedorBacking.proveedor.estado}"/>
-        <p:outputLabel value="Condicion IVA"/>
-        <p:inputText value="#{proveedorBacking.proveedor.condicionIva}"/>
+
+        <p:outputLabel value="Categoria IVA"/>
+        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{proveedorBacking.proveedor.categoriaIVA}">
+            <f:selectItem itemLabel="Seleccionar Categoria IVA" noSelectionOption="true"/>
+            <f:selectItems value="#{proveedorBacking.categoriasIVA}"/>
+        </p:selectOneMenu>
+
         <p:outputLabel value="Retencion IVA"/>
         <p:inputText value="#{proveedorBacking.proveedor.retencionIva}"/>
         <p:outputLabel value="Cuenta contable"/>
@@ -85,4 +40,65 @@
         <p:outputLabel value="CBU"/>
         <p:inputText value="#{proveedorBacking.proveedor.cbu}"/>
     </p:panelGrid>
+
+    <p:panel>
+        <f:facet name="header">
+            <h:outputText value="Categorias"/>
+        </f:facet>
+        <div style="margin-bottom: 1%">
+            <p:selectManyMenu scrollHeight="100" id="categorias_list" style="width: 95%;" filter="true" filterMatchMode="contains" value="#{proveedorBacking.categoriasIds}" showCheckbox="true">
+                <f:selectItems value="#{categoriaBacking.all}"
+                               var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.id}" />
+            </p:selectManyMenu>
+        </div>
+        <p:commandButton value="Agregar categoria"
+                         actionListener="#{proveedorBacking.agregarCategorias()}"
+                         update="messages,categorias_table"
+                         style="margin-bottom: 1%"/>
+        <br/>
+        <p:dataTable id="categorias_table"
+                     value="#{proveedorBacking.proveedor.categorias}"
+                     var="categoria"
+                     tableStyle="width:auto"
+                     emptyMessage="Aun no hay ningun valor cargado ...">
+            <p:column headerText="Nombre">
+                <h:outputText value="#{categoria.nombre}"/>
+            </p:column>
+            <p:column>
+                <p:commandLink actionListener="#{proveedorBacking.quitarCategoria(categoria)}"
+                               value="Quitar categoria" update="categorias_table"/>
+            </p:column>
+        </p:dataTable>
+    </p:panel>
+    <p:panel>
+        <f:facet name="header">
+            <h:outputText value="Productos"/>
+        </f:facet>
+        <div style="margin-bottom: 1%">
+            <p:selectManyMenu  scrollHeight="100" id="productos_list" style="width: 95%;" value="#{proveedorBacking.productosIds}"
+                               filter="true" filterMatchMode="contains" showCheckbox="true">
+                <f:selectItems value="#{productoBacking.all}"
+                               var="producto" itemLabel="#{producto.nombre}" itemValue="#{producto.id}"/>
+            </p:selectManyMenu>
+        </div>
+        <p:commandButton value="Agregar producto"
+                         actionListener="#{proveedorBacking.agregarProductos()}"
+                         update="messages,productos_table"
+                         style="margin-bottom: 1%"/>
+        <br/>
+        <p:dataTable id="productos_table"
+                     value="#{proveedorBacking.proveedor.productos}"
+                     var="producto"
+                     tableStyle="width:auto"
+                     emptyMessage="Aun no hay ningun valor cargado ...">
+            <p:column headerText="Nombre">
+                <h:outputText value="#{producto.nombre}"/>
+            </p:column>
+            <p:column>
+                <p:commandLink actionListener="#{proveedorBacking.quitarProducto(producto)}"
+                               value="Quitar producto" update="productos_table"/>
+            </p:column>
+        </p:dataTable>
+    </p:panel>
+
 </ui:composition>

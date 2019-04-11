@@ -8,12 +8,14 @@ package ar.com.gestioncomercial.backing;
 import ar.com.gestioncomercial.controller.ClienteController;
 import ar.com.gestioncomercial.controller.UsuarioController;
 import ar.com.gestioncomercial.exception.NullOrEmptyException;
+import ar.com.gestioncomercial.model.CategoriaIVA;
 import ar.com.gestioncomercial.model.Cliente;
 import ar.com.gestioncomercial.model.Usuario;
 import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.StringUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,6 +43,8 @@ public class ClienteBacking implements Serializable, CRUDBacking<Cliente> {
     public void init() {
         this.cliente = new Cliente();
         this.usuario = new Usuario();
+        cliente.setFechaAlta(new Date());
+        usuario.setFechaAlta(new Date());
     }
 
     @EJB
@@ -98,6 +102,10 @@ public class ClienteBacking implements Serializable, CRUDBacking<Cliente> {
     @Override
     public List<Cliente> getAll() {
         return getClientes();
+    }
+
+    public CategoriaIVA[] getCategoriasIVA() {
+        return clienteController.getCategoiasIVA();
     }
 
     public Cliente getCliente() {

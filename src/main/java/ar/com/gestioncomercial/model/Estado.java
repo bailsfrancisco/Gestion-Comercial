@@ -10,8 +10,18 @@ package ar.com.gestioncomercial.model;
  * @author bailsfrancisco
  */
 public enum Estado {
-    PENDIENTE,
-    EN_PROCESO,
-    ENTREGADO,
-    TERMINADO
+    PENDIENTE("Pendiente"),
+    EN_PROCESO("En proceso"),
+    ENTREGADO("Entregado"),
+    TERMINADO("Terminado");
+
+    private final String estado;
+
+    Estado(String e) {
+        estado = e;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
 }

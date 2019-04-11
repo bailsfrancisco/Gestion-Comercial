@@ -17,7 +17,9 @@
             </f:facet>
             <p:dataTable id="reparaciones"
                          value="#{reparacionBacking.getAll()}"
-                         var="reparacion">
+                         var="reparacion"
+                         tableStyle="width:auto"
+                         emptyMessage="Aun no hay ningun valor cargado ...">
                 <p:column headerText="Diagnostico">
                     <h:outputText value="#{reparacion.diagnostico}"/>
                 </p:column>

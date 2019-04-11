@@ -18,7 +18,9 @@
 
             <p:dataTable id="clientes"
                          value="#{clienteBacking.all}"
-                         var="cliente">
+                         var="cliente"
+                         tableStyle="width:auto"
+                         emptyMessage="Aun no hay ningun valor cargado ...">
 
                 <p:column headerText="Nombre">
                     <h:outputText value="#{cliente.nombre}"/>

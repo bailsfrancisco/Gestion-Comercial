@@ -18,7 +18,9 @@
             <c:when test="#{sessionBacking.usuario.administrador}">
                 <p:dataTable id="productos"
                              value="#{productoBacking.getAll()}"
-                             var="producto">
+                             var="producto"
+                             tableStyle="width:auto"
+                             emptyMessage="Aun no hay ningun valor cargado ...">
                     <p:column headerText="Nombre">
                         <h:outputText value="#{producto.nombre}"/>
                     </p:column>

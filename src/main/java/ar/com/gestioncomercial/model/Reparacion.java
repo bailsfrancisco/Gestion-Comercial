@@ -32,13 +32,6 @@ public class Reparacion extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Estado estado;
 
-    /*
-    @ManyToMany
-    @JoinTable(name = "reparacion_tecnico",
-            joinColumns = @JoinColumn(name = "reparacion_id"),
-            inverseJoinColumns = @JoinColumn(name = "empleado_id")
-    )
-    private List<Empleado> tecnicos;*/
     @ManyToOne(optional = false)
     @JoinColumn(name = "tecnico")
     private AbstractPersona tecnico;

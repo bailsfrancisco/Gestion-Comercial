@@ -9,12 +9,14 @@ import ar.com.gestioncomercial.controller.CategoriaController;
 import ar.com.gestioncomercial.controller.ProductoController;
 import ar.com.gestioncomercial.controller.ProveedorController;
 import ar.com.gestioncomercial.model.Categoria;
+import ar.com.gestioncomercial.model.CategoriaIVA;
 import ar.com.gestioncomercial.model.Producto;
 import ar.com.gestioncomercial.model.Proveedor;
 import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,6 +49,7 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
         this.proveedor = new Proveedor();
         this.productosIds = new ArrayList<>();
         this.categoriasIds = new ArrayList<>();
+        proveedor.setFechaAlta(new Date());
     }
 
     @EJB
@@ -74,15 +77,15 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
         }
     }
 
-    public void agregarProductos(){
+    public void agregarProductos() {
 
-        if(proveedor.getProductos()==null){
+        if (proveedor.getProductos() == null) {
             proveedor.setProductos(new ArrayList<>());
         }
         productosIds.forEach(
                 id -> {
                     Producto producto = productoController.retrievebyId(id);
-                    if (!proveedor.getProductos().contains(producto)){
+                    if (!proveedor.getProductos().contains(producto)) {
                         proveedor.addProducto(producto);
                     }
                 }
@@ -90,19 +93,19 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
         productosIds = new ArrayList<>();
     }
 
-    public void quitarProducto(Producto producto){
+    public void quitarProducto(Producto producto) {
         this.proveedor.getProductos().remove(producto);
     }
 
-    public void agregarCategorias(){
+    public void agregarCategorias() {
 
-        if(proveedor.getCategorias()==null){
+        if (proveedor.getCategorias() == null) {
             proveedor.setCategorias(new ArrayList<>());
         }
         categoriasIds.forEach(
                 id -> {
                     Categoria categoria = categoriaController.retrievebyId(id);
-                    if (!proveedor.getCategorias().contains(categoria)){
+                    if (!proveedor.getCategorias().contains(categoria)) {
                         proveedor.addCategoria(categoria);
                     }
                 }
@@ -110,7 +113,7 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
         productosIds = new ArrayList<>();
     }
 
-    public void quitarCategoria(Categoria categoria){
+    public void quitarCategoria(Categoria categoria) {
         this.proveedor.getCategorias().remove(categoria);
     }
 
@@ -133,9 +136,9 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
 
     @Override
     public void delete(Proveedor entity) {
-        try{
+        try {
             proveedorController.delete(entity);
-        }catch(Exception e){
+        } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("Ocurrio un Error");
         }
@@ -144,6 +147,10 @@ public class ProveedorBacking implements Serializable, CRUDBacking<Proveedor> {
     @Override
     public List<Proveedor> getAll() {
         return getProveedores();
+    }
+
+    public CategoriaIVA[] getCategoriasIVA() {
+        return proveedorController.getCategoriasIVA();
     }
 
     public Proveedor getProveedor() {

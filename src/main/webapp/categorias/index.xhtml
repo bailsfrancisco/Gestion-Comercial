@@ -17,7 +17,9 @@
             </f:facet>
             <p:dataTable id="categorias"
                          value="#{categoriaBacking.getAll()}"
-                         var="categoria">
+                         var="categoria"
+                         tableStyle="width:auto"
+                         emptyMessage="Aun no hay ningun valor cargado ...">
                 <p:column headerText="Nombre">
                     <h:outputText value="#{categoria.nombre}"/>
                 </p:column>

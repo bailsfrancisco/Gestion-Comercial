@@ -27,7 +27,10 @@
         <p:inputText value="#{clienteBacking.cliente.cuitCuil}"/>
 
         <p:outputLabel value="Categoria IVA"/>
-        <p:inputText value="#{clienteBacking.cliente.categoriaIVA}"/>
+        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{clienteBacking.cliente.categoriaIVA}">
+            <f:selectItem itemLabel="Seleccionar Categoria IVA" noSelectionOption="true"/>
+            <f:selectItems value="#{clienteBacking.categoriasIVA}"/>
+        </p:selectOneMenu>
 
         <p:outputLabel value="Observaciones"/>
         <p:inputTextarea  autoResize="false" value="#{clienteBacking.cliente.observaciones}"/>

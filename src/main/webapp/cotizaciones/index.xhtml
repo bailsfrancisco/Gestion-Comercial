@@ -18,7 +18,9 @@
             </f:facet>
             <p:dataTable id="cotizaciones"
                          value="#{cotizacionBacking.getAll()}"
-                         var="cotizacion">
+                         var="cotizacion"
+                         tableStyle="width:auto"
+                         emptyMessage="Aun no hay ningun valor cargado ...">
                 <p:column headerText="Detalle">
                     <h:outputText value="#{cotizacion.detalles}"/>
                 </p:column>

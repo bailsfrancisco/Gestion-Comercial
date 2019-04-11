@@ -2,6 +2,7 @@ package ar.com.gestioncomercial.controller.impl;
 
 import ar.com.gestioncomercial.DAO.ProveedorDAO;
 import ar.com.gestioncomercial.controller.ProveedorController;
+import ar.com.gestioncomercial.model.CategoriaIVA;
 import ar.com.gestioncomercial.model.Proveedor;
 
 import javax.ejb.EJB;
@@ -29,7 +30,6 @@ public class ProveedorControllerImpl extends AbstractPersonaControllerImpl imple
         return proveedorDAO.find(id);
     }
 
-
     @Override
     public void update(Proveedor entity) {
         super.update(entity);
@@ -43,5 +43,10 @@ public class ProveedorControllerImpl extends AbstractPersonaControllerImpl imple
     @Override
     public List<Proveedor> getAll() {
         return proveedorDAO.getAllProveedores();
+    }
+
+    @Override
+    public CategoriaIVA[] getCategoriasIVA() {
+        return CategoriaIVA.values();
     }
 }
