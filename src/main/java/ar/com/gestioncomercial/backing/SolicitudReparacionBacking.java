@@ -99,7 +99,9 @@ public class SolicitudReparacionBacking implements Serializable, CRUDBacking<Sol
             solicitudReparacionController.delete(entity);
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
-            JSFUtils.createFacesMessage("Ocurrio un Error");
+            JSFUtils.createFacesMessage(
+                    String.format("Se produjo un error al intentar borrar '%s', Por favor verifique que no hay cotizaciones asociadas a ella.",
+                            entity.getMarca()));
         }
 
     }

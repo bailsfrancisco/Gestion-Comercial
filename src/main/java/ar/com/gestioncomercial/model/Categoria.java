@@ -22,8 +22,8 @@ public class Categoria extends AbstractEntity {
 
     @ManyToMany
     @JoinTable(name = "categoria_proveedor",
-            joinColumns = @JoinColumn(name = "proveedor_id"),
-            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+            joinColumns = @JoinColumn(name = "categoria_id"),
+            inverseJoinColumns = @JoinColumn(name = "proveedor_id")
     )
     private List<Proveedor> proveedores;
 

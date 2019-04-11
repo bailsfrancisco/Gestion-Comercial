@@ -27,7 +27,7 @@ public class CategoriaControllerImpl implements CategoriaController {
 
     @Override
     public Categoria retrievebyId(Long id) {
-        return null;
+        return categoriaDAO.find(id);
     }
 
     @Override

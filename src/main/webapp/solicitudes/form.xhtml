@@ -2,12 +2,30 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                >
+
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <p:panelGrid columns="2" layout="grid">
 
+        <p:outputLabel value="Marca"/>
+        <p:inputText value="#{solicitudReparacionBacking.solicitudReparacion.marca}"/>
+
+        <p:outputLabel value="Modelo"/>
+        <p:inputText value="#{solicitudReparacionBacking.solicitudReparacion.modelo}"/>
+
+        <p:outputLabel value="Sintomas"/>
+        <p:inputTextarea id="sintomas" autoResize="false" value="#{solicitudReparacionBacking.solicitudReparacion.sintomas}"/>
 
         <p:outputLabel value="Descripcion del fallo"/>
         <p:inputTextarea id="descripcion" autoResize="false" value="#{solicitudReparacionBacking.solicitudReparacion.descripcionFallo}"/>
+
+
+        <c:if test="#{sessionBacking.usuario.administrador}">
+            <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{cotizacionBacking.cotizacion.detalles}">
+                <f:selectItem itemLabel="Seleccionar cotizacion" noSelectionOption="true"/>
+                <f:selectItems value="#{cotizacionBacking.all}" var="cotizacion" itemLabel="#{cotizacion.detalles}"/>
+            </p:selectOneMenu>
+        </c:if>
+
         <p:tooltip id="toolTipFocus" for="descripcion" showEvent="focus" hideEvent="blur" />
     </p:panelGrid>
     <p:panelGrid columns="2" layout="grid">

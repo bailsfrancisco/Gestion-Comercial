@@ -45,5 +45,4 @@ public class ReparacionDAO extends AbstractDAO<Reparacion> {
         query.setParameter("cliente", cliente);
         return query.getResultList();
     }
-
 }

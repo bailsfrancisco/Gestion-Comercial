@@ -6,11 +6,14 @@
 package ar.com.gestioncomercial.backing;
 
 import ar.com.gestioncomercial.controller.ClienteController;
+import ar.com.gestioncomercial.controller.PersonaController;
+import ar.com.gestioncomercial.controller.ReparacionController;
 import ar.com.gestioncomercial.controller.UsuarioController;
 import ar.com.gestioncomercial.exception.NullOrEmptyException;
 import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.CategoriaIVA;
 import ar.com.gestioncomercial.model.Cliente;
+import ar.com.gestioncomercial.model.Reparacion;
 import ar.com.gestioncomercial.model.Usuario;
 import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.StringUtils;
@@ -53,6 +56,12 @@ public class ClienteBacking implements Serializable, CRUDBacking<AbstractPersona
 
     @EJB
     private UsuarioController usuarioController;
+
+    @EJB
+    private PersonaController personaController;
+
+    @EJB
+    private ReparacionController reparacionController;
 
     @EJB
     private URLMap urlMap;
@@ -103,6 +112,11 @@ public class ClienteBacking implements Serializable, CRUDBacking<AbstractPersona
     @Override
     public List<AbstractPersona> getAll() {
         return getClientes();
+    }
+
+    public List<Reparacion> getAllRep(Usuario usuario) {
+        AbstractPersona as = personaController.getByUsuario(usuario);
+        return  reparacionController.findByCliente(as);
     }
 
     public CategoriaIVA[] getCategoriasIVA() {

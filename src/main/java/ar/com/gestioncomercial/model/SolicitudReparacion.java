@@ -13,16 +13,20 @@ import java.util.List;
 })
 public class SolicitudReparacion extends AbstractEntity {
 
+    private String marca;
+    private String modelo;
+    private String sintomas;
     private String descripcionFallo;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private AbstractPersona cliente;
 
+    /*
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "cotizacion_id")
     private Cotizacion cotizacion;
-
+     */
     private Estado estado;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
@@ -53,14 +57,14 @@ public class SolicitudReparacion extends AbstractEntity {
         this.cliente = cliente;
     }
 
+    /*
     public Cotizacion getCotizacion() {
         return cotizacion;
     }
 
     public void setCotizacion(Cotizacion cotizacion) {
         this.cotizacion = cotizacion;
-    }
-
+    }*/
     public void setCliente(AbstractPersona cliente) {
         this.cliente = cliente;
     }
@@ -88,4 +92,29 @@ public class SolicitudReparacion extends AbstractEntity {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getSintomas() {
+        return sintomas;
+    }
+
+    public void setSintomas(String sintomas) {
+        this.sintomas = sintomas;
+    }
+
 }

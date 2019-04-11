@@ -14,8 +14,8 @@ public class Proveedor extends AbstractPersona {
 
     @ManyToMany
     @JoinTable(name = "categoria_proveedor",
-            joinColumns = @JoinColumn(name = "categoria_id"),
-            inverseJoinColumns = @JoinColumn(name = "proveedor_id")
+            joinColumns = @JoinColumn(name = "proveedor_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
     )
     private List<Categoria> categorias;
 

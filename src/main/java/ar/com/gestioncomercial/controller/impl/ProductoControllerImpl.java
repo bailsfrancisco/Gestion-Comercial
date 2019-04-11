@@ -34,7 +34,7 @@ public class ProductoControllerImpl implements ProductoController {
 
     @Override
     public Producto retrievebyId(Long id) {
-        return null;
+        return productoDAO.find(id);
     }
 
     @Override

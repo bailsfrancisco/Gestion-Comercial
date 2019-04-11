@@ -80,14 +80,14 @@ public class ProveedorBacking implements Serializable, CRUDBacking<AbstractPerso
 
     public void agregarProductos() {
 
-        if (proveedor.getProductos() == null) {
-            proveedor.setProductos(new ArrayList<>());
+        if (this.proveedor.getProductos() == null) {
+            this.proveedor.setProductos(new ArrayList<>());
         }
         productosIds.forEach(
                 id -> {
                     Producto producto = productoController.retrievebyId(id);
-                    if (!proveedor.getProductos().contains(producto)) {
-                        proveedor.addProducto(producto);
+                    if (!this.proveedor.getProductos().contains(producto)) {
+                        this.proveedor.addProducto(producto);
                     }
                 }
         );
@@ -100,18 +100,18 @@ public class ProveedorBacking implements Serializable, CRUDBacking<AbstractPerso
 
     public void agregarCategorias() {
 
-        if (proveedor.getCategorias() == null) {
-            proveedor.setCategorias(new ArrayList<>());
+        if (this.proveedor.getCategorias() == null) {
+            this.proveedor.setCategorias(new ArrayList<>());
         }
         categoriasIds.forEach(
                 id -> {
                     Categoria categoria = categoriaController.retrievebyId(id);
-                    if (!proveedor.getCategorias().contains(categoria)) {
-                        proveedor.addCategoria(categoria);
+                    if (!this.proveedor.getCategorias().contains(categoria)) {
+                        this.proveedor.addCategoria(categoria);
                     }
                 }
         );
-        productosIds = new ArrayList<>();
+        categoriasIds = new ArrayList<>();
     }
 
     public void quitarCategoria(Categoria categoria) {
@@ -135,9 +135,9 @@ public class ProveedorBacking implements Serializable, CRUDBacking<AbstractPerso
         }
     }
 
-
+    @Override
     public void delete(AbstractPersona entity) {
-        try{
+        try {
             proveedorController.delete(entity);
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
