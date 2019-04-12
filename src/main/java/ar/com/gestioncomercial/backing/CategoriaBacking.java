@@ -123,12 +123,4 @@ public class CategoriaBacking implements Serializable, CRUDBacking<Categoria> {
         this.urlMap = urlMap;
     }
 
-    public CategoriaController getCategoriaController() {
-        return categoriaController;
-    }
-
-    public void setCategoriaController(CategoriaController categoriaController) {
-        this.categoriaController = categoriaController;
-    }
-
 }

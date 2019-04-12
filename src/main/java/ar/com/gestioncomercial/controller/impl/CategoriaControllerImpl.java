@@ -14,7 +14,6 @@ public class CategoriaControllerImpl implements CategoriaController {
     @EJB
     private CategoriaDAO categoriaDAO;
 
-
     @Override
     public void create(Categoria entity) {
         categoriaDAO.create(entity);

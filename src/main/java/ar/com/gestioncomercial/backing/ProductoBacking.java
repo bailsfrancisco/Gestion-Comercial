@@ -114,14 +114,6 @@ public class ProductoBacking implements Serializable, CRUDBacking<Producto> {
         this.producto = producto;
     }
 
-    public ProductoController getProductoController() {
-        return productoController;
-    }
-
-    public void setProductoController(ProductoController productoController) {
-        this.productoController = productoController;
-    }
-
     public URLMap getUrlMap() {
         return urlMap;
     }

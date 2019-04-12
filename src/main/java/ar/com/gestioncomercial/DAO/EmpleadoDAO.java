@@ -6,7 +6,6 @@
 package ar.com.gestioncomercial.DAO;
 
 import ar.com.gestioncomercial.model.AbstractPersona;
-import ar.com.gestioncomercial.model.Empleado;
 import javax.ejb.Stateless;
 import java.util.List;
 import javax.persistence.Query;

@@ -25,7 +25,6 @@ public abstract class AbstractPersonaControllerImpl {
     @EJB
     private AbstractPersonaDAO abstractPersonaDAO;
 
-    //@Override
     public void create(AbstractPersona persona) {
         try {
             abstractPersonaDAO.create(persona);
@@ -35,7 +34,6 @@ public abstract class AbstractPersonaControllerImpl {
         }
     }
 
-    //@Override
     public AbstractPersona retrieve(AbstractPersona persona) {
         try {
             return abstractPersonaDAO.find(persona.getId());
@@ -46,12 +44,10 @@ public abstract class AbstractPersonaControllerImpl {
         return null;
     }
 
-    //@Override
     public AbstractPersona retrievebyId(Long id) {
         return abstractPersonaDAO.find(id);
     }
 
-    //@Override
     public void update(AbstractPersona persona) {
         try {
             abstractPersonaDAO.update(persona);
@@ -61,7 +57,6 @@ public abstract class AbstractPersonaControllerImpl {
         }
     }
 
-    //@Override
     public void delete(AbstractPersona persona) {
         try {
             abstractPersonaDAO.delete(persona);

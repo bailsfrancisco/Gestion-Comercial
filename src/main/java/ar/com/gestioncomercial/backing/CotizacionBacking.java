@@ -108,12 +108,4 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
     public void setUrlMap(URLMap urlMap) {
         this.urlMap = urlMap;
     }
-
-    public CotizacionController getCotizacionController() {
-        return cotizacionController;
-    }
-
-    public void setCotizacionController(CotizacionController cotizacionController) {
-        this.cotizacionController = cotizacionController;
-    }
 }

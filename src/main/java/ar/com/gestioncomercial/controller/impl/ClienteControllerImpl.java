@@ -15,31 +15,11 @@ public class ClienteControllerImpl extends AbstractPersonaControllerImpl impleme
 
     @EJB
     private ClienteDAO clienteDAO;
-/*
-    //@Override
-    public void create(Cliente entity) {
-        super.create(entity);
-    }
-
-    //@Override
-    public Cliente retrieve(Cliente entity) {
-        return (Cliente) super.retrieve(entity);
-    }*/
 
     @Override
     public AbstractPersona retrievebyId(Long id) {
         return clienteDAO.find(id);
     }
-
-    /*@Override
-    public void update(Cliente entity) {
-        super.update(entity);
-    }
-
-    //@Override
-    public void delete(Cliente entity) {
-        super.delete(entity);
-    }*/
 
     @Override
     public List<AbstractPersona> getAll() {

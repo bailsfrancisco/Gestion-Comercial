@@ -5,7 +5,6 @@
  */
 package ar.com.gestioncomercial.DAO;
 
-import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Cotizacion;
 import javax.ejb.Stateless;
 import java.util.List;

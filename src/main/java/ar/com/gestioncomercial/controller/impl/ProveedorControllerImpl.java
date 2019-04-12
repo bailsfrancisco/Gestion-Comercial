@@ -4,7 +4,6 @@ import ar.com.gestioncomercial.DAO.ProveedorDAO;
 import ar.com.gestioncomercial.controller.ProveedorController;
 import ar.com.gestioncomercial.model.CategoriaIVA;
 import ar.com.gestioncomercial.model.AbstractPersona;
-import ar.com.gestioncomercial.model.Proveedor;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -16,31 +15,10 @@ public class ProveedorControllerImpl extends AbstractPersonaControllerImpl imple
     @EJB
     private ProveedorDAO proveedorDAO;
 
-/*    //@Override
-    public void create(Proveedor entity) {
-        super.create(entity);
-    }
-
-    //@Override
-    public AbstractPersona retrieve(Proveedor entity) {
-        return (Proveedor) super.retrieve(entity);
-    }*/
-
     @Override
     public AbstractPersona retrievebyId(Long id) {
         return proveedorDAO.find(id);
     }
-
-
-    //@Override
-/*    public void update(Proveedor entity) {
-        super.update(entity);
-    }*/
-
-/*    @Override
-    public void delete(Proveedor entity) {
-        super.delete(entity);
-    }*/
 
     @Override
     public List<AbstractPersona> getAll() {
