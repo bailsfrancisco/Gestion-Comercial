@@ -39,8 +39,16 @@
                 </c:if>
                 <c:if test="#{sessionBacking.usuario.administrador}">
                     <p:column>
-                        <h:link styleClass="ui-icon-pencil" outcome="#{sessionBacking.urlMap.getEditSolicitud()}" value="Editar">
+                        <h:link styleClass="ui-icon-pencil" outcome="#{sessionBacking.urlMap.getEditSolicitud()}" value="Ver">
                             <f:param name="id" value="#{solicitud.id}" />
+                        </h:link>
+                    </p:column>
+                </c:if>
+                <c:if test="#{sessionBacking.usuario.administrador}">
+                    <p:column>
+                        <h:link styleClass="ui-icon-pencil" outcome="#{sessionBacking.urlMap.getNewCotizacion()}" value="Cotizar">
+                            <f:param name="solicitud_reparacion_id" value="#{solicitud.id}" />
+                            <f:param name="Detalles" value="#{solicitud.marca} #{solicitud.modelo} #{solicitud.sintomas}" />
                         </h:link>
                     </p:column>
                 </c:if>
