@@ -8,6 +8,10 @@
         <h:head>
             <title>Nueva cotizacion</title>
         </h:head>
+        <f:metadata>
+            <f:viewParam name="solicitud_reparacion_id" value="#{cotizacionBacking.cotizacion.solicitud_reparacion_id}"/>
+            <f:viewParam name="Detalles" value="#{cotizacionBacking.cotizacion.detalles}"/>
+        </f:metadata>
     </ui:define>
     <ui:define name="content">
         <p:panelGrid columns="2" layout="grid">
