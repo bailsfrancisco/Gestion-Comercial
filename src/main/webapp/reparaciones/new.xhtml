@@ -8,6 +8,12 @@
         <h:head>
             <title>Nueva reparacion</title>
         </h:head>
+        
+        <f:metadata>
+            <f:viewParam name="nombre_cliente" value="#{reparacionBacking.reparacion.cliente}"/>
+            <f:viewParam name="solicitud_reparacion" value="#{reparacionBacking.reparacion.solicitud_reparacion}"/>
+        </f:metadata>
+        
     </ui:define>
     <ui:define name="content">
         <p:panelGrid columns="2" layout="grid">

@@ -28,6 +28,7 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
     @PostConstruct
     public void init() {
         reparacion = new Reparacion();
+        reparacion.setFechaAlta(new Date());
     }
 
     @EJB
