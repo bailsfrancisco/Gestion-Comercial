@@ -17,9 +17,9 @@ import javax.persistence.OneToMany;
 })
 public class Empleado extends AbstractPersona {
 
-    private Float porcentajeComision;
+    private double porcentajeComision;
 
-    private Float sueldoBase;
+    private double sueldoBase;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tecnico")
     private List<Reparacion> reparaciones;
@@ -28,30 +28,30 @@ public class Empleado extends AbstractPersona {
 
     }
 
-    public Empleado(Float porcentajeComision, Float sueldoBase) {
+    public Empleado(double porcentajeComision, double sueldoBase) {
         this.porcentajeComision = porcentajeComision;
         this.sueldoBase = sueldoBase;
     }
 
-    public Empleado(Float porcentajeComision, Float sueldoBase, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
+    public Empleado(double porcentajeComision, double sueldoBase, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
         super(nombre, telefono, mail, direccion, cuitCuil, observaciones, celular);
         this.porcentajeComision = porcentajeComision;
         this.sueldoBase = sueldoBase;
     }
 
-    public Float getPorcentajeComision() {
+    public double getPorcentajeComision() {
         return porcentajeComision;
     }
 
-    public void setPorcentajeComision(Float porcentajeComision) {
+    public void setPorcentajeComision(double porcentajeComision) {
         this.porcentajeComision = porcentajeComision;
     }
 
-    public Float getSueldoBase() {
+    public double getSueldoBase() {
         return sueldoBase;
     }
 
-    public void setSueldoBase(Float sueldoBase) {
+    public void setSueldoBase(double sueldoBase) {
         this.sueldoBase = sueldoBase;
     }
 

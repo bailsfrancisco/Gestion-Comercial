@@ -1,34 +1,115 @@
- <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <p:panelGrid columns="2" layout="grid">
         
-        <c:if test="#{cotizacionBacking.cotizacion.solicitud_reparacion_id != null}">
+        <c:if test="#{cotizacionBacking.cotizacion.solicitudReparacion != null}">
         <p:outputLabel value="Solicitud de reparacion"/>
-        <p:inputText disabled="true" size="10" value="#{cotizacionBacking.cotizacion.solicitud_reparacion_id}"/>  
+        <p:inputText disabled="true" size="10" value="#{cotizacionBacking.cotizacion.solicitudReparacion}"/>
         </c:if>
-        
+    </p:panelGrid>
+
+    <p:panelGrid columns="2" layout="grid">
+    <p:outputLabel value="Marca"/>
+    <p:inputText required="true" value="#{cotizacionBacking.solicitudReparacion.marca}"/>
+    </p:panelGrid>
+
+    <p:panelGrid columns="2" layout="grid">
+    <p:outputLabel value="Cliente "/>
+    <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{cotizacionBacking.solicitudReparacion.cliente}">
+        <f:selectItem itemLabel="Seleccionar Cliente" noSelectionOption="true"/>
+        <f:selectItems value="#{clienteBacking.all}" var="cliente" itemLabel="#{cliente.nombre}"/>
+    </p:selectOneMenu>
+    </p:panelGrid>
+
+    <p:panelGrid columns="2" layout="grid">
+    <p:outputLabel value="Modelo"/>
+    <p:inputText value="#{cotizacionBacking.solicitudReparacion.modelo}"/>
+    </p:panelGrid>
+
+    <p:panelGrid columns="2" layout="grid">
+    <p:outputLabel value="Sintomas"/>
+    <p:inputTextarea id="sintomas" autoResize="false" value="#{cotizacionBacking.solicitudReparacion.sintomas}"/>
+    </p:panelGrid>
+
+    <p:panelGrid columns="2" layout="grid">
+    <p:outputLabel value="Descripcion del fallo"/>
+    <p:inputTextarea id="descripcion" autoResize="false" value="#{cotizacionBacking.solicitudReparacion.descripcionFallo}"/>
+    </p:panelGrid>
+
+    <p:panelGrid columns="2" layout="grid">
         <p:outputLabel value="Detalles"/>
         <p:inputTextarea  autoResize="false" value="#{cotizacionBacking.cotizacion.detalles}"/>
+    </p:panelGrid>
 
+    <p:panelGrid columns="2" layout="grid">
+        <p:outputLabel value="Detalles"/>
+        <p:inputTextarea  autoResize="false" value="#{cotizacionBacking.cotizacion.detalles}"/>
+    </p:panelGrid>
+
+    <p:panelGrid columns="2" layout="grid">
         <p:outputLabel value="Fecha de alta"/>
         <p:calendar disabled="true" size="10" value="#{cotizacionBacking.cotizacion.fechaAlta}" pattern="dd/MM/yyyy"/>
+    </p:panelGrid>
 
-
+    <p:panelGrid columns="2" layout="grid">
         <p:outputLabel value="Fecha vencimiento"/>
         <p:calendar size="10"  value="#{cotizacionBacking.cotizacion.fechaVencimiento}" pattern="dd/MM/yyyy"/>
-
-        <p:outputLabel value="Precio total"/>
-        <p:inputText  size="10" value="#{cotizacionBacking.cotizacion.precioTotal}"/>
-        
-   <!--     <p:outputLabel value="Solicitud de reparacion"/>
-        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{cotizacionBacking.cotizacion.solicitud_reparacion_id}">
-            <f:selectItem itemLabel="Seleccionar solicitud" noSelectionOption="true"/>
-            <f:selectItems value="#{solicitudReparacionBacking.all}" var="solicitud" itemLabel="#{solicitud.marca}"/>
-        </p:selectOneMenu> -->
-
     </p:panelGrid>
+
+    <p:panelGrid columns="2" layout="grid">
+        <p:outputLabel value="Precio Mano de Obra"/>
+        <p:inputText  autoResize="false" value="#{cotizacionBacking.cotizacion.precioManoObra}">
+            <p:ajax event="keyup" delay="100" update="precioTotal" listener="#{cotizacionBacking.handlePrecioTotal}" />
+        </p:inputText>
+    </p:panelGrid>
+
+    <p:panelGrid columns="2" layout="grid">
+        <p:outputLabel value="Seña"/>
+        <p:inputText  autoResize="false" value="#{cotizacionBacking.cotizacion.senia}">
+            <p:ajax event="keyup" delay="100" update="precioTotal" listener="#{cotizacionBacking.handlePrecioTotal}" />
+        </p:inputText>
+    </p:panelGrid>
+
+        <p:panel style="width: 100%" >
+            <f:facet name="header">
+                <h:outputText value="Insumos"/>
+            </f:facet>
+            <div style="margin-bottom: 1%">
+                <p:selectManyMenu  scrollHeight="100" id="productos_list" style="width: 95%;" value="#{cotizacionBacking.productosIds}"
+                                   filter="true" filterMatchMode="contains" showCheckbox="true">
+                    <f:selectItems value="#{productoBacking.all}"
+                                   var="producto" itemLabel="#{producto.nombre}" itemValue="#{producto.id}"/>
+                </p:selectManyMenu>
+            </div>
+            <p:commandButton value="Agregar Insumo"
+                             actionListener="#{cotizacionBacking.agregarProductos()}"
+                             update="messages,productos_table"
+                             style="margin-bottom: 1%">
+                <p:ajax event="click" delay="100" update="precioTotal" listener="#{cotizacionBacking.handlePrecioTotal}" />
+            </p:commandButton>
+            <br/>
+            <p:dataTable id="productos_table"
+                         value="#{cotizacionBacking.cotizacion.insumos}"
+                         var="producto"
+                         tableStyle="width:auto"
+                         emptyMessage="Aun no hay ningun valor cargado ...">
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{producto.nombre}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton actionListener="#{cotizacionBacking.quitarProducto(producto)}"
+                                   value="Quitar producto" update="productos_table,Gform:precioTotal">
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    <p:panelGrid columns="2" layout="grid">
+        <p:outputLabel value="Precio total"/>
+        <p:outputLabel id="precioTotal"  value="#{cotizacionBacking.precioTotal}"/>
+    </p:panelGrid>
+
 </ui:composition>

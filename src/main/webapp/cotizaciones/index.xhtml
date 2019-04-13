@@ -25,10 +25,14 @@
                     <h:outputText value="#{cotizacion.detalles}"/>
                 </p:column>
                 <p:column headerText="Fecha de alta">
-                    <h:outputText value="#{cotizacion.fechaAlta}"/>
+                    <h:outputText  value="#{cotizacion.fechaAlta}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
                 </p:column>
                 <p:column headerText="Fecha de vencimiento">
-                    <h:outputText value="#{cotizacion.fechaVencimiento}"/>
+                    <h:outputText value="#{cotizacion.fechaVencimiento}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
                 </p:column>
                 <p:column headerText="Precio total">
                     <h:outputText value="#{cotizacion.precioTotal}"/>

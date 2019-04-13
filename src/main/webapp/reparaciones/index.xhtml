@@ -24,19 +24,17 @@
                     <h:outputText value="#{reparacion.diagnostico}"/>
                 </p:column>
                 <p:column headerText="Fecha de alta">
-                    <h:outputText value="#{reparacion.fechaAlta}"/>
+                    <h:outputText value="#{reparacion.fechaAlta}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
                 </p:column>
                 <p:column headerText="Fecha de egreso">
-                    <h:outputText value="#{reparacion.fechaEgreso}"/>
-                </p:column>
-                <p:column headerText="Seña">
-                    <h:outputText value="#{reparacion.senia}"/>
+                    <h:outputText value="#{reparacion.fechaEgreso}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
                 </p:column>
                 <p:column headerText="Observaciones">
                     <h:outputText value="#{reparacion.observaciones}"/>
-                </p:column>
-                <p:column headerText="Precio de mano de obra">
-                    <h:outputText value="#{reparacion.precioManoObra}"/>
                 </p:column>
                 <p:column headerText="Estado">
                     <h:outputText value="#{reparacion.estado}"/>
@@ -44,7 +42,7 @@
                 <p:column headerText="Tecnico">
                     <h:outputText value="#{reparacion.tecnico.nombre}"/>
                 </p:column>
-                <p:column headerText="Solicitud de reparacion">
+                <p:column headerText="Descripcion Del fallo">
                     <h:outputText value="#{reparacion.solicitud_reparacion.descripcionFallo}"/>
                 </p:column>
                 <c:if test="#{sessionBacking.usuario.administrador}">

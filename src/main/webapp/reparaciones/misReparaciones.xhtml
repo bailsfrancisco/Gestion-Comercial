@@ -18,7 +18,7 @@
             </f:facet>
 
             <p:dataTable id="mis_reparaciones"
-                         value="#{clienteBacking.getAllRep(sessionBacking.usuario)}"
+                         value="#{clienteBacking.getReparacionesbyUsuario(sessionBacking.usuario)}"
                          var="mi_reparacion"
                          tableStyle="width:auto"
                          emptyMessage="Aun no hay ningun valor cargado ...">
@@ -27,10 +27,9 @@
                     <h:outputText value="#{mi_reparacion.diagnostico}"/>
                 </p:column>
                 <p:column headerText="Fecha de alta">
-                    <h:outputText value="#{mi_reparacion.fechaAlta}"/>
-                </p:column>
-                <p:column headerText="Seña">
-                    <h:outputText value="#{mi_reparacion.senia}"/>
+                    <h:outputText value="#{mi_reparacion.fechaAlta}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
                 </p:column>
                 <p:column headerText="Estado">
                     <h:outputText value="#{mi_reparacion.estado}"/>

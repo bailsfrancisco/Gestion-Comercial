@@ -2,7 +2,6 @@ package ar.com.gestioncomercial.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "reparacion")
@@ -28,11 +27,7 @@ public class Reparacion extends AbstractEntity {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaEgreso;
 
-    private Float senia;
-
     private String observaciones;
-
-    private Float precioManoObra;
 
     @Enumerated(EnumType.STRING)
     private Estado estado;
@@ -49,6 +44,10 @@ public class Reparacion extends AbstractEntity {
     @JoinColumn(name = "solicitud_reparacion_id")
     private SolicitudReparacion solicitud_reparacion;
 
+    @OneToOne(optional = false)
+    @JoinColumn(name = "cotizacion")
+    private Cotizacion cotizacion;
+
     public Reparacion() {
 
     }
@@ -56,9 +55,7 @@ public class Reparacion extends AbstractEntity {
     public Reparacion(String diagnostico, Date fechaEgreso, Float senia, String observaciones, Float precioManoObra, Estado estado, Cliente cliente, Empleado tecnico, SolicitudReparacion solicitud_reparacion) {
         this.diagnostico = diagnostico;
         this.fechaEgreso = fechaEgreso;
-        this.senia = senia;
         this.observaciones = observaciones;
-        this.precioManoObra = precioManoObra;
         this.estado = estado;
         this.cliente = cliente;
         this.tecnico = tecnico;
@@ -81,28 +78,12 @@ public class Reparacion extends AbstractEntity {
         this.fechaEgreso = fechaEgreso;
     }
 
-    public Float getSenia() {
-        return senia;
-    }
-
-    public void setSenia(Float senia) {
-        this.senia = senia;
-    }
-
     public String getObservaciones() {
         return observaciones;
     }
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
-    }
-
-    public Float getPrecioManoObra() {
-        return precioManoObra;
-    }
-
-    public void setPrecioManoObra(Float precioManoObra) {
-        this.precioManoObra = precioManoObra;
     }
 
     public Estado getEstado() {
@@ -135,5 +116,13 @@ public class Reparacion extends AbstractEntity {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Cotizacion getCotizacion() {
+        return cotizacion;
+    }
+
+    public void setCotizacion(Cotizacion cotizacion) {
+        this.cotizacion = cotizacion;
     }
 }

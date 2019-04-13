@@ -18,7 +18,7 @@ public class Producto extends AbstractEntity {
 
     private String descripcion;
 
-    private Float precioUnitario;
+    private double precioUnitario;
 
     private Integer stockMinimo;
 
@@ -39,7 +39,7 @@ public class Producto extends AbstractEntity {
 
     }
 
-    public Producto(String nombre, String codigo, String descripcion, Float precioUnitario, Integer stockMinimo, Integer stockActual, Categoria categoria, List<Proveedor> proveedores) {
+    public Producto(String nombre, String codigo, String descripcion, double precioUnitario, Integer stockMinimo, Integer stockActual, Categoria categoria, List<Proveedor> proveedores) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.descripcion = descripcion;
@@ -74,11 +74,11 @@ public class Producto extends AbstractEntity {
         this.descripcion = descripcion;
     }
 
-    public Float getPrecioUnitario() {
+    public double getPrecioUnitario() {
         return precioUnitario;
     }
 
-    public void setPrecioUnitario(Float precioUnitario) {
+    public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
     }
 

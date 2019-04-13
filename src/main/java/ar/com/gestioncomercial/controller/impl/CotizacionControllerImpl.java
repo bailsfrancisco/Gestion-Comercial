@@ -3,10 +3,12 @@ package ar.com.gestioncomercial.controller.impl;
 import ar.com.gestioncomercial.DAO.CotizacionDAO;
 import ar.com.gestioncomercial.controller.CotizacionController;
 import ar.com.gestioncomercial.model.Cotizacion;
+import ar.com.gestioncomercial.model.Producto;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 public class CotizacionControllerImpl implements CotizacionController {
@@ -50,5 +52,10 @@ public class CotizacionControllerImpl implements CotizacionController {
 
     public void setCategoriaDAO(CotizacionDAO cotizacionDAO) {
         this.cotizacionDAO = cotizacionDAO;
+    }
+
+    @Override
+    public double getPrecioTotalInsumos(Cotizacion cotizacion) {
+        return cotizacion.getInsumos().stream().mapToDouble(Producto::getPrecioUnitario).sum();
     }
 }

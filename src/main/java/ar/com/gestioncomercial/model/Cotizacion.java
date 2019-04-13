@@ -1,15 +1,8 @@
 package ar.com.gestioncomercial.model;
 
-import java.util.Calendar;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
+import java.util.List;
 
 @Entity
 @Table(name = "cotizacion")
@@ -21,11 +14,20 @@ import javax.persistence.Temporal;
 public class Cotizacion extends AbstractEntity {
 
     private String detalles;
-    private Float precioTotal;
 
-    @OneToOne(optional = false)
+    private double senia;
+
+    private double precioManoObra;
+
+    @OneToMany(cascade = CascadeType.DETACH)
+    private List<Producto> insumos;
+
+    // (precio insumos + comision empleado + precio base) - seña
+    private double precioTotal;
+
+    @OneToOne(optional = false,fetch = FetchType.LAZY)
     @JoinColumn(name = "solicitud_reparacion_id")
-    private SolicitudReparacion solicitud_reparacion_id;
+    private SolicitudReparacion solicitudReparacion;
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaVencimiento;
@@ -34,26 +36,30 @@ public class Cotizacion extends AbstractEntity {
 
     }
 
-    public Cotizacion(String detalle, Float precioTotal, Date fechaVencimiento, SolicitudReparacion solicitudReparacion) {
+    public Cotizacion(String detalle, double precioTotal, Date fechaVencimiento, SolicitudReparacion solicitudReparacion) {
         this.detalles = detalle;
         this.precioTotal = precioTotal;
         this.fechaVencimiento = fechaVencimiento;
-        this.solicitud_reparacion_id = solicitudReparacion;
+        this.solicitudReparacion = solicitudReparacion;
     }
 
-    public SolicitudReparacion getSolicitud_reparacion_id() {
-        return solicitud_reparacion_id;
+    public SolicitudReparacion getSolicitudReparacion() {
+        return solicitudReparacion;
     }
 
-    public void setSolicitud_reparacion_id(SolicitudReparacion solicitud_reparacion_id) {
-        this.solicitud_reparacion_id = solicitud_reparacion_id;
+    public void setSenia(double senia) {
+        this.senia = senia;
     }
 
-    public Float getPrecioTotal() {
+    public void setPrecioManoObra(double precioManoObra) {
+        this.precioManoObra = precioManoObra;
+    }
+
+    public double getPrecioTotal() {
         return precioTotal;
     }
 
-    public void setPrecioTotal(Float precioTotal) {
+    public void setPrecioTotal(double precioTotal) {
         this.precioTotal = precioTotal;
     }
 
@@ -62,11 +68,6 @@ public class Cotizacion extends AbstractEntity {
     }
 
     public void setFechaVencimiento(Date fechaVencimiento) {
-        //     Calendar calendar = Calendar.getInstance();
-
-        //    calendar.setTime(fechaVencimiento); // Configuramos la fecha que se recibe
-        /*   calendar.add(Calendar.DAY_OF_YEAR, 15);  // numero de dias a aniadir, o restar en caso de dias<0
-        this.fechaVencimiento = calendar.getTime();//*/
         this.fechaVencimiento = fechaVencimiento;
     }
 
@@ -76,5 +77,37 @@ public class Cotizacion extends AbstractEntity {
 
     public void setDetalles(String detalles) {
         this.detalles = detalles;
+    }
+
+    public List<Producto> getInsumos() {
+        return insumos;
+    }
+
+    public void setInsumos(List<Producto> insumos) {
+        this.insumos = insumos;
+    }
+
+    public void addInsumo(Producto producto){
+        this.insumos.add(producto);
+    }
+
+    public void removeInsumo(Producto producto){
+        this.insumos.remove(producto);
+    }
+
+    public double getSenia() {
+        return senia;
+    }
+
+    public double getPrecioManoObra() {
+        return precioManoObra;
+    }
+
+    public void setSolicitudReparacion(SolicitudReparacion solicitudReparacion) {
+        this.solicitudReparacion = solicitudReparacion;
+    }
+
+    public String cotizacionString(){
+        return String.format("%s - %s", solicitudReparacion.getCliente(), solicitudReparacion.getMarca());
     }
 }

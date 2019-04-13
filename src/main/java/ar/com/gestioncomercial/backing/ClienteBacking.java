@@ -114,7 +114,7 @@ public class ClienteBacking implements Serializable, CRUDBacking<AbstractPersona
         return getClientes();
     }
 
-    public List<Reparacion> getAllRep(Usuario usuario) {
+    public List<Reparacion> getReparacionesbyUsuario(Usuario usuario) {
         AbstractPersona as = personaController.getByUsuario(usuario);
         return  reparacionController.findByCliente(as);
     }

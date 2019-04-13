@@ -33,7 +33,7 @@ public class Proveedor extends AbstractPersona {
     @Enumerated(EnumType.STRING)
     private CategoriaIVA categoriaIVA;
 
-    private Float retencionIva;
+    private double retencionIva;
 
     private String cuentaContable;
 
@@ -43,7 +43,7 @@ public class Proveedor extends AbstractPersona {
 
     }
 
-    public Proveedor(String razonSocial, Integer calificacion, CategoriaIVA categoriaIVA, Float retencionIva, String cuentaContable, String cbu) {
+    public Proveedor(String razonSocial, Integer calificacion, CategoriaIVA categoriaIVA, double retencionIva, String cuentaContable, String cbu) {
         this.razonSocial = razonSocial;
         this.calificacion = calificacion;
         this.categoriaIVA = categoriaIVA;
@@ -52,7 +52,7 @@ public class Proveedor extends AbstractPersona {
         this.cbu = cbu;
     }
 
-    public Proveedor(Categoria categoria, String razonSocial, Integer calificacion, CategoriaIVA categoriaIVA, Float retencionIva, String cuentaContable, String cbu, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
+    public Proveedor(Categoria categoria, String razonSocial, Integer calificacion, CategoriaIVA categoriaIVA, double retencionIva, String cuentaContable, String cbu, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
         super(nombre, telefono, mail, direccion, cuitCuil, observaciones, celular);
         this.razonSocial = razonSocial;
         this.calificacion = calificacion;
@@ -94,11 +94,11 @@ public class Proveedor extends AbstractPersona {
         this.categoriaIVA = categoriaIVA;
     }
 
-    public Float getRetencionIva() {
+    public double getRetencionIva() {
         return retencionIva;
     }
 
-    public void setRetencionIva(Float retencionIva) {
+    public void setRetencionIva(double retencionIva) {
         this.retencionIva = retencionIva;
     }
 
