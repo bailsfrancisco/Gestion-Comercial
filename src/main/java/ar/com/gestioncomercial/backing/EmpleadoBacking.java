@@ -64,6 +64,7 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<AbstractPerson
         try {
             StringUtils.areNullOrEmpty(usuario.getNombreUsuario(), usuario.getPassword());
             empleado.setUsuario(usuario);
+            usuario.setDuenio(empleado);
             empleadoController.create(empleado);
 
             return URLMap.getIndexEmpleados() + URLMap.getFacesRedirect();

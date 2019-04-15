@@ -12,33 +12,71 @@
         </c:if>
     </p:panelGrid>
 
-    <p:panelGrid columns="2" layout="grid">
-    <p:outputLabel value="Marca"/>
-    <p:inputText required="true" value="#{cotizacionBacking.solicitudReparacion.marca}"/>
-    </p:panelGrid>
+    <c:choose>
+        <c:when test="#{cotizacionBacking.cotizacion.solicitudReparacion != null}">
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel value="Marca"/>
+                <p:inputText disabled="true" required="true" value="#{cotizacionBacking.cotizacion.solicitudReparacion.marca}"/>
+            </p:panelGrid>
 
-    <p:panelGrid columns="2" layout="grid">
-    <p:outputLabel value="Cliente "/>
-    <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{cotizacionBacking.solicitudReparacion.cliente}">
-        <f:selectItem itemLabel="Seleccionar Cliente" noSelectionOption="true"/>
-        <f:selectItems value="#{clienteBacking.all}" var="cliente" itemLabel="#{cliente.nombre}"/>
-    </p:selectOneMenu>
-    </p:panelGrid>
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel value="Cliente "/>
+                <p:selectOneMenu disabled="true"  value="#{cotizacionBacking.cotizacion.solicitudReparacion.cliente}">
+                    <f:selectItem itemLabel="Seleccionar Cliente" noSelectionOption="true"/>
+                    <f:selectItems value="#{clienteBacking.all}" var="cliente" itemLabel="#{cliente.nombre}"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
 
-    <p:panelGrid columns="2" layout="grid">
-    <p:outputLabel value="Modelo"/>
-    <p:inputText value="#{cotizacionBacking.solicitudReparacion.modelo}"/>
-    </p:panelGrid>
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel value="Modelo"/>
+                <p:inputText disabled="true" value="#{cotizacionBacking.cotizacion.solicitudReparacion.modelo}"/>
+            </p:panelGrid>
 
-    <p:panelGrid columns="2" layout="grid">
-    <p:outputLabel value="Sintomas"/>
-    <p:inputTextarea id="sintomas" autoResize="false" value="#{cotizacionBacking.solicitudReparacion.sintomas}"/>
-    </p:panelGrid>
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel value="Sintomas"/>
+                <p:inputTextarea disabled="true" autoResize="false" value="#{cotizacionBacking.cotizacion.solicitudReparacion.sintomas}"/>
+            </p:panelGrid>
 
-    <p:panelGrid columns="2" layout="grid">
-    <p:outputLabel value="Descripcion del fallo"/>
-    <p:inputTextarea id="descripcion" autoResize="false" value="#{cotizacionBacking.solicitudReparacion.descripcionFallo}"/>
-    </p:panelGrid>
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel value="Descripcion del fallo"/>
+                <p:inputTextarea disabled="true" autoResize="false" value="#{cotizacionBacking.cotizacion.solicitudReparacion.descripcionFallo}"/>
+            </p:panelGrid>
+        </c:when>
+
+        <c:otherwise>
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel value="Marca"/>
+                <p:inputText required="true" value="#{cotizacionBacking.solicitudReparacion.marca}"/>
+            </p:panelGrid>
+
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel value="Cliente "/>
+                <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{cotizacionBacking.solicitudReparacion.cliente}">
+                    <f:selectItem itemLabel="Seleccionar Cliente" noSelectionOption="true"/>
+                    <f:selectItems value="#{clienteBacking.all}" var="cliente" itemLabel="#{cliente.nombre}"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel value="Modelo"/>
+                <p:inputText value="#{cotizacionBacking.solicitudReparacion.modelo}"/>
+            </p:panelGrid>
+
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel value="Sintomas"/>
+                <p:inputTextarea id="sintomas" autoResize="false" value="#{cotizacionBacking.solicitudReparacion.sintomas}"/>
+            </p:panelGrid>
+
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel value="Descripcion del fallo"/>
+                <p:inputTextarea id="descripcion" autoResize="false" value="#{cotizacionBacking.solicitudReparacion.descripcionFallo}"/>
+            </p:panelGrid>
+        </c:otherwise>
+
+
+    </c:choose>
+
+
 
     <p:panelGrid columns="2" layout="grid">
         <p:outputLabel value="Detalles"/>
@@ -109,7 +147,7 @@
         </p:panel>
     <p:panelGrid columns="2" layout="grid">
         <p:outputLabel value="Precio total"/>
-        <p:outputLabel id="precioTotal"  value="#{cotizacionBacking.precioTotal}"/>
+        <p:outputLabel id="precioTotal"  value="#{cotizacionBacking.cotizacion.precioTotal}"/>
     </p:panelGrid>
 
 </ui:composition>

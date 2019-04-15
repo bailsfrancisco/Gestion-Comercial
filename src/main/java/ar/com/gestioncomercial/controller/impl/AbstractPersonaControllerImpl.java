@@ -6,9 +6,11 @@
 package ar.com.gestioncomercial.controller.impl;
 
 import ar.com.gestioncomercial.DAO.AbstractPersonaDAO;
+import ar.com.gestioncomercial.controller.PersonaController;
 import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Usuario;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -18,13 +20,14 @@ import javax.ejb.EJBException;
  *
  * @author Bails Francisco
  */
-public abstract class AbstractPersonaControllerImpl {
+public abstract class AbstractPersonaControllerImpl implements PersonaController {
 
     private static final Logger logger = Logger.getLogger(AbstractPersonaControllerImpl.class.getName());
 
     @EJB
     private AbstractPersonaDAO abstractPersonaDAO;
 
+    @Override
     public void create(AbstractPersona persona) {
         try {
             abstractPersonaDAO.create(persona);
@@ -34,6 +37,7 @@ public abstract class AbstractPersonaControllerImpl {
         }
     }
 
+    @Override
     public AbstractPersona retrieve(AbstractPersona persona) {
         try {
             return abstractPersonaDAO.find(persona.getId());
@@ -44,10 +48,12 @@ public abstract class AbstractPersonaControllerImpl {
         return null;
     }
 
+    @Override
     public AbstractPersona retrievebyId(Long id) {
         return abstractPersonaDAO.find(id);
     }
 
+    @Override
     public void update(AbstractPersona persona) {
         try {
             abstractPersonaDAO.update(persona);
@@ -57,6 +63,7 @@ public abstract class AbstractPersonaControllerImpl {
         }
     }
 
+    @Override
     public void delete(AbstractPersona persona) {
         try {
             abstractPersonaDAO.delete(persona);
@@ -66,7 +73,13 @@ public abstract class AbstractPersonaControllerImpl {
         }
     }
 
+    @Override
     public AbstractPersona getByUsuario(Usuario usuario){
         return  abstractPersonaDAO.getByUsuario(usuario);
+    }
+
+    @Override
+    public List<AbstractPersona> getAllAdmins(){
+        return abstractPersonaDAO.getAdmins();
     }
 }

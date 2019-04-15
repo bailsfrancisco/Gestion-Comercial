@@ -13,4 +13,12 @@ import ar.com.gestioncomercial.model.Producto;
  */
 public interface ProductoController extends CrudController<Producto> {
 
+    void disminuirStock(Producto producto, int cantidad);
+
+    void aumentarStock(Producto producto, int cantidad);
+
+    void notificarStockMinimo(Producto producto);
+
+    boolean isProductoinStockMinimo(Producto producto);
+
 }
