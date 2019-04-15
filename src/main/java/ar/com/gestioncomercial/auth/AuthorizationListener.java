@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 
-/*
+ /*
  *
  * @author jpgm
  */
-/*
+ /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -27,54 +27,54 @@ import javax.faces.event.PhaseListener;
 
 public class AuthorizationListener implements PhaseListener {
 
-  @EJB
-  private URLMap urlMap;
+    @EJB
+    private URLMap urlMap;
 
-  @Override
-  public void afterPhase(PhaseEvent event) {
-    FacesContext facesContext = event.getFacesContext();
-    String currentPage = facesContext.getViewRoot().getViewId();
+    @Override
+    public void afterPhase(PhaseEvent event) {
+        FacesContext facesContext = event.getFacesContext();
+        String currentPage = facesContext.getViewRoot().getViewId();
 
-    SessionBacking sessionBacking=null;
-    try{
-      sessionBacking = facesContext.getApplication().evaluateExpressionGet(facesContext, "#{sessionBacking}", SessionBacking.class);
-    }catch(Exception e){
-      System.out.println(e.getMessage());
+        SessionBacking sessionBacking = null;
+        try {
+            sessionBacking = facesContext.getApplication().evaluateExpressionGet(facesContext, "#{sessionBacking}", SessionBacking.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        Usuario currentUser = null;
+        if (sessionBacking != null) {
+            currentUser = sessionBacking.getUsuario();
+        }
+        if (null != currentUser && !currentUser.isAdministrador()) {
+            if (currentPage.matches(".*(new|edit).xhtml.*") && !currentPage.matches(".*/solicitudes/new\\.xhtml")) {
+                NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
+                nh.handleNavigation(facesContext, null, URLMap.getWELCOME() + URLMap.getFacesRedirect());
+            }
+        }
+
+        if (currentUser == null) {
+            if (!currentPage.equals(URLMap.getINDEX()) && !currentPage.equals(URLMap.getChangePassword())) {
+                NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
+                nh.handleNavigation(facesContext, URLMap.getINDEX() + URLMap.getFacesRedirect(), URLMap.getChangePassword());
+            }
+        }
     }
 
-    Usuario currentUser = null;
-    if(sessionBacking != null){
-      currentUser = sessionBacking.getUsuario();
-    }
-    if(null != currentUser && !currentUser.isAdministrador()){
-      if(currentPage.matches(".*(new|edit).xhtml.*")&& !currentPage.matches(".*/solicitudes/new\\.xhtml")){
-        NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
-        nh.handleNavigation(facesContext, null, URLMap.getWELCOME() + URLMap.getFacesRedirect());
-      }
+    @Override
+    public void beforePhase(PhaseEvent event) {
     }
 
-    if(currentUser == null){
-      if(!currentPage.equals(URLMap.getINDEX())){
-        NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
-      nh.handleNavigation(facesContext, null, URLMap.getINDEX() + URLMap.getFacesRedirect());
-      }
+    @Override
+    public PhaseId getPhaseId() {
+        return PhaseId.RESTORE_VIEW;
     }
-  }
 
-  @Override
-  public void beforePhase(PhaseEvent event) {
-  }
+    public URLMap getUrlMap() {
+        return urlMap;
+    }
 
-  @Override
-  public PhaseId getPhaseId() {
-    return PhaseId.RESTORE_VIEW;
-  }
-
-  public URLMap getUrlMap() {
-    return urlMap;
-  }
-
-  public void setUrlMap(URLMap urlMap) {
-    this.urlMap = urlMap;
-  }
+    public void setUrlMap(URLMap urlMap) {
+        this.urlMap = urlMap;
+    }
 }

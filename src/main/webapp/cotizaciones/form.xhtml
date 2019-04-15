@@ -62,14 +62,14 @@
 
     <p:panelGrid columns="2" layout="grid">
         <p:outputLabel value="Precio Mano de Obra"/>
-        <p:inputText  autoResize="false" value="#{cotizacionBacking.cotizacion.precioManoObra}">
+        <p:inputText value="#{cotizacionBacking.cotizacion.precioManoObra}">
             <p:ajax event="keyup" delay="100" update="precioTotal" listener="#{cotizacionBacking.handlePrecioTotal}" />
         </p:inputText>
     </p:panelGrid>
 
     <p:panelGrid columns="2" layout="grid">
         <p:outputLabel value="Seña"/>
-        <p:inputText  autoResize="false" value="#{cotizacionBacking.cotizacion.senia}">
+        <p:inputText value="#{cotizacionBacking.cotizacion.senia}">
             <p:ajax event="keyup" delay="100" update="precioTotal" listener="#{cotizacionBacking.handlePrecioTotal}" />
         </p:inputText>
     </p:panelGrid>

@@ -1,6 +1,5 @@
 package ar.com.gestioncomercial.backing;
 
-
 import ar.com.gestioncomercial.controller.UsuarioController;
 import ar.com.gestioncomercial.model.Usuario;
 import ar.com.gestioncomercial.utils.JSFUtils;
@@ -26,24 +25,32 @@ public class SessionBacking implements Serializable {
     @EJB
     private URLMap urlMap;
 
-    public String login(){
+    public String login() {
         usuario = usuarioController.findByNombreAndPassword(this.nombreUsuario, this.password);
 
-        if (usuario!=null){
+        if (usuario != null) {
             return URLMap.getWELCOME() + URLMap.getFacesRedirect();
-        }else{
+        } else {
             JSFUtils.createFacesMessage("Nombre de usuario y/o Contraseña incorrectos");
-            return null;
         }
+        return null;
     }
 
-    public String logout(){
+    public String logout() {
         this.usuario = null;
         this.nombreUsuario = null;
         this.password = null;
 
-        return URLMap.getINDEX() +  URLMap.getFacesRedirect();
+        return URLMap.getINDEX() + URLMap.getFacesRedirect();
 
+    }
+    
+    public String updatePassword(){
+        if(usuario != null){
+            usuarioController.update(this.usuario);
+            JSFUtils.createFacesMessage("Contraseña cambiada correctamente !");
+        }
+        return null;
     }
 
     public String getNombreUsuario() {

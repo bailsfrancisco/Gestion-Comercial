@@ -13,6 +13,7 @@ public class URLMap implements Serializable {
     private static final String _EDIT = "edit.xhtml";
     private static final String _NEW = "new.xhtml";
     private static final String _MIS_REPARACIONES = "misReparaciones.xhtml";
+    private static final String _CHANGE_PASSWORD = "change_password.xhtml";
 
     // URLS para usuarios
     private static final String USUARIOS = "/usuarios/";
@@ -162,8 +163,8 @@ public class URLMap implements Serializable {
     public static String getEditReparacion() {
         return EDIT_REPARACION;
     }
-    
-    public static String getMisReparaciones(){
+
+    public static String getMisReparaciones() {
         return MIS_REPARACIONES;
     }
 
@@ -201,6 +202,10 @@ public class URLMap implements Serializable {
 
     public static String getEditProducto() {
         return EDIT_PRODUCTO;
+    }
+    
+    public static String getChangePassword(){
+        return _CHANGE_PASSWORD;
     }
 
 }
