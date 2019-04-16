@@ -120,7 +120,7 @@ public class ClienteBacking implements Serializable, CRUDBacking<AbstractPersona
     }
 
     public CategoriaIVA[] getCategoriasIVA() {
-        return clienteController.getCategoiasIVA();
+        return clienteController.getCategoriasIVA();
     }
 
     public Cliente getCliente() {

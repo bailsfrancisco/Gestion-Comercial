@@ -17,7 +17,7 @@ public enum CategoriaIVA {
 
     private final String categoriaIVA;
 
-    CategoriaIVA(String categoria) {
+    private CategoriaIVA(String categoria) {
         categoriaIVA = categoria;
     }
 

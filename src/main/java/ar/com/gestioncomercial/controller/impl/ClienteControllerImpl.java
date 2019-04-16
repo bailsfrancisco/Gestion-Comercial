@@ -27,7 +27,7 @@ public class ClienteControllerImpl extends AbstractPersonaControllerImpl impleme
     }
 
     @Override
-    public CategoriaIVA[] getCategoiasIVA() {
+    public CategoriaIVA[] getCategoriasIVA() {
         return CategoriaIVA.values();
     }
 }

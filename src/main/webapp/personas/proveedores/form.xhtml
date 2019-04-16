@@ -30,7 +30,10 @@
         <p:outputLabel value="Categoria IVA"/>
         <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{proveedorBacking.proveedor.categoriaIVA}">
             <f:selectItem itemLabel="Seleccionar Categoria IVA" noSelectionOption="true"/>
-            <f:selectItems value="#{proveedorBacking.categoriasIVA}"/>
+            <f:selectItems value="#{proveedorBacking.categoriasIVA}"
+                           var="categoriaIVA"
+                           itemValue="#{categoriaIVA}"
+                           itemLabel="#{categoriaIVA.categoriaIVA}"/>
         </p:selectOneMenu>
 
         <p:outputLabel value="Retencion IVA"/>

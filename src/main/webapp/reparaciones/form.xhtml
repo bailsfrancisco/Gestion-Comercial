@@ -11,7 +11,10 @@
         <p:outputLabel value="Estado"/>
         <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.estado}">
             <f:selectItem itemLabel="Seleccionar estado" noSelectionOption="true"/>
-            <f:selectItems value="#{reparacionBacking.estados}"/>
+            <f:selectItems value="#{reparacionBacking.estados}"
+                           var="estado"
+                           itemValue="#{estado}"
+                           itemLabel="#{estado.estado}"/>
         </p:selectOneMenu>
 
         <p:outputLabel value="Tecnico "/>
