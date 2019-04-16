@@ -13,6 +13,11 @@ import javax.persistence.*;
     @NamedQuery(
             name = "Usuario.getAll",
             query = "select u from Usuario u")
+    ,
+    @NamedQuery(
+            name = "Usuario.getByPersona",
+            query = "select u from Usuario u where u.duenio = :persona")
+    ,
 })
 public class Usuario extends AbstractEntity {
 
@@ -24,6 +29,9 @@ public class Usuario extends AbstractEntity {
 
     @Column(name = "administrador")
     private boolean administrador;
+
+    @OneToOne(mappedBy = "usuario")
+    private AbstractPersona duenio;
 
     public Usuario() {
 
@@ -63,4 +71,11 @@ public class Usuario extends AbstractEntity {
         this.password = password;
     }
 
+    public AbstractPersona getDuenio() {
+        return duenio;
+    }
+
+    public void setDuenio(AbstractPersona duenio) {
+        this.duenio = duenio;
+    }
 }

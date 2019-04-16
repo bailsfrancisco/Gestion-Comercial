@@ -15,7 +15,10 @@ import javax.persistence.*;
             query = "select p from AbstractPersona p"),
     @NamedQuery(
             name = "persona.getByUsuario",
-            query = "select p from AbstractPersona p where p.usuario = :usuario")
+            query = "select p from AbstractPersona p where p.usuario = :usuario"),
+    @NamedQuery(
+            name = "persona.findByAdmin",
+            query = "select p from AbstractPersona p where p.usuario.administrador = true")
 })
 public abstract class AbstractPersona extends AbstractEntity {
 
@@ -34,6 +37,7 @@ public abstract class AbstractPersona extends AbstractEntity {
     private String celular;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario")
     private Usuario usuario;
 
     public AbstractPersona() {

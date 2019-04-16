@@ -7,6 +7,8 @@ package ar.com.gestioncomercial.controller;
 
 import ar.com.gestioncomercial.model.*;
 
+import java.util.List;
+
 /**
  *
  * @author Bails Francisco
@@ -14,4 +16,6 @@ import ar.com.gestioncomercial.model.*;
 public interface PersonaController extends CrudController<AbstractPersona> {
 
     AbstractPersona getByUsuario(Usuario usuario);
+
+    List<AbstractPersona> getAllAdmins();
 }

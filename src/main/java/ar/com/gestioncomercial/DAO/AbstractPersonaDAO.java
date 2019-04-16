@@ -49,6 +49,16 @@ public class AbstractPersonaDAO extends AbstractDAO<AbstractPersona> {
 
     }
 
+    public List<AbstractPersona> getAdmins() {
+        Query query = em.createNamedQuery("persona.findByAdmin");
+        try {
+            return query.getResultList();
+        }catch (Exception e){
+            return null;
+        }
+
+    }
+
 
 
 

@@ -6,9 +6,14 @@
 package ar.com.gestioncomercial.controller.impl;
 
 import ar.com.gestioncomercial.DAO.ProductoDAO;
+import ar.com.gestioncomercial.controller.EmpleadoController;
 import ar.com.gestioncomercial.controller.ProductoController;
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Producto;
+import ar.com.gestioncomercial.utils.EmailUtils;
+
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -21,6 +26,9 @@ public class ProductoControllerImpl implements ProductoController {
 
     @EJB
     private ProductoDAO productoDAO;
+
+    @EJB
+    private EmpleadoController empleadoController;
 
     @Override
     public void create(Producto entity) {
@@ -52,12 +60,39 @@ public class ProductoControllerImpl implements ProductoController {
         return productoDAO.getAllProductos();
     }
 
-    public ProductoDAO getProductoDAO() {
-        return productoDAO;
+    @Override
+    public void disminuirStock(Producto producto, int cantidad) {
+
+        int stockActual = producto.getStockActual() - cantidad;
+        producto.setStockActual(stockActual);
+
+        if (isProductoinStockMinimo(producto)) {
+            notificarStockMinimo(producto);
+        }
+
+        update(producto);
     }
 
-    public void setProductoDAO(ProductoDAO productoDAO) {
-        this.productoDAO = productoDAO;
+    @Override
+    public void aumentarStock(Producto producto, int cantidad) {
+        int stockActual = producto.getStockActual() + cantidad;
+        producto.setStockActual(stockActual);
+        update(producto);
     }
 
+    @Override
+    public void notificarStockMinimo(Producto producto) {
+        List<String> adminsEmails =  empleadoController.
+                getAllAdmins().stream()
+                .map(AbstractPersona::getMail).collect(Collectors.toList());
+
+        EmailUtils.productoStockMinimoEmail(producto.getNombre(),
+                producto.getStockMinimo(),
+                adminsEmails);
+    }
+
+    @Override
+    public boolean isProductoinStockMinimo(Producto producto) {
+        return producto.getStockActual()<= producto.getStockMinimo();
+    }
 }

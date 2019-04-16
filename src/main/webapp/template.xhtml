@@ -38,10 +38,6 @@
                                 <c:choose>
 
                                     <c:when test="#{sessionBacking.usuario.administrador}">
-                                        <!--p:submenu label="Usuarios" icon="fa fa-user">
-                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexUsuarios()}"/>
-                                            <p:menuitem value="Nuevo" url="#{sessionBacking.urlMap.getNewUsuario()}"/>
-                                        </p:submenu-->
                                         <p:submenu label="Categorias">
                                             <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexCategorias()}"/>
                                             <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewCategoria()}"/>

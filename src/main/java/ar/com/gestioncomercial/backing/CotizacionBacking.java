@@ -32,15 +32,12 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
 
     private SolicitudReparacion solicitudReparacion;
 
-    private double precioTotal;
-
     private List<Long> productosIds;
 
     @PostConstruct
     public void init() {
         cotizacion = new Cotizacion();
         solicitudReparacion = new SolicitudReparacion();
-        precioTotal = cotizacion.getPrecioTotal();
         Date today = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(today); // Configuramos la fecha que se recibe
@@ -68,7 +65,7 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
         try {
             solicitudReparacionController.create(solicitudReparacion);
             cotizacion.setSolicitudReparacion(solicitudReparacion);
-            cotizacion.setPrecioTotal(this.precioTotal);
+            cotizacion.getInsumos().forEach(producto -> productoController.disminuirStock(producto, 1));
             cotizacionController.create(cotizacion);
             return URLMap.getIndexCotizaciones() + URLMap.getFacesRedirect();
 
@@ -140,7 +137,7 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
         double precioTotalInsumos = cotizacion.getInsumos()!= null ?
                 cotizacionController.getPrecioTotalInsumos(cotizacion) : 0;
 
-        precioTotal = ( precioTotalInsumos + cotizacion.getPrecioManoObra())- cotizacion.getSenia();
+        cotizacion.setPrecioTotal( ( precioTotalInsumos + cotizacion.getPrecioManoObra())- cotizacion.getSenia());
     }
 
     public Cotizacion getCotizacion() {
@@ -157,14 +154,6 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
 
     public void setUrlMap(URLMap urlMap) {
         this.urlMap = urlMap;
-    }
-
-    public double getPrecioTotal() {
-        return precioTotal;
-    }
-
-    public void setPrecioTotal(double precioTotal) {
-        this.precioTotal = precioTotal;
     }
 
     public List<Long> getProductosIds() {
