@@ -67,7 +67,7 @@ public class ProductoControllerImpl implements ProductoController {
         producto.setStockActual(stockActual);
 
         if (isProductoinStockMinimo(producto)) {
-            notificarStockMinimo(producto);
+            //notificarStockMinimo(producto);
         }
 
         update(producto);
@@ -80,7 +80,7 @@ public class ProductoControllerImpl implements ProductoController {
         update(producto);
     }
 
-    @Override
+    /*@Override
     public void notificarStockMinimo(Producto producto) {
         List<String> adminsEmails =  empleadoController.
                 getAllAdmins().stream()
@@ -89,10 +89,15 @@ public class ProductoControllerImpl implements ProductoController {
         EmailUtils.productoStockMinimoEmail(producto.getNombre(),
                 producto.getStockMinimo(),
                 adminsEmails);
-    }
+    }*/
 
     @Override
     public boolean isProductoinStockMinimo(Producto producto) {
         return producto.getStockActual()<= producto.getStockMinimo();
+    }
+
+    @Override
+    public void notificarStockMinimo(Producto producto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -8,8 +8,7 @@ import java.util.List;
 @NamedQueries({
     @NamedQuery(
             name = "producto.getAll",
-            query = "select p from Producto p"),
-})
+            query = "select p from Producto p"),})
 public class Producto extends AbstractEntity {
 
     private String nombre;
@@ -31,9 +30,12 @@ public class Producto extends AbstractEntity {
     @ManyToMany
     @JoinTable(name = "producto_proveedor",
             joinColumns = @JoinColumn(name = "producto_id"),
-            inverseJoinColumns= @JoinColumn(name = "proveedor_id")
+            inverseJoinColumns = @JoinColumn(name = "proveedor_id")
     )
     private List<Proveedor> proveedores;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codProducto")
+    private List<DetalleFactura> detalle_facturas;
 
     public Producto() {
 

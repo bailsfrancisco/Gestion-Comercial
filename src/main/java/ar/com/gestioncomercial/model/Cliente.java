@@ -6,8 +6,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,6 +27,9 @@ public class Cliente extends AbstractPersona {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<SolicitudReparacion> solicitudReparaciones;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codCliente")
+    private List<Factura> facturas;
 
     public Cliente() {
 
@@ -69,5 +70,13 @@ public class Cliente extends AbstractPersona {
 
     public void setSolicitudReparaciones(List<SolicitudReparacion> solicitudReparaciones) {
         this.solicitudReparaciones = solicitudReparaciones;
+    }
+
+    public List<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<Factura> facturas) {
+        this.facturas = facturas;
     }
 }
