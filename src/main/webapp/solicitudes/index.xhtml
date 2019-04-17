@@ -48,7 +48,7 @@
                     <p:column>
                         <h:link styleClass="ui-icon-pencil" outcome="#{sessionBacking.urlMap.getNewCotizacion()}" value="Cotizar">
                             <f:param name="solicitud_reparacion_id" value="#{solicitud.id}" />
-                            <f:param name="Detalles" value="#{solicitud.marca} #{solicitud.modelo} #{solicitud.sintomas}" />
+                            <f:param name="Detalles" value=" #{solicitud.sintomas} #{solicitud.descripcionFallo}" />
                         </h:link>
                     </p:column>
                 </c:if>
