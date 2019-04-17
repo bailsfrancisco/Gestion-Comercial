@@ -3,6 +3,8 @@
                 xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <p:panelGrid columns="2" layout="grid">
+        <p:outputLabel value="Observaciones"/>
+        <p:inputTextarea  autoResize="false" value="#{reparacionBacking.reparacion.observaciones}"/>
         <p:outputLabel value="Diagnostico"/>
         <p:inputTextarea  autoResize="false" value="#{reparacionBacking.reparacion.diagnostico}"/>
         <p:outputLabel value="Fecha de egreso"/>
