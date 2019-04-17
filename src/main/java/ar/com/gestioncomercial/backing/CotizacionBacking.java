@@ -63,9 +63,13 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
     @Override
     public String create() {
         try {
-            solicitudReparacionController.create(solicitudReparacion);
-            cotizacion.setSolicitudReparacion(solicitudReparacion);
-            cotizacion.getInsumos().forEach(producto -> productoController.disminuirStock(producto, 1));
+            if (cotizacion.getSolicitudReparacion() == null ){
+                solicitudReparacionController.create(solicitudReparacion);
+                cotizacion.setSolicitudReparacion(solicitudReparacion);
+            }
+            if (cotizacion.getInsumos() != null){
+                cotizacion.getInsumos().forEach(producto -> productoController.disminuirStock(producto, 1));
+            }
             cotizacionController.create(cotizacion);
             return URLMap.getIndexCotizaciones() + URLMap.getFacesRedirect();
 
