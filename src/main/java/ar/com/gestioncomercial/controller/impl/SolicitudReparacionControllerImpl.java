@@ -43,4 +43,9 @@ public class SolicitudReparacionControllerImpl implements SolicitudReparacionCon
     public List<SolicitudReparacion> getAll() {
         return solicitudReparacionDAO.getSolicitudesReparacion();
     }
+
+    @Override
+    public List<SolicitudReparacion> getSolicitudPorCliente() {
+        return solicitudReparacionDAO.getSolicitudCliente();
+    }
 }

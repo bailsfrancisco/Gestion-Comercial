@@ -53,7 +53,7 @@
                                         </p:submenu>
                                         <p:submenu label="Reparaciones">
                                             <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexReparaciones()}"/>
-                                            <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewReparacion()}"/>
+
                                         </p:submenu>
                                         <p:submenu label="Solicitud de reparaciones">
                                             <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexSolicitudes()}"/>
@@ -68,6 +68,7 @@
                                         <p:submenu  icon="fa fa-user" label="#{sessionBacking.usuario.nombreUsuario}" >
                                             <p:menuitem value="Solicitar reparacion" url="#{sessionBacking.urlMap.getNewSolicitud()}"/>
                                             <p:menuitem value="Ver mis solicitudes" url="#{sessionBacking.urlMap.getIndexSolicitudes()}"/>
+                                            <p:menuitem value="Ver cotizaciones" url="#{sessionBacking.urlMap.getIndexCotizaciones()}"/>
                                             <p:menuitem value="Ver estado de mis reparaciones" url="#{sessionBacking.urlMap.getMisReparaciones()}"/>
                                             <p:menuitem value="Ver productos" url="#{sessionBacking.urlMap.getIndexProductos()}"/>
                                             <p:menuitem  value="Salir" action="#{sessionBacking.logout()}"/>

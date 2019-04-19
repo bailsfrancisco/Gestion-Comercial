@@ -12,13 +12,19 @@ import javax.persistence.*;
 @NamedQueries({
     @NamedQuery(
             name = "persona.getAll",
-            query = "select p from AbstractPersona p"),
+            query = "select p from AbstractPersona p")
+    ,
     @NamedQuery(
             name = "persona.getByUsuario",
-            query = "select p from AbstractPersona p where p.usuario = :usuario"),
+            query = "select p from AbstractPersona p where p.usuario = :usuario")
+    ,
     @NamedQuery(
             name = "persona.findByAdmin",
             query = "select p from AbstractPersona p where p.usuario.administrador = true")
+    ,
+    @NamedQuery(
+            name = "persona.getClienteById",
+            query = "select p from AbstractPersona p where p.id = :id")
 })
 public abstract class AbstractPersona extends AbstractEntity {
 

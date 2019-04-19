@@ -5,5 +5,4 @@ import ar.com.gestioncomercial.model.CategoriaIVA;
 public interface ClienteController extends PersonaController {
 
     CategoriaIVA[] getCategoriasIVA();
-
 }

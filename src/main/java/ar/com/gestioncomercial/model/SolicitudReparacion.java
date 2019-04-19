@@ -10,6 +10,10 @@ import java.util.List;
     @NamedQuery(
             name = "solicitudReparacion.getAllSolicitudes",
             query = "select s from SolicitudReparacion s")
+    ,
+    @NamedQuery(
+            name = "solicitudReparacion.getSolicitudPorCliente",
+            query = "select s from SolicitudReparacion s")
 })
 public class SolicitudReparacion extends AbstractEntity {
 

@@ -47,6 +47,11 @@
                 </p:column>
                 <c:if test="#{sessionBacking.usuario.administrador}">
                     <p:column>
+                        <h:link styleClass="ui-icon-pencil" outcome="#{reparacionBacking.urlMap.getFacturaReparacion()}" value="Facturar">
+                            <f:param name="id" value="#{reparacion.id}" />
+                        </h:link>
+                    </p:column>
+                    <p:column>
                         <h:link styleClass="ui-icon-pencil" outcome="#{reparacionBacking.urlMap.getEditReparacion()}" value="Editar">
                             <f:param name="id" value="#{reparacion.id}" />
                         </h:link>
@@ -63,9 +68,6 @@
                 </c:if>
 
             </p:dataTable>
-            <c:if test="#{sessionBacking.usuario.administrador}">
-                <p:button value="Crear" outcome="#{reparacionBacking.urlMap.getNewReparacion()}"/>
-            </c:if>
         </p:panel>
         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
             <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />

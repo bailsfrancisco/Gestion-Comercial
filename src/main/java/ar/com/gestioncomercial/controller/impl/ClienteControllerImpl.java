@@ -4,11 +4,11 @@ import ar.com.gestioncomercial.DAO.ClienteDAO;
 import ar.com.gestioncomercial.controller.ClienteController;
 import ar.com.gestioncomercial.model.CategoriaIVA;
 import ar.com.gestioncomercial.model.AbstractPersona;
-import ar.com.gestioncomercial.model.Cliente;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
+import javax.mail.Session;
 
 @Stateless
 public class ClienteControllerImpl extends AbstractPersonaControllerImpl implements ClienteController {

@@ -74,12 +74,17 @@ public abstract class AbstractPersonaControllerImpl implements PersonaController
     }
 
     @Override
-    public AbstractPersona getByUsuario(Usuario usuario){
-        return  abstractPersonaDAO.getByUsuario(usuario);
+    public AbstractPersona getByUsuario(Usuario usuario) {
+        return abstractPersonaDAO.getByUsuario(usuario);
     }
 
     @Override
-    public List<AbstractPersona> getAllAdmins(){
+    public List<AbstractPersona> getAllAdmins() {
         return abstractPersonaDAO.getAdmins();
+    }
+
+    @Override
+    public AbstractPersona obtenerClientePorCodigo() throws Exception {
+        return abstractPersonaDAO.getClienteById();
     }
 }

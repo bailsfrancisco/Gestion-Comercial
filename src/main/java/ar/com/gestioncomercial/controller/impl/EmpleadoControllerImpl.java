@@ -7,6 +7,7 @@ import ar.com.gestioncomercial.model.AbstractPersona;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
+import javax.mail.Session;
 
 @Stateless
 public class EmpleadoControllerImpl extends AbstractPersonaControllerImpl implements EmpleadoController {

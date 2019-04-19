@@ -37,13 +37,12 @@ public class AbstractPersonaDAO extends AbstractDAO<AbstractPersona> {
         return query.getResultList();
     }
 
-
     public AbstractPersona getByUsuario(Usuario usuario) {
         Query query = em.createNamedQuery("persona.getByUsuario");
         query.setParameter("usuario", usuario);
         try {
             return (AbstractPersona) query.getSingleResult();
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
 
@@ -53,13 +52,19 @@ public class AbstractPersonaDAO extends AbstractDAO<AbstractPersona> {
         Query query = em.createNamedQuery("persona.findByAdmin");
         try {
             return query.getResultList();
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
 
     }
 
-
-
+    public AbstractPersona getClienteById() {
+        Query query = em.createNamedQuery("persona.getClienteById");
+        try {
+            return (AbstractPersona) query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 }

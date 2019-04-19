@@ -27,8 +27,13 @@ public class SolicitudReparacionDAO extends AbstractDAO<SolicitudReparacion> {
         return query.getResultList();
     }
 
-    public List<SolicitudReparacion> getSolicitudesReparacion(){
+    public List<SolicitudReparacion> getSolicitudesReparacion() {
         return getAll();
+    }
+
+    public List<SolicitudReparacion> getSolicitudCliente() {
+        Query query = em.createNamedQuery("solicitudReparacion.getSolicitudPorCliente");
+        return query.getResultList();
     }
 
 }

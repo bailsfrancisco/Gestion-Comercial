@@ -28,8 +28,8 @@ public class Cliente extends AbstractPersona {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<SolicitudReparacion> solicitudReparaciones;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codCliente")
-    private List<Factura> facturas;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    private List<Factura> facturas_cliente;
 
     public Cliente() {
 
@@ -72,11 +72,11 @@ public class Cliente extends AbstractPersona {
         this.solicitudReparaciones = solicitudReparaciones;
     }
 
-    public List<Factura> getFacturas() {
-        return facturas;
+    public List<Factura> getFacturas_cliente() {
+        return facturas_cliente;
     }
 
-    public void setFacturas(List<Factura> facturas) {
-        this.facturas = facturas;
+    public void setFacturas_cliente(List<Factura> facturas_cliente) {
+        this.facturas_cliente = facturas_cliente;
     }
 }

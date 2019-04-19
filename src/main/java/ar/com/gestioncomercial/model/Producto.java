@@ -115,4 +115,12 @@ public class Producto extends AbstractEntity {
     public void setProveedores(List<Proveedor> proveedores) {
         this.proveedores = proveedores;
     }
+
+    public List<DetalleFactura> getDetalle_facturas() {
+        return detalle_facturas;
+    }
+
+    public void setDetalle_facturas(List<DetalleFactura> detalle_facturas) {
+        this.detalle_facturas = detalle_facturas;
+    }
 }

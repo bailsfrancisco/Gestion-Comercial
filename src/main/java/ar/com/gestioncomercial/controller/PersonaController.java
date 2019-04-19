@@ -18,4 +18,8 @@ public interface PersonaController extends CrudController<AbstractPersona> {
     AbstractPersona getByUsuario(Usuario usuario);
 
     List<AbstractPersona> getAllAdmins();
+
+    //este metodo se utiliza en la factura, facturaBacking
+    public AbstractPersona obtenerClientePorCodigo() throws Exception;
+
 }
