@@ -55,6 +55,11 @@
                         </h:link>
                     </p:column>
                     <p:column>
+                        <h:link outcome="#{sessionBacking.urlMap.getSueldoEmpleado()}" value="Sueldo">
+                            <f:param name="id" value="#{empleado.id}" />
+                        </h:link>
+                    </p:column> 
+                    <p:column>
                         <p:commandLink actionListener="#{empleadoBacking.delete(empleado)}"
                                        value="Borrar"
                                        update="empleados">

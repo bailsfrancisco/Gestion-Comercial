@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../../template.xhtml">
+    <ui:define name="head">
+        <h:head>
+            <title>Sueldo empleado</title>
+        </h:head>
+        <f:metadata>
+            <f:viewParam name="id" value="#{empleadoBacking.empleado}"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="content">
+        <p:panelGrid columns="2" layout="grid">
+            <f:facet name="header">
+                <h:outputText value="Calcular sueldo del empelado"/>
+            </f:facet>
+        </p:panelGrid>
+        <p:panelGrid columns="2" layout="grid">
+
+            <p:outputLabel value="Empleado"/>
+            <p:inputText disabled="true" value="#{empleadoBacking.empleado.id}">
+                <p:ajax event="keyup" delay="100" update="comision" listener="#{empleadoBacking.sueldo}" />
+            </p:inputText>
+            
+            <p:outputLabel value="Nombre"/>
+            <p:inputText value="#{empleadoBacking.empleado.usuario.nombreUsuario}"/>
+            
+            <p:outputLabel value="fechaDesde"/>
+            <p:calendar size="10"  value="#{empleadoBacking.fechaDesde}" pattern="yyyy/MM/dd">
+                <p:ajax event="keyup" delay="100" update="comision" listener="#{empleadoBacking.sueldo}"/>
+            </p:calendar>
+            
+            <p:outputLabel value="fechaHasta"/>
+            <p:calendar size="10"  value="#{empleadoBacking.fechaHasta}" pattern="yyyy/MM/dd">
+                <p:ajax event="keyup" delay="100" update="comision" listener="#{empleadoBacking.sueldo}"/>
+            </p:calendar>
+            
+            <p:outputLabel value="Empleado"/>
+            <p:inputText value="#{empleadoBacking.empleado.porcentajeComision}">
+                <p:ajax event="keyup" delay="100" update="comision" listener="#{empleadoBacking.sueldo}" />
+            </p:inputText>
+
+            <p:outputLabel value="Sueldo Base"/>
+            <p:inputText value="#{empleadoBacking.empleado.sueldoBase}"/>
+
+
+            <p:outputLabel value="Comision"/>
+            <p:inputText disabled="true"  id="comisionTotal"  value="#{empleadoBacking.comision}"/>
+            
+            <p:outputLabel value="Sueldo Total"/>
+            <p:inputText disabled="true" id="sueldoTotal" value="#{empleadoBacking.comision + empleadoBacking.empleado.sueldoBase} "/>
+
+
+        </p:panelGrid>
+        <p:panel>
+            <p:commandButton id="comision"
+                             actionListener="#{empleadoBacking.sueldo()}"
+                             value="Calcular" update="Gform:comisionTotal,sueldoTotal ">
+            </p:commandButton>
+            
+            <p:button value="Cancelar" outcome="#{empleadoBacking.urlMap.getIndexEmpleados()}"/>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>
+
+

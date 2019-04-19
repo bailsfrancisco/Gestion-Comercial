@@ -1,6 +1,7 @@
 package ar.com.gestioncomercial.backing;
 
 
+import ar.com.gestioncomercial.DAO.EmpleadoDAO;
 import ar.com.gestioncomercial.controller.UsuarioController;
 import ar.com.gestioncomercial.model.Usuario;
 import ar.com.gestioncomercial.utils.JSFUtils;
@@ -25,6 +26,9 @@ public class SessionBacking implements Serializable {
 
     @EJB
     private URLMap urlMap;
+    
+    @EJB
+    private EmpleadoDAO empleadoDao;
 
     public String login(){
         usuario = usuarioController.findByNombreAndPassword(this.nombreUsuario, this.password);

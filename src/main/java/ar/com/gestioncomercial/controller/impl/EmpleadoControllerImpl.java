@@ -3,6 +3,8 @@ package ar.com.gestioncomercial.controller.impl;
 import ar.com.gestioncomercial.DAO.EmpleadoDAO;
 import ar.com.gestioncomercial.controller.EmpleadoController;
 import ar.com.gestioncomercial.model.AbstractPersona;
+import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -22,5 +24,10 @@ public class EmpleadoControllerImpl extends AbstractPersonaControllerImpl implem
     @Override
     public List<AbstractPersona> getAll() {
         return empleadoDAO.getAllEmpleados();
+    }
+    
+    @Override
+    public Double getSueldoTotal(double porcentaje, Date fechaDesde, Date fechaHasta, Long empleado){
+        return empleadoDAO.getSueldoTotal(porcentaje, fechaDesde, fechaHasta, empleado);
     }
 }
