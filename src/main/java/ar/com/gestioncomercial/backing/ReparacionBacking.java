@@ -101,4 +101,22 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
     public void setUrlMap(URLMap urlMap) {
         this.urlMap = urlMap;
     }
+    
+    /*public void exportarPDF(ActionEvent actionEvent) throws JRException, IOException{
+		//Map<String,Object> parametros= new HashMap<String,Object>();
+		//parametros.put("txtUsuario", "MitoCode");
+		
+		File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reporte-orden-reparacion.jasper"));
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(),parametros, new JRBeanCollectionDataSource(this.getPersonas()));
+		
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		response.addHeader("Content-disposition","attachment; filename=jsfReporte.pdf");
+		ServletOutputStream stream = response.getOutputStream();
+		
+		JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+		
+		stream.flush();
+		stream.close();
+		FacesContext.getCurrentInstance().responseComplete();
+	}*/
 }

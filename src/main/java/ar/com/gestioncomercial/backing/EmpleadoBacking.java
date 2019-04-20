@@ -15,6 +15,7 @@ import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.StringUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -37,6 +38,9 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<AbstractPerson
 
     private Empleado empleado;
     private Usuario usuario;
+    private Date fechaDesde;
+    private Date fechaHasta;
+    private double comision;
 
     @PostConstruct
     public void init() {
@@ -120,11 +124,41 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<AbstractPerson
         this.urlMap = urlMap;
     }
 
+    public Date getFechaDesde() {
+        return fechaDesde;
+    }
+
+    public void setFechaDesde(Date fechaDesde) {
+        this.fechaDesde = fechaDesde;
+    }
+
+    public Date getFechaHasta() {
+        return fechaHasta;
+    }
+
+    public void setFechaHasta(Date fechaHasta) {
+        this.fechaHasta = fechaHasta;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public double getComision() {
+        return comision;
+    }
+
+    public void setComision(double comision) {
+        this.comision = comision;
+    }
+    
+    
+    
+    public void sueldo() {
+        comision = empleadoController.getSueldoTotal(empleado.getPorcentajeComision(), fechaDesde, fechaHasta, empleado.getId());
     }
 }

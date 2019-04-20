@@ -47,7 +47,7 @@
                 </p:column>
                 <c:if test="#{sessionBacking.usuario.administrador}">
                     <p:column>
-                        <h:link styleClass="ui-icon-pencil" outcome="#{reparacionBacking.urlMap.getFacturaReparacion()}" value="Facturar">
+                        <h:link styleClass="ui-icon-pencil" outcome="#{reparacionBacking.urlMap.getOrdenReparacion()}" value="Facturar">
                             <f:param name="id" value="#{reparacion.id}" />
                         </h:link>
                     </p:column>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="1152" pageHeight="792" columnWidth="1112" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9f2a6fae-4126-4bc9-8765-0b7d41196f83">
+	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="82348855-8b65-4a80-9407-12e55074fc73"/>
+	<subDataset name="dataset1" uuid="ed33decf-66e4-4e5d-8bc4-1f6136e080bd"/>
+	<parameter name="filtroID" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT
+     reparacion.`ID` AS reparacion_ID,
+     persona.`DIRECCION` AS persona_DIRECCION,
+     persona.`MAIL` AS persona_MAIL,
+     persona.`NOMBRE` AS persona_NOMBRE,
+     persona.`TELEFONO` AS persona_TELEFONO,
+     solicitud_reparacion.`MARCA` AS solicitud_reparacion_MARCA,
+     solicitud_reparacion.`MODELO` AS solicitud_reparacion_MODELO,
+     solicitud_reparacion.`DESCRIPCIONFALLO` AS solicitud_reparacion_DESCRIPCIONFALLO
+FROM
+     `persona` persona INNER JOIN `reparacion` reparacion ON persona.`ID` = reparacion.`cliente_id`
+     INNER JOIN `solicitud_reparacion` solicitud_reparacion ON persona.`ID` = solicitud_reparacion.`cliente_id`
+     AND solicitud_reparacion.`ID` = reparacion.`solicitud_reparacion_id`
+WHERE
+     reparacion.`ID` = $P{filtroID}]]>
+	</queryString>
+	<field name="reparacion_ID" class="java.lang.Long"/>
+	<field name="persona_DIRECCION" class="java.lang.String"/>
+	<field name="persona_MAIL" class="java.lang.String"/>
+	<field name="persona_NOMBRE" class="java.lang.String"/>
+	<field name="persona_TELEFONO" class="java.lang.String"/>
+	<field name="solicitud_reparacion_MARCA" class="java.lang.String"/>
+	<field name="solicitud_reparacion_MODELO" class="java.lang.String"/>
+	<field name="solicitud_reparacion_DESCRIPCIONFALLO" class="java.lang.String"/>
+	<variable name="ID_1" class="java.lang.Long" calculation="System">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="174" splitType="Stretch">
+			<image>
+				<reportElement x="15" y="12" width="58" height="53" uuid="7a767b8a-ac4e-45ae-b524-04e95cda4ef7"/>
+				<imageExpression><![CDATA["/home/bailsfrancisco/NetBeansProjects/Gestion-Comercial/src/main/webapp/resources/images/logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="15" y="76" width="233" height="86" uuid="9a946fff-e879-467a-b366-53a85eee8242"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Servicio tecnico autorizado
+Saavedra 18 - Junin - Buenos Aires
+Telefono: 0236-154-336626
+Email: juninelectronic@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="746" y="45" width="100" height="20" uuid="afee1120-0264-46d9-972e-70311ed23a83"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENTRADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="746" y="76" width="257" height="20" uuid="98968f17-3dd3-4d8a-81b0-4634dc61690f"/>
+				<box>
+					<pen lineWidth="1.75"/>
+					<topPen lineWidth="1.75"/>
+					<leftPen lineWidth="1.75"/>
+					<bottomPen lineWidth="1.75"/>
+					<rightPen lineWidth="1.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Orden de Reparacion]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="458" y="14" width="206" height="20" uuid="08759767-6507-41f6-8f68-b898249d425d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="16" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[NOTA DE RECEPCION]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="139" height="20" uuid="b19411d5-1361-4028-966f-e469c58956a2"/>
+				<text><![CDATA[reparacion_ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="139" y="0" width="139" height="20" uuid="0abf153d-6ebb-47e6-816e-5210bf448772"/>
+				<text><![CDATA[persona_DIRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="0" width="139" height="20" uuid="6ebf6494-5f64-4439-9df7-e71e62c01716"/>
+				<text><![CDATA[persona_MAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="139" height="20" uuid="e610e4c5-1f4a-4495-bd48-72e01e16fcba"/>
+				<text><![CDATA[persona_NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="556" y="0" width="139" height="20" uuid="fdf17e1f-c2e9-4707-82b3-dc7f69baf0fd"/>
+				<text><![CDATA[persona_TELEFONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="695" y="0" width="139" height="20" uuid="0b783fef-fb4e-4e21-b46d-767dd58bdb7e"/>
+				<text><![CDATA[solicitud_reparacion_MARCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="834" y="0" width="139" height="20" uuid="e1546bf3-21ba-42a0-883e-d737bd452107"/>
+				<text><![CDATA[solicitud_reparacion_MODELO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="973" y="0" width="139" height="20" uuid="6cf813f3-751e-4e6d-89e3-02f4931c7425"/>
+				<text><![CDATA[solicitud_reparacion_DESCRIPCIONFALLO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="139" height="20" uuid="9ed58c7a-f348-4e0d-a5ed-d0f6518931ba"/>
+				<textFieldExpression><![CDATA[$F{reparacion_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="139" y="0" width="139" height="20" uuid="66a912bf-42c4-40cb-9954-b8c52a32e381"/>
+				<textFieldExpression><![CDATA[$F{persona_DIRECCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="0" width="139" height="20" uuid="ca1e1a34-d6b7-4bfd-917b-e05d1996e993"/>
+				<textFieldExpression><![CDATA[$F{persona_MAIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="139" height="20" uuid="6fa9e070-9b3f-49bc-8727-5b85911e18ef"/>
+				<textFieldExpression><![CDATA[$F{persona_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="556" y="0" width="139" height="20" uuid="53ba926c-fc42-4d48-87fa-6189ee64f45f"/>
+				<textFieldExpression><![CDATA[$F{persona_TELEFONO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="695" y="0" width="139" height="20" uuid="607ed739-3c91-4541-878a-d27c19ef7b85"/>
+				<textFieldExpression><![CDATA[$F{solicitud_reparacion_MARCA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="834" y="0" width="139" height="20" uuid="d54e5c2f-897d-4c0a-9537-56de382cdb80"/>
+				<textFieldExpression><![CDATA[$F{solicitud_reparacion_MODELO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="973" y="0" width="139" height="20" uuid="7827e6df-ed84-406e-a51a-a3b20b8fa9d3"/>
+				<textFieldExpression><![CDATA[$F{solicitud_reparacion_DESCRIPCIONFALLO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
