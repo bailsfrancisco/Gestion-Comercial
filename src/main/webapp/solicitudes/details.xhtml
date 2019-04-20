@@ -25,10 +25,10 @@
         <p:outputLabel value="#{solicitudReparacionBacking.solicitudReparacion.modelo}"/>
 
         <p:outputLabel value="Sintomas"/>
-        <p:outputLabel id="sintomas" autoResize="false" value="#{solicitudReparacionBacking.solicitudReparacion.sintomas}"/>
+        <p:outputLabel id="sintomas" value="#{solicitudReparacionBacking.solicitudReparacion.sintomas}"/>
 
         <p:outputLabel value="Descripcion del fallo"/>
-        <p:outputLabel id="descripcion" autoResize="false" value="#{solicitudReparacionBacking.solicitudReparacion.descripcionFallo}"/>
+        <p:outputLabel id="descripcion" value="#{solicitudReparacionBacking.solicitudReparacion.descripcionFallo}"/>
 
         <c:if test="#{solicitudReparacionBacking.solicitudReparacion.fileNames.size() > 0 }">
             <p:outputLabel value="Capturas del Cliente" />
