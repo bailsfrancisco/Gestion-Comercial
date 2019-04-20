@@ -1,9 +1,7 @@
 package ar.com.gestioncomercial.utils;
 
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.apache.commons.mail.Email;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
+import ar.com.gestioncomercial.model.SolicitudReparacion;
+import org.apache.commons.mail.*;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -16,22 +14,31 @@ public class EmailUtils {
     private static final String fromEmail = "ezequielcimiotto@gmail.com";
 
     private static final String EMAIL_TEMPLATE_REPARACION = "Hola %s \n" +
-            "La reparacion de tu dispositivo esta en %s, Usted sera notificad@ cuando el estado" +
+            "La reparacion de su dispositivo se encuentra en %s, Usted sera notificad@ cuando el estado" +
             " de la reparacion cambie." +
             "\n" +
             "\n" +
             "Saludos, "+ fromEmail;
 
     private static final String EMAIL_TEMPLATE_STOCK_MINIMO = "Estimado Administrador, \n" +
-            "E producto %s, se encuentra en stock minimo (%d)," +
+            "El producto %s, se encuentra en stock minimo (%d)," +
             "Por favor verifique su stock. " +
             "\n" +
             "\n" +
             "Saludos.";
 
+    private static final String EMAIL_TEMPLATE_NUEVA_SOLICITUD = "<html>" +
+            "<p>Estimado Administrador, \n" +
+            "El cliente %s, a solicitado una nueva \n" +
+            "<a href+\"%s\" target=\"blank\">Reparacion.</a> " +
+            "\n" +
+            "\n" +
+            "Saludos. </p> " +
+            "</html>";
+
     private static void sendEmail(String template, String fromEmail, String mail ){
         try {
-        Email email = new SimpleEmail();
+        Email email = new HtmlEmail();
         email.setHostName("smtp.googlemail.com");
         email.setSmtpPort(587);
         email.setAuthenticator(new DefaultAuthenticator("ferrmail08@gmail.com",
@@ -56,10 +63,25 @@ public class EmailUtils {
         sendEmail(template, fromEmail, emailCliente);
     }
 
+    public static void solicitudReparacionCambioEstadoEmail(String nombreCliente, String emailCliente, String estado){
+
+        String template = String.format(EMAIL_TEMPLATE_REPARACION, nombreCliente, estado);
+
+        sendEmail(template, fromEmail, emailCliente);
+    }
+
     public static void productoStockMinimoEmail(String productoNombre, int stockMinimo, List<String> adminEmails){
         String template = String.format(EMAIL_TEMPLATE_STOCK_MINIMO, productoNombre, stockMinimo);
         adminEmails.forEach(email -> sendEmail(template, fromEmail, email) );
 
+    }
+
+    public static void nuevaSolicitudReparacionEmail(String nombreCliente, Long solicitudReparacionId, List<String> adminEmails){
+
+        String solicitudURL = JSFUtils.getAbsoluteURL() + URLMap.getDetailSolicitud() +"?id=" + solicitudReparacionId;
+
+        String template = String.format(EMAIL_TEMPLATE_NUEVA_SOLICITUD, nombreCliente, solicitudURL);
+        adminEmails.forEach(email -> sendEmail(template, fromEmail, email) );
     }
 
     private String getEmailTemplate(){return null;}

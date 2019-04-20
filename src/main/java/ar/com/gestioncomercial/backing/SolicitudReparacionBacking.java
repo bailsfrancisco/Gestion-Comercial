@@ -2,6 +2,7 @@ package ar.com.gestioncomercial.backing;
 
 import ar.com.gestioncomercial.controller.ClienteController;
 import ar.com.gestioncomercial.controller.ImageController;
+import ar.com.gestioncomercial.controller.NotificationController;
 import ar.com.gestioncomercial.controller.SolicitudReparacionController;
 import ar.com.gestioncomercial.model.Cotizacion;
 import ar.com.gestioncomercial.model.Estado;
@@ -52,6 +53,9 @@ public class SolicitudReparacionBacking implements Serializable, CRUDBacking<Sol
     @EJB
     private ClienteController clienteController;
 
+    @EJB
+    private NotificationController notificationController;
+
     @PostConstruct
     public void init() {
         solicitudReparacion = new SolicitudReparacion();
@@ -68,6 +72,8 @@ public class SolicitudReparacionBacking implements Serializable, CRUDBacking<Sol
             solicitudReparacion.setFechaAlta(new Date());
             solicitudReparacion.setEstado(Estado.PENDIENTE);
             solicitudReparacionController.create(solicitudReparacion);
+            notificationController.notificarNuevaSolicitudReparacion(solicitudReparacion);
+            solicitudReparacion.getFileNames().forEach(image -> imageController.create(image));
             return URLMap.getIndexSolicitudes() + URLMap.getFacesRedirect();
 
         } catch (EJBException e) {
@@ -122,7 +128,6 @@ public class SolicitudReparacionBacking implements Serializable, CRUDBacking<Sol
             Files.copy(input, new File(IMAGES_PATH, fileName).toPath());
             Image image = new Image(fileName);
             image.setSolicitud(solicitudReparacion);
-            imageController.create(image);
             solicitudReparacion.addFileName(image);
         } catch (Exception e) {
             JSFUtils.createFacesMessage("Ocurrio un Error al subir su Imagen");

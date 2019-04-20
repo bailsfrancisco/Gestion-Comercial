@@ -54,9 +54,9 @@ public class AuthorizationListener implements PhaseListener {
         }
 
         if (currentUser == null) {
-            if (!currentPage.equals(URLMap.getINDEX()) && !currentPage.equals(URLMap.getChangePassword())) {
+            if (!currentPage.equals(URLMap.getINDEX())) {
                 NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
-                nh.handleNavigation(facesContext, URLMap.getINDEX() + URLMap.getFacesRedirect(), URLMap.getChangePassword());
+                nh.handleNavigation(facesContext, null, URLMap.getINDEX() + URLMap.getFacesRedirect());
             }
         }
     }

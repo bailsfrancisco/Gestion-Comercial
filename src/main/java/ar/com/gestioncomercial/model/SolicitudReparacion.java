@@ -12,8 +12,9 @@ import java.util.List;
             query = "select s from SolicitudReparacion s")
     ,
     @NamedQuery(
-            name = "solicitudReparacion.getSolicitudPorCliente",
-            query = "select s from SolicitudReparacion s")
+            name = "solicitudReparacion.misSolicitudes",
+            query = "SELECT s FROM SolicitudReparacion as s WHERE s.cliente = :cliente"
+    )
 })
 public class SolicitudReparacion extends AbstractEntity {
 

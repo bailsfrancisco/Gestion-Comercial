@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="./../template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="head">
+        <h:head>
+            <title>Detalles solicitud de reparacion</title>
+        </h:head>
+        <f:metadata>
+            <f:viewParam name="id" value="#{solicitudReparacionBacking.solicitudReparacion}"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="content">
+        <p:panelGrid columns="2" layout="grid">
+            <f:facet name="header">
+                <h:outputText value="Detalles solicitud de reparacion"/>
+            </f:facet>
+
+            <p:outputLabel value="Marca"/>
+            <p:outputLabel value="#{solicitudReparacionBacking.solicitudReparacion.marca}"/>
+
+            <p:outputLabel value="Modelo"/>
+            <p:outputLabel value="#{solicitudReparacionBacking.solicitudReparacion.modelo}"/>
+
+            <p:outputLabel value="Sintomas"/>
+            <p:outputLabel id="sintomas" value="#{solicitudReparacionBacking.solicitudReparacion.sintomas}"/>
+
+            <p:outputLabel value="Descripcion del fallo"/>
+            <p:outputLabel id="descripcion" value="#{solicitudReparacionBacking.solicitudReparacion.descripcionFallo}"/>
+
+            <c:if test="#{solicitudReparacionBacking.solicitudReparacion.fileNames.size() > 0 }">
+                <p:outputLabel value="Capturas del Cliente" />
+                <br/>
+                <c:forEach var="captura" items="#{solicitudReparacionBacking.solicitudReparacion.fileNames}">
+                    <p:link target="blank" href="/images/#{captura.fileName}">
+                        <p:graphicImage width="400px" url="/images/#{captura.fileName}"/>
+                    </p:link>
+                </c:forEach>
+            </c:if>
+
+        </p:panelGrid>
+
+        <p:panel>
+            <c:if test="#{sessionBacking.usuario.administrador}">
+                <p:button value="Atras" outcome="#{sessionBacking.urlMap.getIndexSolicitudes()}"/>
+            </c:if>
+            <c:if test="#{sessionBacking.usuario.administrador == false}">
+                <p:button value="Atras" outcome="#{sessionBacking.urlMap.getMisSolicitudes()}"/>
+            </c:if>
+        </p:panel>
+    </ui:define>
+</ui:composition>

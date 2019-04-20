@@ -11,8 +11,10 @@ public class URLMap implements Serializable {
 
     private static final String _INDEX = "index.xhtml";
     private static final String _EDIT = "edit.xhtml";
-    private static final String _SUELDO = "sueldo.xhtml";
     private static final String _NEW = "new.xhtml";
+    private static final String _DETAIL = "details.xhtml";
+
+    private static final String _SUELDO = "sueldo.xhtml";
     private static final String _MIS_REPARACIONES = "misReparaciones.xhtml";
     private static final String _CHANGE_PASSWORD = "change_password.xhtml";
 
@@ -20,6 +22,7 @@ public class URLMap implements Serializable {
     private static final String FACTURAS = "/facturas/";
     private static final String _FACTURA_REP = "orden_reparacion.xhtml";
     private static final String FACTURA_REP = FACTURAS + _FACTURA_REP;
+    private static final String _MIS_SOLICITUDES = "misSolicitudes.xhtml";
 
     // URLS para usuarios
     private static final String USUARIOS = "/usuarios/";
@@ -68,6 +71,8 @@ public class URLMap implements Serializable {
     private static final String INDEX_SOLICITUDES = SOLICITUDES + _INDEX;
     private static final String NEW_SOLICITUD = SOLICITUDES + _NEW;
     private static final String EDIT_SOLICITUD = SOLICITUDES + _EDIT;
+    private static final String DETAIL_SOLICITUD = SOLICITUDES + _DETAIL;
+    private static final String MIS_SOLICITUDES = SOLICITUDES + _MIS_SOLICITUDES;
 
     // URL para Cotizaciones
     private static final String COTIZACIONES = "/cotizaciones/";
@@ -146,8 +151,8 @@ public class URLMap implements Serializable {
     public static String getEditEmpleado() {
         return EDIT_EMPLEADO;
     }
-    
-     public static String getSueldoEmpleado() {
+
+    public static String getSueldoEmpleado() {
         return SUELDO_EMPLEADO;
     }
 
@@ -181,6 +186,10 @@ public class URLMap implements Serializable {
 
     public static String getMisReparaciones() {
         return MIS_REPARACIONES;
+    }
+
+    public static String getMisSolicitudes() {
+        return MIS_SOLICITUDES;
     }
 
     public static String getIndexSolicitudes() {
@@ -219,8 +228,11 @@ public class URLMap implements Serializable {
         return EDIT_PRODUCTO;
     }
 
+    public static String getDetailSolicitud() {
+        return DETAIL_SOLICITUD;
+    }
+
     public static String getChangePassword() {
         return _CHANGE_PASSWORD;
     }
-
 }
