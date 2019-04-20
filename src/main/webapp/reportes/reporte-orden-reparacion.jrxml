@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="1152" pageHeight="792" columnWidth="1112" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9f2a6fae-4126-4bc9-8765-0b7d41196f83">
-	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="320"/>
 	<style name="table">
 		<box>
 			<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -68,24 +68,22 @@ WHERE
 				<imageExpression><![CDATA["/home/bailsfrancisco/NetBeansProjects/Gestion-Comercial/src/main/webapp/resources/images/logo.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="15" y="76" width="233" height="86" uuid="9a946fff-e879-467a-b366-53a85eee8242"/>
+				<reportElement x="15" y="76" width="168" height="20" uuid="9a946fff-e879-467a-b366-53a85eee8242"/>
 				<textElement>
-					<font size="12"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Servicio tecnico autorizado
-Saavedra 18 - Junin - Buenos Aires
-Telefono: 0236-154-336626
-Email: juninelectronic@gmail.com]]></text>
+]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="746" y="45" width="100" height="20" uuid="afee1120-0264-46d9-972e-70311ed23a83"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ENTRADA]]></text>
+				<text><![CDATA[Entrada:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="746" y="76" width="257" height="20" uuid="98968f17-3dd3-4d8a-81b0-4634dc61690f"/>
+				<reportElement mode="Transparent" x="746" y="76" width="139" height="20" uuid="98968f17-3dd3-4d8a-81b0-4634dc61690f"/>
 				<box>
 					<pen lineWidth="1.75"/>
 					<topPen lineWidth="1.75"/>
@@ -98,10 +96,30 @@ Email: juninelectronic@gmail.com]]></text>
 				</textElement>
 				<text><![CDATA[Orden de Reparacion]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="746" y="96" width="139" height="41" uuid="9ed58c7a-f348-4e0d-a5ed-d0f6518931ba"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reparacion_ID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="96" width="168" height="41" uuid="24d4575b-f90c-476f-aa1b-335c57da0ed1"/>
+				<text><![CDATA[Saavedra 18 - Junin - Buenos Aires
+Telefono: 0236-154-336626
+Email: juninelectronic@gmail.com]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="46" splitType="Stretch">
+		<band height="104" splitType="Stretch">
 			<staticText>
 				<reportElement x="458" y="14" width="206" height="20" uuid="08759767-6507-41f6-8f68-b898249d425d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -109,87 +127,309 @@ Email: juninelectronic@gmail.com]]></text>
 				</textElement>
 				<text><![CDATA[NOTA DE RECEPCION]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="0" y="84" width="100" height="20" uuid="9d4b349c-cb4f-4455-a0b1-daea19fb928d"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="695" y="84" width="100" height="20" uuid="606799c1-bd82-4729-8015-abc7a23e956d"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equipo]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="139" height="20" uuid="b19411d5-1361-4028-966f-e469c58956a2"/>
-				<text><![CDATA[reparacion_ID]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="139" y="0" width="139" height="20" uuid="0abf153d-6ebb-47e6-816e-5210bf448772"/>
-				<text><![CDATA[persona_DIRECCION]]></text>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Direccion]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="278" y="0" width="139" height="20" uuid="6ebf6494-5f64-4439-9df7-e71e62c01716"/>
-				<text><![CDATA[persona_MAIL]]></text>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-mail]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="417" y="0" width="139" height="20" uuid="e610e4c5-1f4a-4495-bd48-72e01e16fcba"/>
-				<text><![CDATA[persona_NOMBRE]]></text>
+				<reportElement x="0" y="0" width="139" height="20" uuid="e610e4c5-1f4a-4495-bd48-72e01e16fcba"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="556" y="0" width="139" height="20" uuid="fdf17e1f-c2e9-4707-82b3-dc7f69baf0fd"/>
-				<text><![CDATA[persona_TELEFONO]]></text>
+				<reportElement x="417" y="0" width="139" height="20" uuid="fdf17e1f-c2e9-4707-82b3-dc7f69baf0fd"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="695" y="0" width="139" height="20" uuid="0b783fef-fb4e-4e21-b46d-767dd58bdb7e"/>
-				<text><![CDATA[solicitud_reparacion_MARCA]]></text>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marca]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="834" y="0" width="139" height="20" uuid="e1546bf3-21ba-42a0-883e-d737bd452107"/>
-				<text><![CDATA[solicitud_reparacion_MODELO]]></text>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modelo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="973" y="0" width="139" height="20" uuid="6cf813f3-751e-4e6d-89e3-02f4931c7425"/>
-				<text><![CDATA[solicitud_reparacion_DESCRIPCIONFALLO]]></text>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion del fallo]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="0" width="139" height="20" uuid="9ed58c7a-f348-4e0d-a5ed-d0f6518931ba"/>
-				<textFieldExpression><![CDATA[$F{reparacion_ID}]]></textFieldExpression>
-			</textField>
+		<band height="45" splitType="Stretch">
 			<textField>
 				<reportElement x="139" y="0" width="139" height="20" uuid="66a912bf-42c4-40cb-9954-b8c52a32e381"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{persona_DIRECCION}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="278" y="0" width="139" height="20" uuid="ca1e1a34-d6b7-4bfd-917b-e05d1996e993"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{persona_MAIL}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="417" y="0" width="139" height="20" uuid="6fa9e070-9b3f-49bc-8727-5b85911e18ef"/>
+				<reportElement x="0" y="0" width="139" height="20" uuid="6fa9e070-9b3f-49bc-8727-5b85911e18ef"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{persona_NOMBRE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="556" y="0" width="139" height="20" uuid="53ba926c-fc42-4d48-87fa-6189ee64f45f"/>
+				<reportElement x="417" y="0" width="139" height="20" uuid="53ba926c-fc42-4d48-87fa-6189ee64f45f"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{persona_TELEFONO}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="695" y="0" width="139" height="20" uuid="607ed739-3c91-4541-878a-d27c19ef7b85"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{solicitud_reparacion_MARCA}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="834" y="0" width="139" height="20" uuid="d54e5c2f-897d-4c0a-9537-56de382cdb80"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{solicitud_reparacion_MODELO}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="973" y="0" width="139" height="20" uuid="7827e6df-ed84-406e-a51a-a3b20b8fa9d3"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{solicitud_reparacion_DESCRIPCIONFALLO}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="1112" height="45" uuid="7240459b-2e51-4364-8976-8bf4f8a3b143"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Todos los articulos que no sean retirados dentro de los 90 dias de ingresado, seran donados a una entidad de beneficiencia.
+No se aceptaran reclamos, si la faja de garantia del equipo es retirada.
+Asi como tambien aquellos equipos no retirados en un plazo de 15 dias notificado el arreglo, no se aceptara reclamo alguno por desperfectos ajenos al de reparacion.]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="87" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="653a8721-fff0-4cfe-bd23-52904974b120"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Costo reparacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20" uuid="f802605a-17f2-41d4-8682-98a1e31bd941"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seña]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="20" uuid="04e54d5d-4d2d-4322-a649-c417d060e206"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma del cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="20" width="100" height="34" uuid="14ea2862-a7e0-41ab-9caa-c5edf3ed1d65"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[______________]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
