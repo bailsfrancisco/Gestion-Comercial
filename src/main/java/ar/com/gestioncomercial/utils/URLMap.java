@@ -21,6 +21,7 @@ public class URLMap implements Serializable {
     // URLS para facturas
     private static final String FACTURAS = "/facturas/";
     private static final String _FACTURA_REP = "orden_reparacion.xhtml";
+    private static final String INDEX_FACTURAS = FACTURAS + _INDEX;
     private static final String FACTURA_REP = FACTURAS + _FACTURA_REP;
     private static final String _MIS_SOLICITUDES = "misSolicitudes.xhtml";
 
@@ -94,6 +95,10 @@ public class URLMap implements Serializable {
 
     public static String getWELCOME() {
         return WELCOME;
+    }
+    
+    public static String getIndexOrdenReparacion(){
+        return INDEX_FACTURAS;
     }
 
     public static String getOrdenReparacion() {

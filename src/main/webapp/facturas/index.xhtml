@@ -1,0 +1,59 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="./../template.xhtml">
+    <ui:define name="head">
+        <h:head>
+            <title>Ordenes de reparacion</title>
+        </h:head>
+    </ui:define>
+    <ui:define name="content">
+        <p:panel>
+            <f:facet name="header">
+                <h:outputText value="Ordenes de reparacion"/>
+            </f:facet>
+            <p:dataTable id="ordenes"
+                         value="#{facturaBacking.getAll()}"
+                         var="factura"
+                         tableStyle="width:auto"
+                         emptyMessage="Aun no hay ningun valor cargado ...">
+
+                <p:column headerText="Numero de orden">
+                    <h:outputText value="#{factura.id}"/>
+                </p:column>
+                <p:column headerText="Nombre del cliente">
+                    <h:outputText value="#{factura.cliente.nombre}"/>
+                </p:column>
+                <p:column headerText="E-mail del cliente">
+                    <h:outputText value="#{factura.cliente.mail}"/>
+                </p:column>
+                <p:column headerText="Telefono del cliente">
+                    <h:outputText value="#{factura.cliente.telefono}"/>
+                </p:column>
+                <p:column headerText="Accesorios incluidos">
+                    <h:outputText value="#{factura.accesoriosIncluidos}"/>
+                </p:column>
+
+                <c:if test="#{sessionBacking.usuario.administrador}">
+                    <p:column>
+                        <p:commandLink actionListener="#{facturaBacking.delete(factura)}"
+                                       value="Borrar"
+                                       update="ordenes">
+                            <p:confirm header="Confirmation"
+                                       message="Desea eliminar la orden de reparacion de #{factura.cliente.nombre}? "
+                                       icon="ui-icon-alert" />
+                        </p:commandLink>
+                    </p:column>
+                </c:if>
+
+            </p:dataTable>
+        </p:panel>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </p:confirmDialog>
+    </ui:define>
+</ui:composition>

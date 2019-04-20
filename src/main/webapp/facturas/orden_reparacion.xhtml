@@ -48,13 +48,6 @@
                                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                                 </h:outputText>
                             </p:panelGrid>
-                            <p:separator/>
-                            <p:panelGrid columns="2">
-                                <f:facet name="header">
-                                    <h:outputText value="Orden de reparacion"/>
-                                </f:facet>
-                                <h:outputText value="#{reparacionBacking.reparacion}" style="text-align: center; font-weight: bold"/>
-                            </p:panelGrid>
                         </div>
                     </p:layoutUnit>
 
@@ -102,11 +95,11 @@
                                 <h:outputText value="Datos del equipo"/>
                             </f:facet>
                             <p:outputLabel value="Equipo"/>
-                            <p:inputText disabled="true" value="#{reparacionBacking.reparacion.solicitud_reparacion.marca}"/>
+                            <p:inputText value="#{reparacionBacking.reparacion.solicitud_reparacion.marca}"/>
                             <p:outputLabel value="Marca"/>
-                            <p:inputText disabled="true" value="#{reparacionBacking.reparacion.solicitud_reparacion.modelo}"/>
+                            <p:inputText value="#{reparacionBacking.reparacion.solicitud_reparacion.modelo}"/>
                             <p:outputLabel value="Descripcion del fallo"/>
-                            <p:inputText disabled="true" value="#{reparacionBacking.reparacion.solicitud_reparacion.descripcionFallo}"/>
+                            <p:inputText value="#{reparacionBacking.reparacion.solicitud_reparacion.descripcionFallo}"/>
                             <p:outputLabel value="Accesorios incluidos"/>
                             <p:inputTextarea  autoResize="false" value="#{facturaBacking.factura.accesoriosIncluidos}" />
                         </p:panelGrid>
@@ -122,7 +115,7 @@
                             <p:outputLabel value="Costo"/>
                             <p:inputText value="$ " style="width: 50px"/>
                             <p:outputLabel value="Seña"/>
-                            <p:inputText disabled="true" value="$" style="width: 50px"/>
+                            <p:inputText value="$" style="width: 50px"/>
                             <p:outputLabel value="Firma del cliente"/>
                             <p:outputLabel value="__________________" style="width: 50px"/>
                         </p:panelGrid>
@@ -131,7 +124,7 @@
 
                 <p:commandButton value="Registrar" action="#{facturaBacking.create()}" style="width: 150px; height: 60px;"/>
                 <p:commandButton value="Imprimir" style="width: 150px; height: 60px;"/>
-                <p:button value="Cancelar" outcome="#{facturaBacking.urlMap.getIndexReparaciones()}" style="width: 150px; height: 60px;"/>
+                <p:button value="Cancelar" outcome="#{facturaBacking.urlMap.getIndexOrdenReparacion()}" style="width: 150px; height: 60px;"/>
 
             </p:panel>
         </h:form>

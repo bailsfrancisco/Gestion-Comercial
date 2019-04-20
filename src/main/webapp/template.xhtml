@@ -62,6 +62,12 @@
                                             <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexCotizaciones()}"/>
                                             <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getNewCotizacion()}"/>
                                         </p:submenu>
+
+                                        <p:submenu label="Ordenes de reparacion">
+                                            <p:menuitem value="Listar" url="#{sessionBacking.urlMap.getIndexOrdenReparacion()}"/>
+                                            <p:menuitem value="Nueva" url="#{sessionBacking.urlMap.getOrdenReparacion()}"/>
+                                        </p:submenu>
+
                                     </c:when>
 
                                     <c:otherwise>
