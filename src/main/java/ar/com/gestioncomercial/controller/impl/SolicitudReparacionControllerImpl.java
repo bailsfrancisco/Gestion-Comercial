@@ -2,6 +2,7 @@ package ar.com.gestioncomercial.controller.impl;
 
 import ar.com.gestioncomercial.DAO.SolicitudReparacionDAO;
 import ar.com.gestioncomercial.controller.SolicitudReparacionController;
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.SolicitudReparacion;
 
 import javax.ejb.EJB;
@@ -42,5 +43,10 @@ public class SolicitudReparacionControllerImpl implements SolicitudReparacionCon
     @Override
     public List<SolicitudReparacion> getAll() {
         return solicitudReparacionDAO.getSolicitudesReparacion();
+    }
+    
+    @Override
+    public List<SolicitudReparacion> misSolicitudes(AbstractPersona cliente) {
+        return solicitudReparacionDAO.misSolicitudes(cliente);
     }
 }

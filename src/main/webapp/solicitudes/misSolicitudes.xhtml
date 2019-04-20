@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="./../template.xhtml">
+    <ui:define name="head">
+        <h:head>
+            <title>Mis Solicitudes</title>
+        </h:head>
+    </ui:define>
+    <ui:define name="content">
+
+        <p:panel>
+            <f:facet name="header">
+                <h:outputText value="Mis Solicitudes"/>
+            </f:facet>
+
+            <p:dataTable id="mis_solicitudes"
+                         value="#{clienteBacking.getSolicitudesUsuario(sessionBacking.usuario)}"
+                         var="mi_solicitud"
+                         tableStyle="width:auto"
+                         emptyMessage="Aun no hay ningun valor cargado ...">
+                
+                <p:column headerText="Marca">
+                    <h:outputText value="#{mi_solicitud.marca}"/>
+                </p:column>
+                
+                <p:column headerText="Modelo">
+                    <h:outputText value="#{mi_solicitud.modelo}"/>
+                </p:column>
+                
+                <p:column headerText="Sintomas">
+                    <h:outputText value="#{mi_solicitud.sintomas}"/>
+                </p:column>
+
+                <p:column headerText="Descripcion Fallo">
+                    <h:outputText value="#{mi_solicitud.descripcionFallo}"/>
+                </p:column>
+            </p:dataTable>
+
+        </p:panel>
+
+    </ui:define>
+</ui:composition>
+
