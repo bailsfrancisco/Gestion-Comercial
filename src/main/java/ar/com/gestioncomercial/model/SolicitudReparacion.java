@@ -26,11 +26,6 @@ public class SolicitudReparacion extends AbstractEntity {
     @JoinColumn(name = "cliente_id")
     private AbstractPersona cliente;
 
-    /*
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "cotizacion_id")
-    private Cotizacion cotizacion;
-     */
     private Estado estado;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
@@ -61,14 +56,6 @@ public class SolicitudReparacion extends AbstractEntity {
         this.cliente = cliente;
     }
 
-    /*
-    public Cotizacion getCotizacion() {
-        return cotizacion;
-    }
-
-    public void setCotizacion(Cotizacion cotizacion) {
-        this.cotizacion = cotizacion;
-    }*/
     public void setCliente(AbstractPersona cliente) {
         this.cliente = cliente;
     }

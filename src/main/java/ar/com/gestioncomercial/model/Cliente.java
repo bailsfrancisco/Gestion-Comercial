@@ -35,17 +35,19 @@ public class Cliente extends AbstractPersona {
 
     }
 
-    public Cliente(CategoriaIVA categoriaIVA, List<Reparacion> reparaciones, List<SolicitudReparacion> solicitudReparaciones) {
+    public Cliente(CategoriaIVA categoriaIVA, List<Reparacion> reparaciones, List<SolicitudReparacion> solicitudReparaciones, List<Factura> facturas_cliente) {
         this.categoriaIVA = categoriaIVA;
         this.reparaciones = reparaciones;
         this.solicitudReparaciones = solicitudReparaciones;
+        this.facturas_cliente = facturas_cliente;
     }
 
-    public Cliente(CategoriaIVA categoriaIVA, List<Reparacion> reparaciones, List<SolicitudReparacion> solicitudReparaciones, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular) {
+    public Cliente(CategoriaIVA categoriaIVA, List<Reparacion> reparaciones, List<SolicitudReparacion> solicitudReparaciones, String nombre, String telefono, String mail, String direccion, String cuitCuil, String observaciones, String celular, List<Factura> facturas_cliente) {
         super(nombre, telefono, mail, direccion, cuitCuil, observaciones, celular);
         this.categoriaIVA = categoriaIVA;
         this.reparaciones = reparaciones;
         this.solicitudReparaciones = solicitudReparaciones;
+        this.facturas_cliente = facturas_cliente;
     }
 
     public CategoriaIVA getCategoriaIVA() {

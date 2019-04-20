@@ -22,7 +22,7 @@
                      style="width: auto; margin: 0 auto; text-align:  center;">
 
                 <p:layout id="capaDatosClienteFactura" 
-                          style="width: auto; height: 580px;">
+                          style="width: auto; height: 650px;">
                     <p:layoutUnit id="top" 
                                   position="north" 
                                   size="150"
@@ -62,32 +62,36 @@
                                   position="center" 
                                   style="padding: 5px; text-align:  justify; font-size: 14px;" 
                                   size="300">
-                        <h:panelGrid id="gridBuscarCliente" columns="1">
-                            <p:commandButton value="Seleccionar cliente" 
-                                             oncomplete="PF('dialogClientes').show();"
-                                             update="Gform:formFactura:dlgClientes"/>
-                        </h:panelGrid>
 
+                        <p:panelGrid columns="2" layout="grid">
+                            <f:facet name="header">
+                                <h:outputText value="Seleccionar cliente"></h:outputText>
+                            </f:facet>
+                            <p:selectOneMenu value="#{facturaBacking.cliente}">
+                                <f:selectItem itemLabel="Seleccionar cliente" noSelectionOption="true"/>
+                                <f:selectItems value="#{clienteBacking.all}" 
+                                               var="cliente" itemLabel="#{cliente.nombre}"/>
+                            </p:selectOneMenu>
+                            <p:commandButton value="Seleccionar" 
+                                             action="#{facturaBacking.agregarDatosCliente()}" 
+                                             update="tablaClientesFactura "/>
+                        </p:panelGrid>
+                        <br/>
                         <p:dataTable id="tablaClientesFactura"
-                                     style="text-align: center;"
+                                     value="#{facturaBacking.cliente.facturas_cliente}"
+                                     var="factura"
                                      emptyMessage="Aun no hay ningun valor cargado ...">
                             <f:facet name="header">
                                 <h:outputText value="Datos del cliente"/>
                             </f:facet>
-                            <p:column headerText="Nombre">
-                                <p:outputLabel value="#{reparacionBacking.reparacion.cliente.nombre}"/>
-                            </p:column>
-                            <p:column headerText="Telefono">
-                                <p:outputLabel value="#{cliente.telefono}"/>
-                            </p:column>
-                            <p:column headerText="Celular">
-                                <p:outputLabel value="#{cliente.celular}"/>
-                            </p:column>
-                            <p:column headerText="E-mail">
-                                <p:outputLabel value="#{cliente.mail}"/>
-                            </p:column>
-                            <p:column headerText="Domicilio">
-                                <p:outputLabel value="#{cliente.direccion}"/>
+                            <p:column headerText="Nombre">#{factura.cliente.nombre}</p:column>
+                            <p:column headerText="Telefono">#{factura.cliente.telefono}</p:column>
+                            <p:column headerText="Celular">#{factura.cliente.celular}</p:column>
+                            <p:column headerText="E-mail">#{factura.cliente.mail}</p:column>
+                            <p:column headerText="Domicilio">#{factura.cliente.direccion}</p:column>
+                            <p:column>
+                                <p:commandLink action="#{facturaBacking.quitarDatosCliente(cliente)}" 
+                                               value="Quitar" update="tablaClientesFactura"/>
                             </p:column>
                         </p:dataTable>
                         <br/>
@@ -107,13 +111,18 @@
                             <p:inputTextarea  autoResize="false" value="#{facturaBacking.factura.accesoriosIncluidos}" />
                         </p:panelGrid>
                     </p:layoutUnit>
+
                     <p:separator/>
+
                     <p:layoutUnit position="south">
                         <p:panelGrid columns="6" style="text-align: justify;font-size: 14px">
-                            <p:outputLabel value="Costo reparacion"/>
-                            <p:inputText value="$ #{facturaBacking.factura.totalVenta}" style="width: 50px"/>
+                            <f:facet name="header">
+                                <h:outputLabel value="---"></h:outputLabel>
+                            </f:facet>
+                            <p:outputLabel value="Costo"/>
+                            <p:inputText value="$ " style="width: 50px"/>
                             <p:outputLabel value="Seña"/>
-                            <p:inputText disabled="true" value="$ #{reparacionBacking.reparacion.cotizacion.senia}" style="width: 50px"/>
+                            <p:inputText disabled="true" value="$" style="width: 50px"/>
                             <p:outputLabel value="Firma del cliente"/>
                             <p:outputLabel value="__________________" style="width: 50px"/>
                         </p:panelGrid>
@@ -123,56 +132,8 @@
                 <p:commandButton value="Registrar" action="#{facturaBacking.create()}" style="width: 150px; height: 60px;"/>
                 <p:commandButton value="Imprimir" style="width: 150px; height: 60px;"/>
                 <p:button value="Cancelar" outcome="#{facturaBacking.urlMap.getIndexReparaciones()}" style="width: 150px; height: 60px;"/>
+
             </p:panel>
-
-            <!--Dialog para mostrar datos de clientes del sistema-->
-            <p:dialog id="dlgClientes" 
-                      widgetVar="dialogClientes"
-                      modal="true"
-                      resizable="false"
-                      showEffect="explode" 
-                      hideEffect="explode"
-                      appendTo="@(body)"
-                      closeOnEscape="true">
-
-                <p:dataTable id="tablaClientes"
-                             paginator="true"
-                             paginatorPosition="top"
-                             var="cliente"
-                             value="#{clienteBacking.all}"
-                             tableStyle="width:auto"
-                             emptyMessage="Aun no hay ningun valor cargado ..."
-                             scrollable="true">
-                    <p:column headerText="Nombre">
-                        <h:outputText value="#{cliente.nombre}"/>
-                    </p:column>
-                    <p:column headerText="Telefono">
-                        <h:outputText value="#{cliente.telefono}"/>
-                    </p:column>
-                    <p:column headerText="Celular">
-                        <h:outputText value="#{cliente.celular}"/>
-                    </p:column>
-                    <p:column headerText="E-mail">
-                        <h:outputText value="#{cliente.mail}"/>
-                    </p:column>
-                    <p:column headerText="CUIT/CUIL">
-                        <h:outputText value="#{cliente.cuitCuil}"/>
-                    </p:column>
-                    <p:column headerText="Domicilio">
-                        <h:outputText value="#{cliente.direccion}"/>
-                    </p:column>
-                    <p:column headerText="Categoria IVA">
-                        <h:outputText value="#{cliente.categoriaIVA}"/>
-                    </p:column>
-                    <p:column headerText="">
-                        <p:commandButton value="Seleccionar"
-                                         actionListener="#{facturaBacking.agregarDatosCliente()}"
-                                         update="@form:tablaClientesFactura"
-                                         oncomplete="PF('dialogClientes').hide();"/>
-                    </p:column>
-                </p:dataTable>
-                <p:commandButton value="Cerrar" onclick="PF('dialogClientes').hide();"/>
-            </p:dialog>
         </h:form>
     </ui:define>
 </ui:composition>

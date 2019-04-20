@@ -3,6 +3,7 @@ package ar.com.gestioncomercial.backing;
 import ar.com.gestioncomercial.controller.ClienteController;
 import ar.com.gestioncomercial.controller.ImageController;
 import ar.com.gestioncomercial.controller.SolicitudReparacionController;
+import ar.com.gestioncomercial.model.Cotizacion;
 import ar.com.gestioncomercial.model.Estado;
 import ar.com.gestioncomercial.model.Image;
 import ar.com.gestioncomercial.model.SolicitudReparacion;

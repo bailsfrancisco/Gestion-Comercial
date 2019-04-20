@@ -5,14 +5,9 @@
  */
 package ar.com.gestioncomercial.backing;
 
-import ar.com.gestioncomercial.controller.ClienteController;
 import ar.com.gestioncomercial.controller.FacturaController;
-import ar.com.gestioncomercial.controller.PersonaController;
-import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Cliente;
-import ar.com.gestioncomercial.model.Cotizacion;
 import ar.com.gestioncomercial.model.Factura;
-import ar.com.gestioncomercial.model.SolicitudReparacion;
 import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
@@ -38,15 +33,15 @@ public class FacturaBacking implements Serializable, CRUDBacking<Factura> {
     private static final Logger logger = Logger.getLogger(FacturaBacking.class.getName());
 
     private Factura factura;
-    private AbstractPersona cliente;
-    private Cotizacion cotizacion;
-    private SolicitudReparacion solicitudReparacion;
-    private List<Long> clienteId;
+
+    private Factura factura2;
+
+    private Cliente cliente;
 
     @PostConstruct
     public void init() {
-        this.factura = new Factura();
-        this.clienteId = new ArrayList<>();
+        factura = new Factura();
+        cliente = new Cliente();
         factura.setFechaAlta(new Date());
     }
 
@@ -54,17 +49,13 @@ public class FacturaBacking implements Serializable, CRUDBacking<Factura> {
     private FacturaController facturaController;
 
     @EJB
-    private PersonaController personaController;
-
-    @EJB
-    private ClienteController clienteController;
-
-    @EJB
     private URLMap urlMap;
 
     @Override
     public String create() {
         try {
+            factura.setFechaAlta(new Date());
+            factura.setCliente(cliente);
             facturaController.create(factura);
             return URLMap.getIndexReparaciones() + URLMap.getFacesRedirect();
         } catch (EJBException e) {
@@ -137,60 +128,31 @@ public class FacturaBacking implements Serializable, CRUDBacking<Factura> {
         this.urlMap = urlMap;
     }
 
-    public List<Long> getClienteId() {
-        return clienteId;
-    }
-
-    public void setClienteId(List<Long> clienteId) {
-        this.clienteId = clienteId;
-    }
-
-    public AbstractPersona getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(AbstractPersona cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    public Cotizacion getCotizacion() {
-        return cotizacion;
-    }
-
-    public void setCotizacion(Cotizacion cotizacion) {
-        this.cotizacion = cotizacion;
-    }
-
-    public SolicitudReparacion getSolicitudReparacion() {
-        return solicitudReparacion;
-    }
-
-    public void setSolicitudReparacion(SolicitudReparacion solicitudReparacion) {
-        this.solicitudReparacion = solicitudReparacion;
-    }
-
-    public PersonaController getPersonaController() {
-        return personaController;
-    }
-
-    public void setPersonaController(PersonaController personaController) {
-        this.personaController = personaController;
     }
 
     //metodo para agregar los datos de los clientes por medio del dialogClientes
     public void agregarDatosCliente() {
-        if (this.factura.getCliente() == null) {
-            this.factura.setCliente(new Cliente());
+        if (factura2 == null) {
+            factura2 = factura;
         }
-        clienteId.forEach(
-                id -> {
-                    AbstractPersona cliente_factura = personaController.retrievebyId(id);
-                    if (this.factura.getCliente() != cliente_factura) {
-                        this.factura.setCliente(cliente_factura);
-                    }
-                }
-        );
-        clienteId = new ArrayList<>();
+        factura.setCliente(cliente);
+        if (cliente.getFacturas_cliente() == null) {
+            cliente.setFacturas_cliente(new ArrayList<Factura>());
+        }
+        this.cliente.getFacturas_cliente().add(factura);
+        factura = new Factura();
     }
 
+    public void quitarDatosCliente(Cliente cliente) {
+        if (factura2 == null) {
+            factura2 = factura;
+        }
+        this.cliente.getFacturas_cliente().remove(factura);
+    }
 }

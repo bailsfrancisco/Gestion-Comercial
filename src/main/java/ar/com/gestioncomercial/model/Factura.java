@@ -8,13 +8,11 @@ package ar.com.gestioncomercial.model;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -36,7 +34,7 @@ public class Factura extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "cliente")
-    private AbstractPersona cliente;
+    private Cliente cliente;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codFactura")
     private List<DetalleFactura> detalle_facturas;
@@ -45,8 +43,9 @@ public class Factura extends AbstractEntity {
 
     }
 
-    public Factura(Long numeroFactura, Double totalVenta, AbstractPersona cliente) {
+    public Factura(Double totalVenta, String accesoriosIncluidos, Cliente cliente) {
         this.totalVenta = totalVenta;
+        this.accesoriosIncluidos = accesoriosIncluidos;
         this.cliente = cliente;
     }
 
@@ -58,11 +57,11 @@ public class Factura extends AbstractEntity {
         this.totalVenta = totalVenta;
     }
 
-    public AbstractPersona getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(AbstractPersona cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 

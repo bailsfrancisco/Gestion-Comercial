@@ -101,7 +101,7 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
     public void setUrlMap(URLMap urlMap) {
         this.urlMap = urlMap;
     }
-    
+
     /*public void exportarPDF(ActionEvent actionEvent) throws JRException, IOException{
 		//Map<String,Object> parametros= new HashMap<String,Object>();
 		//parametros.put("txtUsuario", "MitoCode");
