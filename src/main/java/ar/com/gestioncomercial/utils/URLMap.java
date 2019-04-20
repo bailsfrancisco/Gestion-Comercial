@@ -11,8 +11,10 @@ public class URLMap implements Serializable {
 
     private static final String _INDEX = "index.xhtml";
     private static final String _EDIT = "edit.xhtml";
-    private static final String _SUELDO = "sueldo.xhtml";
     private static final String _NEW = "new.xhtml";
+    private static final String _DETAIL = "details.xhtml";
+
+    private static final String _SUELDO = "sueldo.xhtml";
     private static final String _MIS_REPARACIONES = "misReparaciones.xhtml";
     private static final String _MIS_SOLICITUDES = "misSolicitudes.xhtml";
 
@@ -63,6 +65,7 @@ public class URLMap implements Serializable {
     private static final String INDEX_SOLICITUDES = SOLICITUDES + _INDEX;
     private static final String NEW_SOLICITUD = SOLICITUDES + _NEW;
     private static final String EDIT_SOLICITUD = SOLICITUDES + _EDIT;
+    private static final String DETAIL_SOLICITUD = SOLICITUDES + _DETAIL;
     private static final String MIS_SOLICITUDES = SOLICITUDES + _MIS_SOLICITUDES;
 
     // URL para Cotizaciones
@@ -174,7 +177,7 @@ public class URLMap implements Serializable {
     public static String getMisReparaciones(){
         return MIS_REPARACIONES;
     }
-    
+
     public static String getMisSolicitudes(){
         return MIS_SOLICITUDES;
     }
@@ -215,4 +218,7 @@ public class URLMap implements Serializable {
         return EDIT_PRODUCTO;
     }
 
+    public static String getDetailSolicitud() {
+        return DETAIL_SOLICITUD;
+    }
 }

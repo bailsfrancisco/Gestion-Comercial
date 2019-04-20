@@ -13,6 +13,7 @@ public enum Estado {
     PENDIENTE("Pendiente"),
     EN_PROCESO("En proceso"),
     ENTREGADO("Entregado"),
+    ANULADA("Anulada"),
     TERMINADO("Terminado");
 
     private final String estado;
@@ -21,7 +22,7 @@ public enum Estado {
         estado = e;
     }
 
-    public String getEstado() {
+    public String getEstadoString() {
         return estado;
     }
 }

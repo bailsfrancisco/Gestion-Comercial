@@ -6,14 +6,11 @@
 package ar.com.gestioncomercial.controller.impl;
 
 import ar.com.gestioncomercial.DAO.ProductoDAO;
-import ar.com.gestioncomercial.controller.EmpleadoController;
+import ar.com.gestioncomercial.controller.NotificationController;
 import ar.com.gestioncomercial.controller.ProductoController;
-import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Producto;
-import ar.com.gestioncomercial.utils.EmailUtils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -28,7 +25,7 @@ public class ProductoControllerImpl implements ProductoController {
     private ProductoDAO productoDAO;
 
     @EJB
-    private EmpleadoController empleadoController;
+    private NotificationController notificationController;
 
     @Override
     public void create(Producto entity) {
@@ -82,13 +79,7 @@ public class ProductoControllerImpl implements ProductoController {
 
     @Override
     public void notificarStockMinimo(Producto producto) {
-        List<String> adminsEmails =  empleadoController.
-                getAllAdmins().stream()
-                .map(AbstractPersona::getMail).collect(Collectors.toList());
-
-        EmailUtils.productoStockMinimoEmail(producto.getNombre(),
-                producto.getStockMinimo(),
-                adminsEmails);
+        notificationController.notificarStockMinimo(producto);
     }
 
     @Override

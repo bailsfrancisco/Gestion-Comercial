@@ -20,25 +20,31 @@
                          var="solicitud"
                          tableStyle="width:auto"
                          emptyMessage="Aun no hay ningun valor cargado ...">
-                
+
                 <p:column headerText="Marca">
                     <h:outputText value="#{solicitud.marca}"/>
-                </p:column>        
-                
+                </p:column>
+
                 <p:column headerText="Modelo">
                     <h:outputText value="#{solicitud.modelo}"/>
                 </p:column>   
-                
+
                 <p:column headerText="Sintomas">
                     <h:outputText value="#{solicitud.sintomas}"/>
                 </p:column>
-                
+
                 <p:column headerText="Descripcion del fallo">
                     <h:outputText value="#{solicitud.descripcionFallo}"/>
                 </p:column>
 
                 <p:column headerText="Cliente">
                     <h:outputText value="#{solicitud.cliente.usuario.nombreUsuario}"/>
+                </p:column>
+
+                <p:column>
+                    <h:link  outcome="#{sessionBacking.urlMap.getDetailSolicitud()}" value="Detalles">
+                        <f:param name="id" value="#{solicitud.id}" />
+                    </h:link>
                 </p:column>
 
                 <p:column>
