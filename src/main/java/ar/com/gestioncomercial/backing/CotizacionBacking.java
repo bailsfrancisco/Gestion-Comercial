@@ -1,12 +1,14 @@
 package ar.com.gestioncomercial.backing;
 
 import ar.com.gestioncomercial.controller.CotizacionController;
+import ar.com.gestioncomercial.controller.NotificationController;
 import ar.com.gestioncomercial.controller.ProductoController;
 import ar.com.gestioncomercial.controller.SolicitudReparacionController;
 import ar.com.gestioncomercial.model.Cotizacion;
 import ar.com.gestioncomercial.model.Producto;
 import ar.com.gestioncomercial.model.SolicitudReparacion;
 import ar.com.gestioncomercial.utils.JSFUtils;
+import ar.com.gestioncomercial.utils.StringUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 
 import javax.annotation.PostConstruct;
@@ -31,6 +33,8 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
     private Cotizacion cotizacion;
 
     private SolicitudReparacion solicitudReparacion;
+
+    private String mensajeCotizacion;
 
     private List<Long> productosIds;
 
@@ -58,11 +62,19 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
     private SolicitudReparacionController solicitudReparacionController;
 
     @EJB
+    private NotificationController notificationController;
+
+    @EJB
     private URLMap urlMap;
 
     @Override
     public String create() {
         try {
+            if (cotizacion.getSolicitudReparacion() == null && solicitudReparacion.getCliente() == null){
+                JSFUtils.createFacesMessage("Seleccione un cliente");
+                return null;
+            }
+
             if (cotizacion.getSolicitudReparacion() == null ){
                 solicitudReparacionController.create(solicitudReparacion);
                 cotizacion.setSolicitudReparacion(solicitudReparacion);
@@ -71,10 +83,13 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
                 cotizacion.getInsumos().forEach(producto -> productoController.disminuirStock(producto, 1));
             }
             cotizacionController.create(cotizacion);
+            //notificationController.notificarNuevaCotizacion(cotizacion);
             return URLMap.getIndexCotizaciones() + URLMap.getFacesRedirect();
 
         } catch (EJBException e) {
             JSFUtils.createFacesMessage("Ocurrio un error");
+            // si ocurrio un error al guardar la cotizacion borrar la solicitud recien creada
+            solicitudReparacionController.delete(solicitudReparacion);
             logger.log(Level.SEVERE, e.getMessage());
 
         }
@@ -106,7 +121,7 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage(
-                    String.format("Se produjo un error al intentar borrar '%s', Por favor verifique que no hay solicitudes relacionadas a ella.",
+                    String.format("Se produjo un error al intentar borrar '%s', Por favor verifique que no hay reparacion asociada.",
                             entity.getDetalles()));
         }
     }
@@ -144,6 +159,13 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
         cotizacion.setPrecioTotal( ( precioTotalInsumos + cotizacion.getPrecioManoObra())- cotizacion.getSenia());
     }
 
+/*    public void handleCotizacionRespuesta(boolean acepto){
+       if (StringUtils.isNullOrEmpty(mensajeCotizacion)){
+           mensajeCotizacion = "-------------";
+       }
+       cotizacionController.handleCotizacionRespuesta(acepto, mensajeCotizacion, cotizacion);
+    }*/
+
     public Cotizacion getCotizacion() {
         return cotizacion;
     }
@@ -174,5 +196,13 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
 
     public void setSolicitudReparacion(SolicitudReparacion solicitudReparacion) {
         this.solicitudReparacion = solicitudReparacion;
+    }
+
+    public String getMensajeCotizacion() {
+        return mensajeCotizacion;
+    }
+
+    public void setMensajeCotizacion(String mensajeCotizacion) {
+        this.mensajeCotizacion = mensajeCotizacion;
     }
 }
