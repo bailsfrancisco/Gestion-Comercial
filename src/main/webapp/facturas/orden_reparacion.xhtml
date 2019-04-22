@@ -123,7 +123,7 @@
                 </p:layout>
 
                 <p:commandButton value="Registrar" action="#{facturaBacking.create()}" style="width: 150px; height: 60px;"/>
-                <p:commandButton value="Imprimir" style="width: 150px; height: 60px;"/>
+                <p:commandButton ajax="false" value="Imprimir" actionListener="#{facturaBacking.verReporte()}" style="width: 150px; height: 60px;"/>
                 <p:button value="Cancelar" outcome="#{facturaBacking.urlMap.getIndexOrdenReparacion()}" style="width: 150px; height: 60px;"/>
 
             </p:panel>

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="1152" pageHeight="792" columnWidth="1112" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9f2a6fae-4126-4bc9-8765-0b7d41196f83">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="320"/>
+	<property name="ireport.y" value="183"/>
 	<style name="table">
 		<box>
 			<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -32,29 +32,54 @@
 	<parameter name="filtroID" class="java.lang.Long"/>
 	<queryString>
 		<![CDATA[SELECT
-     reparacion.`ID` AS reparacion_ID,
-     persona.`DIRECCION` AS persona_DIRECCION,
-     persona.`MAIL` AS persona_MAIL,
-     persona.`NOMBRE` AS persona_NOMBRE,
-     persona.`TELEFONO` AS persona_TELEFONO,
-     solicitud_reparacion.`MARCA` AS solicitud_reparacion_MARCA,
-     solicitud_reparacion.`MODELO` AS solicitud_reparacion_MODELO,
-     solicitud_reparacion.`DESCRIPCIONFALLO` AS solicitud_reparacion_DESCRIPCIONFALLO
+     reparacion.`ID` AS id,
+     persona.`DIRECCION` AS direccion,
+     persona.`MAIL` AS mail,
+     persona.`NOMBRE` AS nombre,
+     persona.`TELEFONO` AS telefono,
+     solicitud_reparacion.`MARCA` AS marca,
+     solicitud_reparacion.`MODELO` AS modelo,
+     solicitud_reparacion.`DESCRIPCIONFALLO` AS descripcionFallo,
+     cotizacion.`PRECIOTOTAL` AS precioTotal,
+     cotizacion.`SENIA` AS senia
 FROM
      `persona` persona INNER JOIN `reparacion` reparacion ON persona.`ID` = reparacion.`cliente_id`
      INNER JOIN `solicitud_reparacion` solicitud_reparacion ON persona.`ID` = solicitud_reparacion.`cliente_id`
      AND solicitud_reparacion.`ID` = reparacion.`solicitud_reparacion_id`
+     INNER JOIN `cotizacion` cotizacion ON solicitud_reparacion.`ID` = cotizacion.`ID`
 WHERE
      reparacion.`ID` = $P{filtroID}]]>
 	</queryString>
-	<field name="reparacion_ID" class="java.lang.Long"/>
-	<field name="persona_DIRECCION" class="java.lang.String"/>
-	<field name="persona_MAIL" class="java.lang.String"/>
-	<field name="persona_NOMBRE" class="java.lang.String"/>
-	<field name="persona_TELEFONO" class="java.lang.String"/>
-	<field name="solicitud_reparacion_MARCA" class="java.lang.String"/>
-	<field name="solicitud_reparacion_MODELO" class="java.lang.String"/>
-	<field name="solicitud_reparacion_DESCRIPCIONFALLO" class="java.lang.String"/>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mail" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="marca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcionFallo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precioTotal" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="senia" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<variable name="ID_1" class="java.lang.Long" calculation="System">
 		<variableExpression><![CDATA[]]></variableExpression>
 	</variable>
@@ -80,7 +105,7 @@ WHERE
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Entrada:]]></text>
+				<text><![CDATA[Fecha de orden:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Transparent" x="746" y="76" width="139" height="20" uuid="98968f17-3dd3-4d8a-81b0-4634dc61690f"/>
@@ -108,7 +133,7 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{reparacion_ID}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="15" y="96" width="168" height="41" uuid="24d4575b-f90c-476f-aa1b-335c57da0ed1"/>
@@ -116,6 +141,13 @@ WHERE
 Telefono: 0236-154-336626
 Email: juninelectronic@gmail.com]]></text>
 			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="846" y="45" width="100" height="20" uuid="52538b90-9b14-4ab6-8936-1ecf28d28a67"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -273,7 +305,7 @@ Email: juninelectronic@gmail.com]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{persona_DIRECCION}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="278" y="0" width="139" height="20" uuid="ca1e1a34-d6b7-4bfd-917b-e05d1996e993"/>
@@ -287,7 +319,7 @@ Email: juninelectronic@gmail.com]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{persona_MAIL}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{mail}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="0" width="139" height="20" uuid="6fa9e070-9b3f-49bc-8727-5b85911e18ef"/>
@@ -301,7 +333,7 @@ Email: juninelectronic@gmail.com]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{persona_NOMBRE}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="417" y="0" width="139" height="20" uuid="53ba926c-fc42-4d48-87fa-6189ee64f45f"/>
@@ -315,7 +347,7 @@ Email: juninelectronic@gmail.com]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{persona_TELEFONO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="695" y="0" width="139" height="20" uuid="607ed739-3c91-4541-878a-d27c19ef7b85"/>
@@ -329,7 +361,7 @@ Email: juninelectronic@gmail.com]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{solicitud_reparacion_MARCA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="834" y="0" width="139" height="20" uuid="d54e5c2f-897d-4c0a-9537-56de382cdb80"/>
@@ -343,7 +375,7 @@ Email: juninelectronic@gmail.com]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{solicitud_reparacion_MODELO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="973" y="0" width="139" height="20" uuid="7827e6df-ed84-406e-a51a-a3b20b8fa9d3"/>
@@ -357,7 +389,7 @@ Email: juninelectronic@gmail.com]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{solicitud_reparacion_DESCRIPCIONFALLO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{descripcionFallo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -430,6 +462,34 @@ Asi como tambien aquellos equipos no retirados en un plazo de 15 dias notificado
 				</textElement>
 				<text><![CDATA[______________]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="0" y="20" width="100" height="20" uuid="4b744e7f-471d-4751-a22e-e17199a91161"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{precioTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="20" width="100" height="20" uuid="c10e48d3-b950-4316-ba92-9a1fdcf8aeda"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{senia}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageFooter>
 </jasperReport>
