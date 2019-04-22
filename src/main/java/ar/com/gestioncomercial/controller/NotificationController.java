@@ -4,7 +4,7 @@ import ar.com.gestioncomercial.model.*;
 
 public interface NotificationController {
 
-    void notificarCambioEstadoReparacion(Reparacion reparacion);
+    void notificarCambioEstadoReparacion(Reparacion reparacion, String menssaje);
 
     void notificarStockMinimo(Producto producto);
 

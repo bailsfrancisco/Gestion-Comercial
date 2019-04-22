@@ -28,7 +28,6 @@ public class ReparacionControllerImpl implements ReparacionController {
     @Override
     public void create(Reparacion entity) {
         reparacionDAO.create(entity);
-        handleEstadoSolicitudReparacion(entity);
     }
 
     @Override
@@ -43,7 +42,6 @@ public class ReparacionControllerImpl implements ReparacionController {
 
     @Override
     public void update(Reparacion entity) {
-        handleEstadoSolicitudReparacion(entity);
         reparacionDAO.update(entity);
     }
 
@@ -72,7 +70,19 @@ public class ReparacionControllerImpl implements ReparacionController {
         return reparacionDAO.findByCliente(cliente);
     }
 
-    private void handleEstadoSolicitudReparacion(Reparacion entity){
+    @Override
+    public void create(Reparacion reparacion, String mensaje) {
+        create(reparacion);
+        handleEstadoSolicitudReparacion(reparacion, mensaje);
+    }
+
+    @Override
+    public void update(Reparacion reparacion, String mensaje) {
+        handleEstadoSolicitudReparacion(reparacion, mensaje);
+        update(reparacion);
+    }
+
+    private void handleEstadoSolicitudReparacion(Reparacion entity, String mensaje){
         SolicitudReparacion solicitudReparacion = null;
         if (entity.getId() != null){
             solicitudReparacion = retrieve(entity).getSolicitud_reparacion();
@@ -82,7 +92,7 @@ public class ReparacionControllerImpl implements ReparacionController {
         if (solicitudReparacion.getEstado() != entity.getEstado()){
             solicitudReparacion.setEstado(entity.getEstado());
             solicitudReparacionController.update(solicitudReparacion);
-            notificationController.notificarCambioEstadoReparacion(entity);
+            notificationController.notificarCambioEstadoReparacion(entity, mensaje);
         }
     }
 }

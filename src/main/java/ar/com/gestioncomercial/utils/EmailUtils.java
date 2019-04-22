@@ -13,11 +13,13 @@ public class EmailUtils {
     private static final String fromEmail = "ezequielcimiotto@gmail.com";
 
     private static final String EMAIL_TEMPLATE_REPARACION = "<html> <p>Estimado %s \n" +
-            "La reparacion de su dispositivo se encuentra en %s, Usted sera notificad@ cuando el estado" +
+            "La reparacion de su dispositivo se encuentra %s, Usted sera notificad@ cuando el estado" +
             " de la reparacion cambie." +
             "\n" +
+            "%s"+
             "\n" +
-            "Saludos, "+ fromEmail+
+            "Saludos, " +
+            "Electronic Junin."+
             "</p></html>";
 
     private static final String EMAIL_TEMPLATE_STOCK_MINIMO = "Estimado Administrador, \n" +
@@ -76,9 +78,9 @@ public class EmailUtils {
         }
     }
 
-    public static void reparacionCambioEstadoEmail(String nombreCliente, String emailCliente, String estado){
+    public static void reparacionCambioEstadoEmail(String nombreCliente, String emailCliente, String estado, String mensaje){
 
-        String template = String.format(EMAIL_TEMPLATE_REPARACION, nombreCliente, estado);
+        String template = String.format(EMAIL_TEMPLATE_REPARACION, nombreCliente, estado, mensaje);
 
         sendEmail(template, fromEmail, emailCliente);
     }

@@ -21,11 +21,12 @@ public class EmailNotificationControllerStrategyImpl implements NotificationCont
     private ClienteController clienteController;*/
 
     @Override
-    public void notificarCambioEstadoReparacion(Reparacion reparacion) {
+    public void notificarCambioEstadoReparacion(Reparacion reparacion, String mensaje) {
         AbstractPersona cliente = reparacion.getCliente();
         EmailUtils.reparacionCambioEstadoEmail(cliente.getNombre(),
                 cliente.getMail(),
-                reparacion.getEstado().getEstadoString()
+                reparacion.getEstado().getEstadoString(),
+                mensaje
         );
 
     }

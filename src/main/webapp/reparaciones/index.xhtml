@@ -42,8 +42,14 @@
                 <p:column headerText="Tecnico">
                     <h:outputText value="#{reparacion.tecnico.nombre}"/>
                 </p:column>
+                <p:column headerText="Cliente">
+                    <h:outputText value="#{reparacion.cliente.nombre}"/>
+                </p:column>
                 <p:column headerText="Descripcion Del fallo">
                     <h:outputText value="#{reparacion.solicitud_reparacion.descripcionFallo}"/>
+                </p:column>
+                <p:column headerText="Precio Total">
+                    <h:outputText value="$ #{reparacion.cotizacion.precioTotal}"/>
                 </p:column>
                 <c:if test="#{sessionBacking.usuario.administrador}">
                     <p:column>
@@ -93,6 +99,7 @@
                                itemLabel="#{estado.estadoString}"/>
             </p:selectOneMenu>
                 </p:panelGrid>
+                <p:inputTextarea value="#{reparacionBacking.mensajeCambioEstado}" />
                 <p>El cliente #{reparacionBacking.reparacion.cliente} Sera notificado de este cambio de estado!</p>
             <div style="text-align: center">
 

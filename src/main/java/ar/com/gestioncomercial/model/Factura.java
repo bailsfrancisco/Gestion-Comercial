@@ -34,7 +34,7 @@ public class Factura extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "cliente")
-    private Cliente cliente;
+    private AbstractPersona cliente;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codFactura")
     private List<DetalleFactura> detalle_facturas;
@@ -57,11 +57,11 @@ public class Factura extends AbstractEntity {
         this.totalVenta = totalVenta;
     }
 
-    public Cliente getCliente() {
+    public AbstractPersona getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(AbstractPersona cliente) {
         this.cliente = cliente;
     }
 

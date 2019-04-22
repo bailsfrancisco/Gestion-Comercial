@@ -11,7 +11,7 @@
         <p:calendar value="#{reparacionBacking.reparacion.fechaEgreso}" pattern="dd-MM-yyyy"/>
 
         <p:outputLabel value="Estado"/>
-        <p:selectOneMenu id="estado" required="true" value="#{reparacionBacking.reparacion.estado}">
+        <p:selectOneMenu id="estado" requiredMessage="Seleccione un Estado" required="true" value="#{reparacionBacking.reparacion.estado}">
             <f:selectItem itemLabel="Seleccionar estado" noSelectionOption="true"/>
             <f:selectItems value="#{reparacionBacking.estados}"
                            var="estado"
@@ -20,7 +20,7 @@
         </p:selectOneMenu>
 
         <p:outputLabel value="Tecnico "/>
-        <p:selectOneMenu required="true" filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.tecnico}">
+        <p:selectOneMenu required="true" requiredMessage="Seleccione un Tecnico" filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.tecnico}">
             <f:selectItem itemLabel="Seleccionar tecnico" noSelectionOption="true"/>
             <f:selectItems value="#{empleadoBacking.all}" var="empleado" itemLabel="#{empleado.nombre}"/>
         </p:selectOneMenu>

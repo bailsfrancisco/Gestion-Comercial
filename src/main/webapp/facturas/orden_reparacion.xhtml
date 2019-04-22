@@ -12,7 +12,7 @@
             <title>Generar orden de reparacion</title>
         </h:head>
         <f:metadata>
-            <f:viewParam name="id" value="#{reparacionBacking.reparacion}"/>
+            <f:viewParam name="id" value="#{facturaBacking.reparacion}"/>
         </f:metadata>
     </ui:define>
 
@@ -53,7 +53,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="Orden de reparacion"/>
                                 </f:facet>
-                                <h:outputText value="#{reparacionBacking.reparacion}" style="text-align: center; font-weight: bold"/>
+                                <h:outputText value="#{facturaBacking.reparacion}" style="text-align: center; font-weight: bold"/>
                             </p:panelGrid>
                         </div>
                     </p:layoutUnit>
@@ -66,17 +66,17 @@
 
                         <br/>
                         <p:dataTable id="tablaClientesFactura"
-                                     value="#{facturaBacking.cliente.facturas_cliente}"
-                                     var="factura"
+                                     value="#{facturaBacking.reparacion.cliente}"
+                                     var="cliente"
                                      emptyMessage="Aun no hay ningun valor cargado ...">
                             <f:facet name="header">
                                 <h:outputText value="Datos del cliente"/>
                             </f:facet>
-                            <p:column headerText="Nombre">#{factura.cliente.nombre}</p:column>
-                            <p:column headerText="Telefono">#{factura.cliente.telefono}</p:column>
-                            <p:column headerText="Celular">#{factura.cliente.celular}</p:column>
-                            <p:column headerText="E-mail">#{factura.cliente.mail}</p:column>
-                            <p:column headerText="Domicilio">#{factura.cliente.direccion}</p:column>
+                            <p:column headerText="Nombre">#{cliente.nombre}</p:column>
+                            <p:column headerText="Telefono">#{cliente.telefono}</p:column>
+                            <p:column headerText="Celular">#{cliente.celular}</p:column>
+                            <p:column headerText="E-mail">#{cliente.mail}</p:column>
+                            <p:column headerText="Domicilio">#{cliente.direccion}</p:column>
                         </p:dataTable>
                         <br/>
                         <p:panelGrid id="gridEquipoFactura"
@@ -86,11 +86,11 @@
                                 <h:outputText value="Datos del equipo"/>
                             </f:facet>
                             <p:outputLabel value="Equipo"/>
-                            <p:inputText disabled="true" value="#{reparacionBacking.reparacion.solicitud_reparacion.marca}"/>
+                            <p:inputText disabled="true" value="#{facturaBacking.reparacion.solicitud_reparacion.marca}"/>
                             <p:outputLabel value="Marca"/>
-                            <p:inputText disabled="true" value="#{reparacionBacking.reparacion.solicitud_reparacion.modelo}"/>
+                            <p:inputText disabled="true" value="#{facturaBacking.reparacion.solicitud_reparacion.modelo}"/>
                             <p:outputLabel value="Descripcion del fallo"/>
-                            <p:inputText disabled="true" value="#{reparacionBacking.reparacion.solicitud_reparacion.descripcionFallo}"/>
+                            <p:inputText disabled="true" value="#{facturaBacking.reparacion.solicitud_reparacion.descripcionFallo}"/>
                             <p:outputLabel value="Accesorios incluidos"/>
                             <p:inputTextarea  autoResize="false" value="#{facturaBacking.factura.accesoriosIncluidos}" />
                         </p:panelGrid>
@@ -104,9 +104,9 @@
                                 <h:outputLabel value="---"></h:outputLabel>
                             </f:facet>
                             <p:outputLabel value="Seña"/>
-                            <p:inputText disabled="true" value="#{reparacionBacking.reparacion.cotizacion.senia}" style="width: 50px"/>
+                            <p:inputText disabled="true" value="#{facturaBacking.reparacion.cotizacion.senia}" style="width: 50px"/>
                             <p:outputLabel value="Costo Total"/>
-                            <p:inputText value="#{reparacionBacking.reparacion.cotizacion.precioTotal}" style="width: 50px"/>
+                            <p:inputText value="#{facturaBacking.reparacion.cotizacion.precioTotal}" style="width: 50px"/>
                             <p:outputLabel value="Firma del cliente"/>
                             <p:outputLabel value="__________________" style="width: 50px"/>
                         </p:panelGrid>

@@ -13,4 +13,8 @@ public interface ReparacionController extends CrudController<Reparacion> {
     List<Reparacion> findByEstado(Estado estado);
 
     List<Reparacion> findByCliente(AbstractPersona cliente);
+
+    void create(Reparacion reparacion, String mensaje);
+
+    void update(Reparacion reparacion, String mensaje);
 }

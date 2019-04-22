@@ -21,6 +21,9 @@
                          var="cotizacion"
                          tableStyle="width:auto"
                          emptyMessage="Aun no hay ningun valor cargado ...">
+                <p:column headerText="ID">
+                    <h:outputText value="#{cotizacion.id}"/>
+                </p:column>
                 <p:column headerText="Detalle">
                     <h:outputText value="#{cotizacion.detalles}"/>
                 </p:column>
@@ -49,11 +52,6 @@
                             <f:param name="nombre_cliente" value="#{cotizacion.solicitudReparacion.cliente.id}"/>
                             <f:param name="solicitud_reparacion" value="#{cotizacion.solicitudReparacion.id}" />
                             <f:param name="observaciones" value="#{cotizacion.detalles}" />
-                        </h:link>
-                    </p:column>
-                    <p:column>
-                        <h:link styleClass="ui-icon-pencil" outcome="#{cotizacionBacking.urlMap.getEditCotizacion()}" value="Editar">
-                            <f:param name="id" value="#{cotizacion.id}" />
                         </h:link>
                     </p:column>
                     <p:column>

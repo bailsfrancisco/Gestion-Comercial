@@ -27,6 +27,8 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
 
     private Estado estadoNuevo;
 
+    private String mensajeCambioEstado;
+
     @PostConstruct
     public void init() {
         reparacion = new Reparacion();
@@ -43,7 +45,7 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
     public String create() {
         try {
             reparacion.setFechaAlta(new Date());
-            reparacionController.create(reparacion);
+            reparacionController.create(reparacion,"");
             return URLMap.getIndexReparaciones() + URLMap.getFacesRedirect();
         } catch (EJBException e) {
             logger.log(Level.SEVERE, e.getMessage());
@@ -91,7 +93,7 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
     public void updateEstado(){
         try {
             reparacion.setEstado(estadoNuevo);
-            reparacionController.update(reparacion);
+            reparacionController.update(reparacion, mensajeCambioEstado);
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
             JSFUtils.createFacesMessage("Ocurrio un Error, El estado no puede ser nulo");
@@ -139,4 +141,12 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
 		stream.close();
 		FacesContext.getCurrentInstance().responseComplete();
 	}*/
+
+    public String getMensajeCambioEstado() {
+        return mensajeCambioEstado;
+    }
+
+    public void setMensajeCambioEstado(String mensajeCambioEstado) {
+        this.mensajeCambioEstado = mensajeCambioEstado;
+    }
 }

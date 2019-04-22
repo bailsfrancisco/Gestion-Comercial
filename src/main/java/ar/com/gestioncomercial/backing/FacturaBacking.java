@@ -8,6 +8,7 @@ package ar.com.gestioncomercial.backing;
 import ar.com.gestioncomercial.controller.FacturaController;
 import ar.com.gestioncomercial.model.Cliente;
 import ar.com.gestioncomercial.model.Factura;
+import ar.com.gestioncomercial.model.Reparacion;
 import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
@@ -38,6 +39,8 @@ public class FacturaBacking implements Serializable, CRUDBacking<Factura> {
 
     private Cliente cliente;
 
+    private Reparacion reparacion;
+
     @PostConstruct
     public void init() {
         factura = new Factura();
@@ -55,9 +58,9 @@ public class FacturaBacking implements Serializable, CRUDBacking<Factura> {
     public String create() {
         try {
             factura.setFechaAlta(new Date());
-            factura.setCliente(cliente);
+            factura.setCliente(reparacion.getCliente());
             facturaController.create(factura);
-            return URLMap.getIndexReparaciones() + URLMap.getFacesRedirect();
+            return URLMap.getIndexOrdenReparacion() + URLMap.getFacesRedirect();
         } catch (EJBException e) {
             JSFUtils.createFacesMessage("Ocurrio un Error");
             logger.log(Level.SEVERE, e.getMessage());
@@ -154,5 +157,13 @@ public class FacturaBacking implements Serializable, CRUDBacking<Factura> {
             factura2 = factura;
         }
         this.cliente.getFacturas_cliente().remove(factura);
+    }
+
+    public Reparacion getReparacion() {
+        return reparacion;
+    }
+
+    public void setReparacion(Reparacion reparacion) {
+        this.reparacion = reparacion;
     }
 }
