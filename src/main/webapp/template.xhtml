@@ -99,22 +99,27 @@
                     </h:form>
                 </f:view>
             </p:layoutUnit>
+            <c:choose>
+                <c:when test="#{sessionBacking.usuario.administrador}">
 
-            <p:layoutUnit position="south" size="120" header="Datos" resizable="false" closable="false" collapsible="true">
-                <div class="bottom">
-                    <div>
-                        <p:outputLabel style="float:left">
-                            <p:outputLabel id="bottom_label_2" value="Saavedra 18 | Junín | Buenos Aires | 0236-4336626" />
-                        </p:outputLabel>
+                </c:when>
+                <c:otherwise>
+                    <p:layoutUnit position="south" size="120" header="Datos" resizable="false" closable="false" collapsible="false">
+                        <div class="bottom">
+                            <div class="bottom_otro">
+                                <p:outputLabel style="float:left">
+                                    <p:outputLabel id="bottom_label_2" value="Saavedra 18 | Junín | Buenos Aires | 0236-4336626" />
+                                </p:outputLabel>
 
-                        <p:outputLabel style="float:right">
-                            <a href="https://www.facebook.com/electronicjuninn/" target="blank"><i class="fa fa-facebook-square" href="" aria-hidden="true" style="color: #ff9900; padding-right: 10px; size: 10px"></i></a>
-                            <a href="http://www.instagram.com/electronic_junin" target="blank" ><i class="fa fa-instagram" aria-hidden="true" style="color: #ff9900; padding-right: 10px;"></i></a>
-                        </p:outputLabel>
-                    </div>
-                </div>
-            </p:layoutUnit>
-
+                                <p:outputLabel style="float:right">
+                                    <a href="https://www.facebook.com/electronicjuninn/" target="blank"><i class="fa fa-facebook-square" href="" aria-hidden="true" style="color: #ff9900; padding-right: 10px; size: 10px"></i></a>
+                                    <a href="http://www.instagram.com/electronic_junin" target="blank" ><i class="fa fa-instagram" aria-hidden="true" style="color: #ff9900; padding-right: 10px;"></i></a>
+                                </p:outputLabel>
+                            </div>
+                        </div>
+                    </p:layoutUnit>
+                </c:otherwise>
+            </c:choose>
         </p:layout>   
     </ui:define>
 </ui:composition>

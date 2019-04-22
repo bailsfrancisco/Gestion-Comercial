@@ -6,6 +6,7 @@
 package ar.com.gestioncomercial.reports;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -46,6 +47,7 @@ public class Reporte {
 
             httpServletResponse.setContentType("application/pdf");
             httpServletResponse.addHeader("Content-Type", "application/pdf");
+            httpServletResponse.addHeader("Content-Disposition","attachment;orden_reparacion.pdf");
 
             JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
 
@@ -60,18 +62,15 @@ public class Reporte {
                 try {
                     jrExporter.exportReport();
                 } catch (JRException e) {
-                    e.printStackTrace();
                 }
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException | JRException e) {
         } finally {
             if (conexion != null) {
                 try {
                     conexion.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (SQLException e) {
                 }
             }
         }

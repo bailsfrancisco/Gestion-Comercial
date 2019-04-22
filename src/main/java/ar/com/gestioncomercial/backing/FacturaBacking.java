@@ -64,7 +64,7 @@ public class FacturaBacking implements Serializable, CRUDBacking<Factura> {
             factura.setFechaAlta(new Date());
             factura.setCliente(cliente);
             facturaController.create(factura);
-            return URLMap.getIndexReparaciones() + URLMap.getFacesRedirect();
+            return URLMap.getIndexOrdenReparacion() + URLMap.getFacesRedirect();
         } catch (EJBException e) {
             JSFUtils.createFacesMessage("Ocurrio un Error");
             logger.log(Level.SEVERE, e.getMessage());
@@ -163,11 +163,17 @@ public class FacturaBacking implements Serializable, CRUDBacking<Factura> {
         this.cliente.getFacturas_cliente().remove(factura);
     }
 
-    //Metodo para invocar el reporte y enviarle los parametros si es que necesita
-    public void verReporte() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public Reparacion getReparacion() {
+        return reparacion;
+    }
 
-        
-        
+    public void setReparacion(Reparacion reparacion) {
+        this.reparacion = reparacion;
+    }
+
+    //Metodo para invocar el reporte y enviarle los parametros si es que necesita
+    public void verReporte(Long id) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+
         //Instancia hacia la clase reporteClientes        
         Reporte reporte = new Reporte();
 
@@ -175,7 +181,8 @@ public class FacturaBacking implements Serializable, CRUDBacking<Factura> {
         ServletContext servletContext = (ServletContext) facesContext.getExternalContext().getContext();
         String ruta = servletContext.getRealPath("/reportes/reporte-orden-reparacion.jasper");
 
-        reporte.getReporte(ruta, Long.MIN_VALUE);
+        reporte.getReporte(ruta, id);
         FacesContext.getCurrentInstance().responseComplete();
     }
+
 }
