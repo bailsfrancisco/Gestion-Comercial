@@ -25,6 +25,8 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
 
     private Reparacion reparacion;
 
+    private Estado estadoNuevo;
+
     @PostConstruct
     public void init() {
         reparacion = new Reparacion();
@@ -86,6 +88,16 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
         return reparacionController.getAll();
     }
 
+    public void updateEstado(){
+        try {
+            reparacion.setEstado(estadoNuevo);
+            reparacionController.update(reparacion);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, e.getMessage());
+            JSFUtils.createFacesMessage("Ocurrio un Error, El estado no puede ser nulo");
+        }
+    }
+
     public Reparacion getReparacion() {
         return reparacion;
     }
@@ -100,6 +112,14 @@ public class ReparacionBacking implements Serializable, CRUDBacking<Reparacion> 
 
     public void setUrlMap(URLMap urlMap) {
         this.urlMap = urlMap;
+    }
+
+    public Estado getEstadoNuevo() {
+        return estadoNuevo;
+    }
+
+    public void setEstadoNuevo(Estado estadoNuevo) {
+        this.estadoNuevo = estadoNuevo;
     }
 
     /*public void exportarPDF(ActionEvent actionEvent) throws JRException, IOException{

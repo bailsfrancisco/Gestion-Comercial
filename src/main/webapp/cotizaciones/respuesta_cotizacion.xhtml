@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="./../template.xhtml">
+
+
+    <ui:define name="head">
+        <h:head>
+            <title>Cotizacion</title>
+        </h:head>
+        <f:metadata>
+            <f:viewParam name="id" value="#{cotizacionBacking.cotizacion}"/>
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="content">
+
+    <p:panelGrid columns="2" layout="grid">
+
+        <p:outputLabel value="Fecha de alta"/>
+        <p:calendar disabled="true" size="10" value="#{cotizacionBacking.cotizacion.fechaAlta}" pattern="dd/MM/yyyy"/>
+
+        <p:outputLabel value="Fecha vencimiento"/>
+        <p:calendar size="10" disabled="true"  value="#{cotizacionBacking.cotizacion.fechaVencimiento}" pattern="dd/MM/yyyy"/>
+
+        <p:outputLabel value="Detalles"/>
+        <p:outputLabel  value="#{cotizacionBacking.cotizacion.detalles}"/>
+
+        <p:outputLabel value="Precio Mano de Obra"/>
+        <p:outputLabel value="#{cotizacionBacking.cotizacion.precioManoObra}"/>
+
+        <p:outputLabel value="Seña"/>
+        <p:inputText id="senia" value="#{cotizacionBacking.cotizacion.senia}">
+            <p:ajax event="keyup" delay="100" update="precioTotal" listener="#{cotizacionBacking.handlePrecioTotal}" />
+        </p:inputText>
+        <br/>
+        <p:tooltip for="senia" value="El valor de la seña sera aceptado si y solo si, el dispositivo es entregado antes de la fecha de vencimiento"/>
+    </p:panelGrid>
+
+    <p:panel style="width: 100%" >
+        <f:facet name="header">
+            <h:outputText value="Insumos"/>
+        </f:facet>
+        <p:dataTable id="productos_table"
+                     value="#{cotizacionBacking.cotizacion.insumos}"
+                     var="producto"
+                     tableStyle="width:auto"
+                     emptyMessage="Aun no hay ningun valor cargado ...">
+            <p:column headerText="Nombre">
+                <h:outputText value="#{producto.nombre}"/>
+            </p:column>
+            <p:column headerText="Precio Unitario">
+                <h:outputText value="#{producto.precioUnitario}"/>
+            </p:column>
+        </p:dataTable>
+    </p:panel>
+    <p:panelGrid columns="2" layout="grid">
+        <p:outputLabel value="Precio total"/>
+        <p:outputLabel id="precioTotal"  value="#{cotizacionBacking.cotizacion.precioTotal}"/>
+    </p:panelGrid>
+
+    <div style="text-align: center">
+        <p>Se le notificara al Administrador de su respuesta si lo desea puede escribirle un mensaje, Gracias!</p>
+        <p:inputTextarea rows="5" autoResize="true" style="width: 90%;" value="#{cotizacionBacking.mensajeCotizacion}"/>
+        <br/>
+        <p:commandButton value="Aceptar" actionListener="#{cotizacionBacking.handleCotizacionRespuesta(true)}"/>
+        <p:commandButton value="Declinar" actionListener="#{cotizacionBacking.handleCotizacionRespuesta(false)}"/>
+    </div>
+    </ui:define>
+
+</ui:composition>

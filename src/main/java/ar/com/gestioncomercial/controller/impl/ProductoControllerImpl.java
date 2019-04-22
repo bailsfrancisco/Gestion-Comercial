@@ -34,7 +34,7 @@ public class ProductoControllerImpl implements ProductoController {
 
     @Override
     public Producto retrieve(Producto entity) {
-        return null;
+        return productoDAO.find(entity.getId());
     }
 
     @Override

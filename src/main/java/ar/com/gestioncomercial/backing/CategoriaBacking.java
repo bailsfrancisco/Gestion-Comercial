@@ -50,19 +50,17 @@ public class CategoriaBacking implements Serializable, CRUDBacking<Categoria> {
     @Override
     public String create() {
         try {
-            StringUtils.areNullOrEmpty(categoria.getNombre());
-            categoriaController.create(categoria);
-            return URLMap.getIndexCategorias() + URLMap.getFacesRedirect();
-
+            if(!(StringUtils.isNullOrEmpty(categoria.getNombre()))) {
+                categoriaController.create(categoria);
+                return URLMap.getIndexCategorias() + URLMap.getFacesRedirect();
+            }
         } catch (EJBException e) {
             JSFUtils.createFacesMessage("Ocurrio un Error");
             logger.log(Level.SEVERE, e.getMessage());
-
-        } catch (NullOrEmptyException e) {
-            logger.log(Level.SEVERE, e.getMessage());
-            JSFUtils.createFacesMessage("El campo Nombre no puede ser nulo o contener espacios");
+            return null;
         }
 
+        JSFUtils.createFacesMessage("El campo Nombre no puede ser nulo o contener espacios");
         return null;
     }
 

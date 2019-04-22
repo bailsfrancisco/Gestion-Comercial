@@ -1,10 +1,13 @@
 package ar.com.gestioncomercial.controller.impl;
 
 import ar.com.gestioncomercial.DAO.ReparacionDAO;
+import ar.com.gestioncomercial.controller.NotificationController;
 import ar.com.gestioncomercial.controller.ReparacionController;
+import ar.com.gestioncomercial.controller.SolicitudReparacionController;
 import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Estado;
 import ar.com.gestioncomercial.model.Reparacion;
+import ar.com.gestioncomercial.model.SolicitudReparacion;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -16,9 +19,16 @@ public class ReparacionControllerImpl implements ReparacionController {
     @EJB
     private ReparacionDAO reparacionDAO;
 
+    @EJB
+    private NotificationController notificationController;
+
+    @EJB
+    private SolicitudReparacionController solicitudReparacionController;
+
     @Override
     public void create(Reparacion entity) {
         reparacionDAO.create(entity);
+        handleEstadoSolicitudReparacion(entity);
     }
 
     @Override
@@ -33,6 +43,7 @@ public class ReparacionControllerImpl implements ReparacionController {
 
     @Override
     public void update(Reparacion entity) {
+        handleEstadoSolicitudReparacion(entity);
         reparacionDAO.update(entity);
     }
 
@@ -59,5 +70,19 @@ public class ReparacionControllerImpl implements ReparacionController {
     @Override
     public List<Reparacion> findByCliente(AbstractPersona cliente) {
         return reparacionDAO.findByCliente(cliente);
+    }
+
+    private void handleEstadoSolicitudReparacion(Reparacion entity){
+        SolicitudReparacion solicitudReparacion = null;
+        if (entity.getId() != null){
+            solicitudReparacion = retrieve(entity).getSolicitud_reparacion();
+        }else {
+            solicitudReparacion = entity.getSolicitud_reparacion();
+        }
+        if (solicitudReparacion.getEstado() != entity.getEstado()){
+            solicitudReparacion.setEstado(entity.getEstado());
+            solicitudReparacionController.update(solicitudReparacion);
+            notificationController.notificarCambioEstadoReparacion(entity);
+        }
     }
 }

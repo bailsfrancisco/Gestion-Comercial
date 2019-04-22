@@ -50,22 +50,33 @@ public class EmailNotificationControllerStrategyImpl implements NotificationCont
     }
 
     @Override
+    public void notificarNuevaCotizacion(Cotizacion cotizacion) {
+        AbstractPersona cliente = cotizacion.getSolicitudReparacion().getCliente();
+        EmailUtils.nuevaCotizacionEmail(cliente.getNombre(),
+                cotizacion.getId(),
+                cliente.getMail()
+        );
+    }
+
+    @Override
     public void notificarCambioEstadoSolicitud(SolicitudReparacion solicitudReparacion) {
         AbstractPersona cliente = solicitudReparacion.getCliente();
 
-        EmailUtils.reparacionCambioEstadoEmail(cliente.getNombre(),
+        EmailUtils.solicitudReparacionCambioEstadoEmail(cliente.getNombre(),
                     cliente.getMail(),
                     solicitudReparacion.getEstado().getEstadoString()
         );
     }
 
     @Override
-    public void notificarCambioEstadoCotizacion(Cotizacion cotizacion) {
+    public void notificarCambioEstadoCotizacion(Cotizacion cotizacion, String verbo, String mensaje) {
         AbstractPersona cliente = cotizacion.getSolicitudReparacion().getCliente();
 
-        EmailUtils.reparacionCambioEstadoEmail(cliente.getNombre(),
-                cliente.getMail(),
-                cotizacion.getSolicitudReparacion().getEstado().getEstadoString()
+        EmailUtils.cotizacionCambioEstadoEmail(cotizacion.getId(),
+                cliente.getNombre(),
+                verbo,
+                mensaje,
+                getAdminsEmails()
         );
 
     }

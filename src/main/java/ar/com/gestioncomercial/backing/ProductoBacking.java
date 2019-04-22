@@ -7,6 +7,7 @@ package ar.com.gestioncomercial.backing;
 
 import ar.com.gestioncomercial.controller.ProductoController;
 import ar.com.gestioncomercial.exception.NullOrEmptyException;
+import ar.com.gestioncomercial.model.Estado;
 import ar.com.gestioncomercial.model.Producto;
 import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.StringUtils;
@@ -49,19 +50,16 @@ public class ProductoBacking implements Serializable, CRUDBacking<Producto> {
     @Override
     public String create() {
         try {
-            StringUtils.areNullOrEmpty(producto.getNombre());
-            productoController.create(producto);
-            return URLMap.getIndexProductos() + URLMap.getFacesRedirect();
-
+            if(!(StringUtils.isNullOrEmpty(producto.getNombre()))) {
+                productoController.create(producto);
+                return URLMap.getIndexProductos() + URLMap.getFacesRedirect();
+            }
         } catch (EJBException e) {
             JSFUtils.createFacesMessage("Ocurrio un Error");
             logger.log(Level.SEVERE, e.getMessage());
-
-        } catch (NullOrEmptyException e) {
-            logger.log(Level.SEVERE, e.getMessage());
-            JSFUtils.createFacesMessage("El campo Nombre no puede ser nulo o contener espacios");
+            return null;
         }
-
+        JSFUtils.createFacesMessage("El campo Nombre no puede ser nulo o contener espacios");
         return null;
     }
 

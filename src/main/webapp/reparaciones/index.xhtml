@@ -20,8 +20,8 @@
                          var="reparacion"
                          tableStyle="width:auto"
                          emptyMessage="Aun no hay ningun valor cargado ...">
-                <p:column headerText="Diagnostico">
-                    <h:outputText value="#{reparacion.diagnostico}"/>
+                <p:column headerText="ID">
+                    <h:outputText value="#{reparacion.id}"/>
                 </p:column>
                 <p:column headerText="Fecha de alta">
                     <h:outputText value="#{reparacion.fechaAlta}">
@@ -37,7 +37,7 @@
                     <h:outputText value="#{reparacion.observaciones}"/>
                 </p:column>
                 <p:column headerText="Estado">
-                    <h:outputText value="#{reparacion.estado}"/>
+                    <h:outputText value="#{reparacion.solicitud_reparacion.estado.estadoString}"/>
                 </p:column>
                 <p:column headerText="Tecnico">
                     <h:outputText value="#{reparacion.tecnico.nombre}"/>
@@ -47,7 +47,7 @@
                 </p:column>
                 <c:if test="#{sessionBacking.usuario.administrador}">
                     <p:column>
-                        <h:link styleClass="ui-icon-pencil" outcome="#{reparacionBacking.urlMap.getOrdenReparacion()}" value="Facturar">
+                        <h:link styleClass="ui-icon-pencil" outcome="#{reparacionBacking.urlMap.getOrdenRep()}" value="Orden Reparacion">
                             <f:param name="id" value="#{reparacion.id}" />
                         </h:link>
                     </p:column>
@@ -57,9 +57,15 @@
                         </h:link>
                     </p:column>
                     <p:column>
+                        <p:commandLink actionListener="#{reparacionBacking.setReparacion(reparacion)}"
+                                       value="Actualizar Estado"
+                                       update="reparaciones"   onclick="PF('cambioEstado').show()" >
+                        </p:commandLink>
+                    </p:column>
+                    <p:column>
                         <p:commandLink actionListener="#{reparacionBacking.delete(reparacion)}"
                                        value="Borrar"
-                                       update="reparaciones">
+                                       update="reparaciones" onclick="PF('borrar').show()" >
                             <p:confirm header="Confirmation"
                                        message="Desea eliminar la reparacion de #{reparacion.solicitud_reparacion.cliente.nombre}? "
                                        icon="ui-icon-alert" />
@@ -69,9 +75,33 @@
 
             </p:dataTable>
         </p:panel>
-        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+
+        <p:confirmDialog widgetVar="borrar" global="true" showEffect="fade" hideEffect="fade">
             <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
             <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
         </p:confirmDialog>
+        <p:dialog width="500px" appendToBody="true"  widgetVar="cambioEstado" global="true" showEffect="fade" hideEffect="fade">
+
+            <h:form id="updateEstado">
+                <p:panelGrid columns="2">
+            <p:outputLabel value="Estado Nuevo"/>
+            <p:selectOneMenu id="estado" value="#{reparacionBacking.estadoNuevo}">
+                <f:selectItem itemLabel="Seleccionar estado" noSelectionOption="true"/>
+                <f:selectItems value="#{reparacionBacking.estados}"
+                               var="estado"
+                               itemValue="#{estado}"
+                               itemLabel="#{estado.estadoString}"/>
+            </p:selectOneMenu>
+                </p:panelGrid>
+                <p>El cliente #{reparacionBacking.reparacion.cliente} Sera notificado de este cambio de estado!</p>
+            <div style="text-align: center">
+
+                <p:commandLink  actionListener="#{reparacionBacking.updateEstado()}" oncomplete="PF('cambioEstado').hide()" value="Actualizar" type="button" update="Gform:reparaciones" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+
+            </div>
+
+            </h:form>
+        </p:dialog>
+
     </ui:define>
 </ui:composition>

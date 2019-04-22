@@ -11,7 +11,7 @@
         <p:calendar value="#{reparacionBacking.reparacion.fechaEgreso}" pattern="dd-MM-yyyy"/>
 
         <p:outputLabel value="Estado"/>
-        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.estado}">
+        <p:selectOneMenu id="estado" required="true" value="#{reparacionBacking.reparacion.estado}">
             <f:selectItem itemLabel="Seleccionar estado" noSelectionOption="true"/>
             <f:selectItems value="#{reparacionBacking.estados}"
                            var="estado"
@@ -20,22 +20,25 @@
         </p:selectOneMenu>
 
         <p:outputLabel value="Tecnico "/>
-        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.tecnico}">
+        <p:selectOneMenu required="true" filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.tecnico}">
             <f:selectItem itemLabel="Seleccionar tecnico" noSelectionOption="true"/>
             <f:selectItems value="#{empleadoBacking.all}" var="empleado" itemLabel="#{empleado.nombre}"/>
         </p:selectOneMenu>
-      
+
+
         <p:outputLabel value="Solicitud de reparacion"/>
-        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.solicitud_reparacion}">
-            <f:selectItem itemLabel="Seleccionar solicitud" noSelectionOption="true"/>
-            <f:selectItems value="#{solicitudReparacionBacking.all}" var="solicitud" itemLabel="#{solicitud.marca}"/>
+        <p:selectOneMenu  disabled="true" value="#{reparacionBacking.reparacion.cotizacion}">
+            <f:selectItems value="#{cotizacionBacking.all}" var="cotizacion" itemValue="#{reparacionBacking.reparacion.cotizacion}" itemLabel="#{cotizacion.solicitudReparacion.marca}"/>
         </p:selectOneMenu>
 
         <p:outputLabel value="Cliente"/>
-        <p:selectOneMenu filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.cliente}">
-            <f:selectItem itemLabel="Seleccionar cliente" noSelectionOption="true"/>
+        <p:selectOneMenu disabled="true" filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.cliente}">
             <f:selectItems value="#{clienteBacking.all}" var="cliente" itemLabel="#{cliente.nombre}"/>
         </p:selectOneMenu>
 
+        <br/>
+        <p:selectOneMenu style="display: none;" filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.solicitud_reparacion}">
+            <f:selectItems style="display: none;"  value="#{solicitudReparacionBacking.all}" var="solicitud" itemLabel="#{solicitud.marca}"/>
+        </p:selectOneMenu>
     </p:panelGrid>
 </ui:composition>

@@ -63,10 +63,12 @@
             <p:ajax event="keyup" delay="100" update="precioTotal" listener="#{cotizacionBacking.handlePrecioTotal}" />
         </p:inputText>
 
-        <p:outputLabel value="Seña"/>
-        <p:inputText  value="#{cotizacionBacking.cotizacion.senia}">
-            <p:ajax event="keyup" delay="100" update="precioTotal" listener="#{cotizacionBacking.handlePrecioTotal}" />
-        </p:inputText>
+        <c:if test="#{cotizacionBacking.cotizacion.solicitudReparacion == null}">
+            <p:outputLabel value="Seña"/>
+            <p:inputText  value="#{cotizacionBacking.cotizacion.senia}">
+                <p:ajax event="keyup" delay="100" update="precioTotal" listener="#{cotizacionBacking.handlePrecioTotal}" />
+            </p:inputText>
+        </c:if>
     </p:panelGrid>
 
     <p:panel style="width: 100%" >
@@ -94,6 +96,9 @@
                      emptyMessage="Aun no hay ningun valor cargado ...">
             <p:column headerText="Nombre">
                 <h:outputText value="#{producto.nombre}"/>
+            </p:column>
+            <p:column headerText="Precio Unitario">
+                <h:outputText value="#{producto.precioUnitario}"/>
             </p:column>
             <p:column>
                 <p:commandButton actionListener="#{cotizacionBacking.quitarProducto(producto)}"

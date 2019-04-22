@@ -32,7 +32,10 @@
                     </h:outputText>
                 </p:column>
                 <p:column headerText="Estado">
-                    <h:outputText value="#{mi_reparacion.estado}"/>
+                    <h:outputText value="#{mi_reparacion.solicitud_reparacion.estado.estadoString}"/>
+                </p:column>
+                <p:column headerText="Precio Final">
+                    <h:outputText value="#{mi_reparacion.cotizacion.precioTotal}"/>
                 </p:column>
             </p:dataTable>
 

@@ -78,19 +78,19 @@ public class ClienteBacking implements Serializable, CRUDBacking<AbstractPersona
     @Override
     public String create() {
         try {
-            StringUtils.areNullOrEmpty(usuario.getNombreUsuario(), usuario.getPassword());
-            cliente.setUsuario(usuario);
-            clienteController.create(cliente);
-
-            return URLMap.getIndexClientes() + URLMap.getFacesRedirect();
-        } catch (EJBException e) {
-            return null;
-        } catch (NullOrEmptyException e) {
-            logger.log(Level.SEVERE, e.getMessage());
+            if(!(StringUtils.isNullOrEmpty(usuario.getNombreUsuario()) ||
+                    StringUtils.isNullOrEmpty(usuario.getPassword()))) {
+                cliente.setUsuario(usuario);
+                clienteController.create(cliente);
+                return URLMap.getIndexClientes() + URLMap.getFacesRedirect();
+            }
             JSFUtils.createFacesMessage("Campos: Nombre de usuario y Contraseña no pueden ser nulos");
+            return null;
+        } catch (EJBException e) {
+            JSFUtils.createFacesMessage("Ocurrio un Error");
+            logger.log(Level.SEVERE, e.getMessage());
+            return null;
         }
-
-        return null;
     }
 
     @Override

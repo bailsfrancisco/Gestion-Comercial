@@ -13,8 +13,9 @@ public enum Estado {
     PENDIENTE("Pendiente"),
     EN_PROCESO("En proceso"),
     ENTREGADO("Entregado"),
+    TERMINADO("Terminado"),
     ANULADA("Anulada"),
-    TERMINADO("Terminado");
+    ACEPTADA("Aceptada");
 
     private final String estado;
 

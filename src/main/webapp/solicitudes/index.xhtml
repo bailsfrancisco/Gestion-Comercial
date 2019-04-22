@@ -41,6 +41,10 @@
                     <h:outputText value="#{solicitud.cliente.usuario.nombreUsuario}"/>
                 </p:column>
 
+                <p:column headerText="Estado Actual">
+                    <h:outputText value="#{solicitud.estado.estadoString}"/>
+                </p:column>
+
                 <p:column>
                     <h:link  outcome="#{sessionBacking.urlMap.getDetailSolicitud()}" value="Detalles">
                         <f:param name="id" value="#{solicitud.id}" />

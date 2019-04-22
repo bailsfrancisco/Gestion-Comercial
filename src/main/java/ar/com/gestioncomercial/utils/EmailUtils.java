@@ -1,6 +1,5 @@
 package ar.com.gestioncomercial.utils;
 
-import ar.com.gestioncomercial.model.SolicitudReparacion;
 import org.apache.commons.mail.*;
 
 import java.util.List;
@@ -13,12 +12,13 @@ public class EmailUtils {
 
     private static final String fromEmail = "ezequielcimiotto@gmail.com";
 
-    private static final String EMAIL_TEMPLATE_REPARACION = "Hola %s \n" +
+    private static final String EMAIL_TEMPLATE_REPARACION = "<html> <p>Estimado %s \n" +
             "La reparacion de su dispositivo se encuentra en %s, Usted sera notificad@ cuando el estado" +
             " de la reparacion cambie." +
             "\n" +
             "\n" +
-            "Saludos, "+ fromEmail;
+            "Saludos, "+ fromEmail+
+            "</p></html>";
 
     private static final String EMAIL_TEMPLATE_STOCK_MINIMO = "Estimado Administrador, \n" +
             "El producto %s, se encuentra en stock minimo (%d)," +
@@ -30,7 +30,27 @@ public class EmailUtils {
     private static final String EMAIL_TEMPLATE_NUEVA_SOLICITUD = "<html>" +
             "<p>Estimado Administrador, \n" +
             "El cliente %s, a solicitado una nueva \n" +
-            "<a href+\"%s\" target=\"blank\">Reparacion.</a> " +
+            "<a href=\"%s\" target=\"blank\">Reparacion.</a> " +
+            "\n" +
+            "\n" +
+            "Saludos. </p> " +
+            "</html>";
+
+    private static final String EMAIL_TEMPLATE_CAMBIO_ESTADO_SOLICITUD = "<html>" +
+            "<p>Estimado Administrador, \n" +
+            "El cliente %s, %s la \n" +
+            "<a href=\"%s\" target=\"blank\">Cotizacion.</a> " +
+            "\n" +
+            "Su respuesta fue: \"%s\""+
+            "\n" +
+            "Saludos. </p> " +
+            "</html>";
+
+    private static final String EMAIL_TEMPLATE_NUEVA_COTIZACION = "<html>" +
+            "<p>Estimado Cliente %s, \n" +
+            "Su solicitud de reparacion ha sido contestada con la siguiente " +
+            "<a href=\"%s\" target=\"blank\">Cotizacion.</a>\n" +
+            "Por favor verifique la cotizacion para tomar una decision. \n" +
             "\n" +
             "\n" +
             "Saludos. </p> " +
@@ -70,6 +90,19 @@ public class EmailUtils {
         sendEmail(template, fromEmail, emailCliente);
     }
 
+    public static void cotizacionCambioEstadoEmail(Long cotizacionId,
+                                                   String nombreCliente,
+                                                   String verbo,
+                                                   String respuesta,
+                                                   List<String> adminEmails){
+
+        String cotizacionURL = JSFUtils.getAbsoluteURL()  +"/details.xhtml?id=" + cotizacionId;
+
+        String template = String.format(EMAIL_TEMPLATE_CAMBIO_ESTADO_SOLICITUD, nombreCliente,verbo,cotizacionURL, respuesta);
+
+        adminEmails.forEach(email -> sendEmail(template, fromEmail, email) );
+    }
+
     public static void productoStockMinimoEmail(String productoNombre, int stockMinimo, List<String> adminEmails){
         String template = String.format(EMAIL_TEMPLATE_STOCK_MINIMO, productoNombre, stockMinimo);
         adminEmails.forEach(email -> sendEmail(template, fromEmail, email) );
@@ -78,10 +111,18 @@ public class EmailUtils {
 
     public static void nuevaSolicitudReparacionEmail(String nombreCliente, Long solicitudReparacionId, List<String> adminEmails){
 
-        String solicitudURL = JSFUtils.getAbsoluteURL() + URLMap.getDetailSolicitud() +"?id=" + solicitudReparacionId;
+        String solicitudURL = JSFUtils.getAbsoluteURL() +"/details.xhtml?id=" +"?id=" + solicitudReparacionId;
 
         String template = String.format(EMAIL_TEMPLATE_NUEVA_SOLICITUD, nombreCliente, solicitudURL);
         adminEmails.forEach(email -> sendEmail(template, fromEmail, email) );
+    }
+
+    public static void nuevaCotizacionEmail(String nombreCliente, Long CotizacionId, String clienteMail){
+
+        String cotizacionURL = JSFUtils.getAbsoluteURL() + "/respuesta_cotizacion.xhtml?id=" + CotizacionId;
+
+        String template = String.format(EMAIL_TEMPLATE_NUEVA_COTIZACION, nombreCliente, cotizacionURL);
+        sendEmail(template, fromEmail, clienteMail);
     }
 
     private String getEmailTemplate(){return null;}

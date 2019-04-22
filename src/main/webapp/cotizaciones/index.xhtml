@@ -37,6 +37,11 @@
                 <p:column headerText="Precio total">
                     <h:outputText value="#{cotizacion.precioTotal}"/>
                 </p:column>
+
+                <p:column headerText="Estado Actual">
+                    <h:outputText value="#{cotizacion.solicitudReparacion.estado.estadoString}"/>
+                </p:column>
+
                 <c:if test="#{sessionBacking.usuario.administrador}">
                     <p:column>
                         <h:link styleClass="ui-icon-pencil" outcome="#{cotizacionBacking.urlMap.getNewReparacion()}" value="Asignar reparacion">

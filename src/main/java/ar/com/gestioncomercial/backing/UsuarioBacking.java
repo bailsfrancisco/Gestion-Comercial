@@ -54,18 +54,17 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
     @Override
     public String create() {
         try {
-            StringUtils.areNullOrEmpty(usuario.getNombreUsuario(),
-                    usuario.getPassword());
-            usuarioController.create(usuario);
+            if(!(StringUtils.isNullOrEmpty(usuario.getNombreUsuario()) ||
+                    StringUtils.isNullOrEmpty(usuario.getPassword()))){
 
-            return URLMap.getIndexUsuarios() + URLMap.getFacesRedirect();
+                usuarioController.create(usuario);
+                return URLMap.getIndexUsuarios() + URLMap.getFacesRedirect();
+            }
         } catch (EJBException e) {
             logger.log(Level.SEVERE, e.getMessage());
 
-        } catch (NullOrEmptyException e) {
-            logger.log(Level.SEVERE, e.getMessage());
-            JSFUtils.createFacesMessage("Campos: Nombre de usuario y Contraseña no pueden ser nulos");
         }
+        JSFUtils.createFacesMessage("Campos: Nombre de usuario y Contraseña no pueden ser nulos");
         return null;
     }
 

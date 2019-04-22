@@ -83,7 +83,7 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
                 cotizacion.getInsumos().forEach(producto -> productoController.disminuirStock(producto, 1));
             }
             cotizacionController.create(cotizacion);
-            //notificationController.notificarNuevaCotizacion(cotizacion);
+            notificationController.notificarNuevaCotizacion(cotizacion);
             return URLMap.getIndexCotizaciones() + URLMap.getFacesRedirect();
 
         } catch (EJBException e) {
@@ -159,12 +159,13 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
         cotizacion.setPrecioTotal( ( precioTotalInsumos + cotizacion.getPrecioManoObra())- cotizacion.getSenia());
     }
 
-/*    public void handleCotizacionRespuesta(boolean acepto){
+    public String handleCotizacionRespuesta(boolean acepto){
        if (StringUtils.isNullOrEmpty(mensajeCotizacion)){
            mensajeCotizacion = "-------------";
        }
        cotizacionController.handleCotizacionRespuesta(acepto, mensajeCotizacion, cotizacion);
-    }*/
+       return URLMap.getMisSolicitudes() + URLMap.getFacesRedirect();
+    }
 
     public Cotizacion getCotizacion() {
         return cotizacion;

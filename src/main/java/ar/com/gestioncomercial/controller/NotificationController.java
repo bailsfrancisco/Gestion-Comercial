@@ -10,7 +10,9 @@ public interface NotificationController {
 
     void notificarNuevaSolicitudReparacion(SolicitudReparacion solicitudReparacion);
 
+    void notificarNuevaCotizacion(Cotizacion cotizacion);
+
     void notificarCambioEstadoSolicitud(SolicitudReparacion solicitudReparacion);
 
-    void notificarCambioEstadoCotizacion(Cotizacion cotizacion);
+    void notificarCambioEstadoCotizacion(Cotizacion cotizacion, String verbo, String mensaje);
 }

@@ -66,19 +66,22 @@ public class EmpleadoBacking implements Serializable, CRUDBacking<AbstractPerson
     @Override
     public String create() {
         try {
-            StringUtils.areNullOrEmpty(usuario.getNombreUsuario(), usuario.getPassword());
-            empleado.setUsuario(usuario);
-            usuario.setDuenio(empleado);
-            empleadoController.create(empleado);
+            if(!(StringUtils.isNullOrEmpty(usuario.getNombreUsuario()) ||
+                    StringUtils.isNullOrEmpty(usuario.getPassword()))){
 
-            return URLMap.getIndexEmpleados() + URLMap.getFacesRedirect();
+                empleado.setUsuario(usuario);
+                usuario.setDuenio(empleado);
+                empleadoController.create(empleado);
+
+                return URLMap.getIndexEmpleados() + URLMap.getFacesRedirect();
+            }
+
         } catch (EJBException e) {
-            return null;
-        } catch (NullOrEmptyException e) {
+            JSFUtils.createFacesMessage("Ocurrio un Error");
             logger.log(Level.SEVERE, e.getMessage());
-            JSFUtils.createFacesMessage("Campos: Nombre de usuario y Contraseña no pueden ser nulos");
+            return null;
         }
-
+        JSFUtils.createFacesMessage("Campos: Nombre de usuario y Contraseña no pueden ser nulos");
         return null;
     }
 

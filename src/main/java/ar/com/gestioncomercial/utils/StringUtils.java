@@ -1,17 +1,9 @@
 package ar.com.gestioncomercial.utils;
 
-import ar.com.gestioncomercial.exception.NullOrEmptyException;
-
 public class StringUtils {
-
-    public static void areNullOrEmpty(String... toTest) throws NullOrEmptyException {
-        if (org.apache.commons.lang3.StringUtils.isAllEmpty(toTest)) {
-            throw new NullOrEmptyException();
-        }
-        for (String str : toTest) {
-            if (org.apache.commons.lang3.StringUtils.containsOnly(str, " ")) {
-                throw new NullOrEmptyException();
-            }
-        }
+    // Esto deberia dar true or false la exception esta de mas
+    public static boolean isNullOrEmpty(String toTest) {
+        return  (org.apache.commons.lang3.StringUtils.isAllEmpty(toTest) ||
+        (org.apache.commons.lang3.StringUtils.containsOnly(toTest, " ")));
     }
 }
