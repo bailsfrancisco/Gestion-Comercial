@@ -58,7 +58,7 @@ public class EmailUtils {
             "Saludos. </p> " +
             "</html>";
 
-    private static void sendEmail(String template, String fromEmail, String mail ){
+    private static void sendEmail(String template, String fromEmail, String mail ,String subject){
         try {
         Email email = new HtmlEmail();
         email.setHostName("smtp.googlemail.com");
@@ -69,7 +69,7 @@ public class EmailUtils {
 
         email.setFrom(fromEmail);
 
-        email.setSubject("TestMail");
+        email.setSubject(subject);
         email.setMsg(template);
         email.addTo(mail);
         email.send();
@@ -82,15 +82,15 @@ public class EmailUtils {
 
         String template = String.format(EMAIL_TEMPLATE_REPARACION, nombreCliente, estado, mensaje);
 
-        sendEmail(template, fromEmail, emailCliente);
+        sendEmail(template, fromEmail, emailCliente, "Reparacion: Cambio Estado");
     }
 
-    public static void solicitudReparacionCambioEstadoEmail(String nombreCliente, String emailCliente, String estado){
+/*    public static void solicitudReparacionCambioEstadoEmail(String nombreCliente, String emailCliente, String estado){
 
         String template = String.format(EMAIL_TEMPLATE_REPARACION, nombreCliente, estado);
 
-        sendEmail(template, fromEmail, emailCliente);
-    }
+        sendEmail(template, fromEmail, emailCliente,"");
+    }*/
 
     public static void cotizacionCambioEstadoEmail(Long cotizacionId,
                                                    String nombreCliente,
@@ -102,21 +102,21 @@ public class EmailUtils {
 
         String template = String.format(EMAIL_TEMPLATE_CAMBIO_ESTADO_SOLICITUD, nombreCliente,verbo,cotizacionURL, respuesta);
 
-        adminEmails.forEach(email -> sendEmail(template, fromEmail, email) );
+        adminEmails.forEach(email -> sendEmail(template, fromEmail, email,"Respuesta Cotizacion") );
     }
 
     public static void productoStockMinimoEmail(String productoNombre, int stockMinimo, List<String> adminEmails){
         String template = String.format(EMAIL_TEMPLATE_STOCK_MINIMO, productoNombre, stockMinimo);
-        adminEmails.forEach(email -> sendEmail(template, fromEmail, email) );
+        adminEmails.forEach(email -> sendEmail(template, fromEmail, email,"Producto Stock Minimo") );
 
     }
 
     public static void nuevaSolicitudReparacionEmail(String nombreCliente, Long solicitudReparacionId, List<String> adminEmails){
 
-        String solicitudURL = JSFUtils.getAbsoluteURL() +"/details.xhtml?id=" +"?id=" + solicitudReparacionId;
+        String solicitudURL = JSFUtils.getAbsoluteURL() +"/details.xhtml?id=" + solicitudReparacionId;
 
         String template = String.format(EMAIL_TEMPLATE_NUEVA_SOLICITUD, nombreCliente, solicitudURL);
-        adminEmails.forEach(email -> sendEmail(template, fromEmail, email) );
+        adminEmails.forEach(email -> sendEmail(template, fromEmail, email, "Nueva Solicitud de Reparacion") );
     }
 
     public static void nuevaCotizacionEmail(String nombreCliente, Long CotizacionId, String clienteMail){
@@ -124,7 +124,7 @@ public class EmailUtils {
         String cotizacionURL = JSFUtils.getAbsoluteURL() + "/respuesta_cotizacion.xhtml?id=" + CotizacionId;
 
         String template = String.format(EMAIL_TEMPLATE_NUEVA_COTIZACION, nombreCliente, cotizacionURL);
-        sendEmail(template, fromEmail, clienteMail);
+        sendEmail(template, fromEmail, clienteMail, "Respuesta a mi Solicitud Reparacion");
     }
 
     private String getEmailTemplate(){return null;}
