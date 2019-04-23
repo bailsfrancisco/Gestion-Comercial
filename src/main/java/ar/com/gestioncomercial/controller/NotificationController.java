@@ -12,7 +12,7 @@ public interface NotificationController {
 
     void notificarNuevaCotizacion(Cotizacion cotizacion);
 
-    void notificarCambioEstadoSolicitud(SolicitudReparacion solicitudReparacion);
+    //void notificarCambioEstadoSolicitud(SolicitudReparacion solicitudReparacion);
 
     void notificarCambioEstadoCotizacion(Cotizacion cotizacion, String verbo, String mensaje);
 }

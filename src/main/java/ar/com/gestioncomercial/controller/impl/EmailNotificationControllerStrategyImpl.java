@@ -59,6 +59,7 @@ public class EmailNotificationControllerStrategyImpl implements NotificationCont
         );
     }
 
+    /*
     @Override
     public void notificarCambioEstadoSolicitud(SolicitudReparacion solicitudReparacion) {
         AbstractPersona cliente = solicitudReparacion.getCliente();
@@ -67,7 +68,7 @@ public class EmailNotificationControllerStrategyImpl implements NotificationCont
                     cliente.getMail(),
                     solicitudReparacion.getEstado().getEstadoString()
         );
-    }
+    }*/
 
     @Override
     public void notificarCambioEstadoCotizacion(Cotizacion cotizacion, String verbo, String mensaje) {
