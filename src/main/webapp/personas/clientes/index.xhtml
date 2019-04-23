@@ -44,7 +44,7 @@
                     <h:outputText value="#{cliente.observaciones}"/>
                 </p:column>
                 <p:column headerText="Categoria IVA">
-                    <h:outputText value="#{cliente.categoriaIVA}"/>
+                    <h:outputText value="#{cliente.categoriaIVA.categoriaIVAString}"/>
                 </p:column>
                 <c:if test="#{sessionBacking.usuario.administrador}">
                     <p:column>

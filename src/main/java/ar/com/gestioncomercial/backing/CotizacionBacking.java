@@ -206,4 +206,8 @@ public class CotizacionBacking implements Serializable, CRUDBacking<Cotizacion> 
     public void setMensajeCotizacion(String mensajeCotizacion) {
         this.mensajeCotizacion = mensajeCotizacion;
     }
+    
+    public Boolean isAnulada(Cotizacion c){
+        return c.getSolicitudReparacion().getEstado().getEstadoString().equals("Anulada") || c.getSolicitudReparacion().getEstado().getEstadoString().equals("Pendiente") || c.getSolicitudReparacion().getEstado().getEstadoString().equals("Terminado") || c.getSolicitudReparacion().getEstado().getEstadoString().equals("Entregado");
+    }
 }

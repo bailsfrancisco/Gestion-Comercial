@@ -17,11 +17,11 @@ public enum CategoriaIVA {
 
     private final String categoriaIVA;
 
-    private CategoriaIVA(String categoria) {
+    CategoriaIVA(String categoria) {
         categoriaIVA = categoria;
     }
 
-    public String getCategoriaIVA() {
+    public String getCategoriaIVAString() {
         return categoriaIVA;
     }
 }

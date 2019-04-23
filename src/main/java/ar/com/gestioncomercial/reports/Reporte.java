@@ -34,7 +34,7 @@ public class Reporte {
     public void getReporte(String ruta, Long filtroID) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         Connection conexion;
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        conexion = DriverManager.getConnection("jdbc:mysql://172.17.0.2:3306/gestion-comercial?useSSL=false", "root", "123mysql");
+        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion-comercial", "root", "1234");
 
         //Se definen los parametros si es que el reporte necesita
         Map parameter = new HashMap();
@@ -47,7 +47,7 @@ public class Reporte {
 
             httpServletResponse.setContentType("application/pdf");
             httpServletResponse.addHeader("Content-Type", "application/pdf");
-            httpServletResponse.addHeader("Content-Disposition","attachment;orden_reparacion.pdf");
+            httpServletResponse.addHeader("Content-Disposition","attachment;orden_reparacion");
 
             JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
 
