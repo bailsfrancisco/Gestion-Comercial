@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../template.xhtml">
+    <ui:define name="head">
+        <h:head>
+            <title>Cambiar Cotraseña</title>
+        </h:head>
+        <f:metadata>
+            <f:viewParam name="user" value="#{usuarioBacking.user}"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="content">
+    <p:panelGrid columns="2" layout="grid">
+
+        <p:outputLabel value="Contraseña Actual"/>
+        <p:password value="#{usuarioBacking.user.password}"/>
+
+        <p:outputLabel value="Contraseña Nueva"/>
+        <p:password value="#{usuarioBacking.contrasenia}"/>
+
+
+    </p:panelGrid>
+    <p:panel>
+        <p:commandButton value="Actualizar Contraseña"
+                         action="#{usuarioBacking.cambiarContrasenia()}"
+                         update="messages"/>
+        <p:button value="Cancelar" outcome="#{sessionBacking.urlMap.getIndexUsuarios()}"/>
+    </p:panel>
+    </ui:define>
+</ui:composition>

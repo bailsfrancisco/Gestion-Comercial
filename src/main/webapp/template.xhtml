@@ -73,6 +73,7 @@
 
                                     <c:otherwise>
                                         <p:submenu  icon="fa fa-user" label="#{sessionBacking.usuario.nombreUsuario}" >
+                                            <p:menuitem value="Cambiar mi Contraseña" url="#{sessionBacking.urlMap.getUpdatePassword()}?user=#{sessionBacking.usuario.id}" />
                                             <p:menuitem value="Solicitar reparacion" url="#{sessionBacking.urlMap.getNewSolicitud()}"/>
                                             <p:menuitem value="Ver mis solicitudes" url="#{sessionBacking.urlMap.getMisSolicitudes()}"/>
                                             <p:menuitem value="Ver estado de mis reparaciones" url="#{sessionBacking.urlMap.getMisReparaciones()}"/>

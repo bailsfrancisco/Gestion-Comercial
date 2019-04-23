@@ -4,6 +4,7 @@ import ar.com.gestioncomercial.controller.PersonaController;
 import ar.com.gestioncomercial.controller.UsuarioController;
 import ar.com.gestioncomercial.controller.impl.PersonaControllerImpl;
 import ar.com.gestioncomercial.exception.NullOrEmptyException;
+import ar.com.gestioncomercial.model.AbstractPersona;
 import ar.com.gestioncomercial.model.Usuario;
 import ar.com.gestioncomercial.utils.StringUtils;
 import ar.com.gestioncomercial.utils.URLMap;
@@ -28,6 +29,8 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
     private static final Logger logger = Logger.getLogger(UsuarioBacking.class.getName());
 
     private Usuario usuario;
+
+    private String contrasenia;
 
     @PostConstruct
     public void init() {
@@ -98,6 +101,22 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
 
     }
 
+    public String cambiarContrasenia(){
+        String contrasenia = usuarioController.retrieve(usuario).getPassword();
+        if(!contrasenia.equals( usuario.getPassword())){
+            JSFUtils.createFacesMessage("Su contraseña actual no coincide");
+            return null;
+        }
+        try {
+            usuario.setPassword(this.contrasenia);
+            usuarioController.update(usuario);
+            return URLMap.getWELCOME() + URLMap.getFacesRedirect();
+        } catch (Exception e) {
+            JSFUtils.createFacesMessage("Se produjo un error al actualizar su contraseña");
+            return null;
+        }
+    }
+
     @Override
     public List<Usuario> getAll() {
         return getUsers();
@@ -117,5 +136,13 @@ public class UsuarioBacking implements Serializable, CRUDBacking<Usuario> {
 
     public void setUrlMap(URLMap urlMap) {
         this.urlMap = urlMap;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 }

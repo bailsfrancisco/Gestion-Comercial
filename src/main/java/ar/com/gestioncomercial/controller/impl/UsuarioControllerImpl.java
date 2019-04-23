@@ -21,7 +21,7 @@ public class UsuarioControllerImpl implements UsuarioController {
 
     @Override
     public Usuario retrieve(Usuario entity) {
-        return null;
+        return usuarioDAO.find(entity.getId());
     }
 
     @Override

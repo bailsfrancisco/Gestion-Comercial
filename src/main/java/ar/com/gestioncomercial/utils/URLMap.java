@@ -32,6 +32,7 @@ public class URLMap implements Serializable {
     private static final String INDEX_USUARIOS = USUARIOS + _INDEX;
     private static final String NEW_USUARIO = USUARIOS + _NEW;
     private static final String EDIT_USUARIO = USUARIOS + _EDIT;
+    private static final String UPDATE_PASSWORD = USUARIOS +"cambiarContrasenia.xhtml";
 
     // URLS para categorias
     private static final String CATEGORIAS = "/categorias/";
@@ -250,5 +251,9 @@ public class URLMap implements Serializable {
 
     public static String getRespuestaCotizacion() {
         return RESPUESTA_COTIZACION;
+    }
+
+    public static String getUpdatePassword() {
+        return UPDATE_PASSWORD;
     }
 }
