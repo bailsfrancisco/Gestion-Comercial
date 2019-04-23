@@ -4,7 +4,6 @@ import ar.com.gestioncomercial.controller.ClienteController;
 import ar.com.gestioncomercial.controller.ImageController;
 import ar.com.gestioncomercial.controller.NotificationController;
 import ar.com.gestioncomercial.controller.SolicitudReparacionController;
-import ar.com.gestioncomercial.model.Cotizacion;
 import ar.com.gestioncomercial.model.Estado;
 import ar.com.gestioncomercial.model.Image;
 import ar.com.gestioncomercial.model.SolicitudReparacion;
@@ -73,8 +72,7 @@ public class SolicitudReparacionBacking implements Serializable, CRUDBacking<Sol
             solicitudReparacion.setEstado(Estado.PENDIENTE);
             solicitudReparacionController.create(solicitudReparacion);
             notificationController.notificarNuevaSolicitudReparacion(solicitudReparacion);
-            solicitudReparacion.getFileNames().forEach(image -> imageController.create(image));
-            return URLMap.getIndexSolicitudes() + URLMap.getFacesRedirect();
+            return URLMap.getMisSolicitudes() + URLMap.getFacesRedirect();
 
         } catch (EJBException e) {
             logger.log(Level.SEVERE, e.getMessage());

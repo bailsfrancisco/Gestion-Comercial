@@ -34,7 +34,7 @@ public class Reporte {
     public void getReporte(String ruta, Long filtroID) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         Connection conexion;
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion-comercial", "root", "1234");
+        conexion = DriverManager.getConnection("jdbc:mysql://172.17.0.2:3306/gestion-comercial?useSSL=false", "root", "123mysql");
 
         //Se definen los parametros si es que el reporte necesita
         Map parameter = new HashMap();

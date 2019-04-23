@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet("/images/*")
 public class ImageServlet extends HttpServlet {
 
-    public static final String IMAGES_PATH = "/home/bailsfrancisco/test/";
+    public static final String IMAGES_PATH = "/home/fernando/test/";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String filename = request.getPathInfo().substring(1);
