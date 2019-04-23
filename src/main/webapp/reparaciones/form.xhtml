@@ -38,7 +38,7 @@
 
         <br/>
         <p:selectOneMenu style="display: none;" filter="true" filterMatchMode="contains" value="#{reparacionBacking.reparacion.solicitud_reparacion}">
-            <f:selectItems style="display: none;"  value="#{solicitudReparacionBacking.all}" var="solicitud" itemLabel="#{solicitud.marca}"/>
+            <f:selectItems value="#{solicitudReparacionBacking.all}" var="solicitud" itemLabel="#{solicitud.marca}"/>
         </p:selectOneMenu>
     </p:panelGrid>
 </ui:composition>

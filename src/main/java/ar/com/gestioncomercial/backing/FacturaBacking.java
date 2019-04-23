@@ -7,11 +7,13 @@ package ar.com.gestioncomercial.backing;
 
 import ar.com.gestioncomercial.controller.FacturaController;
 import ar.com.gestioncomercial.model.Cliente;
-import ar.com.gestioncomercial.model.Factura;
 import ar.com.gestioncomercial.model.Reparacion;
+import ar.com.gestioncomercial.model.Factura;
+import ar.com.gestioncomercial.reports.Reporte;
 import ar.com.gestioncomercial.utils.JSFUtils;
 import ar.com.gestioncomercial.utils.URLMap;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,8 +22,10 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.ServletContext;
 
 /**
  *
@@ -166,4 +170,19 @@ public class FacturaBacking implements Serializable, CRUDBacking<Factura> {
     public void setReparacion(Reparacion reparacion) {
         this.reparacion = reparacion;
     }
+
+    //Metodo para invocar el reporte y enviarle los parametros si es que necesita
+    public void verReporte(Long id) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+
+        //Instancia hacia la clase reporteClientes        
+        Reporte reporte = new Reporte();
+
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ServletContext servletContext = (ServletContext) facesContext.getExternalContext().getContext();
+        String ruta = servletContext.getRealPath("/reportes/reporte-orden-reparacion.jasper");
+
+        reporte.getReporte(ruta, id);
+        FacesContext.getCurrentInstance().responseComplete();
+    }
+
 }
