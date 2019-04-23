@@ -42,6 +42,9 @@
 
                 <c:if test="#{sessionBacking.usuario.administrador}">
                     <p:column>
+                        <p:commandLink ajax="false" value="Imprimir" actionListener="#{facturaBacking.verReporte(reparacionBacking.reparacion.id)}" style="width: 150px; height: 60px;"/>
+                    </p:column>
+                    <p:column>
                         <p:commandLink actionListener="#{facturaBacking.delete(factura)}"
                                        value="Borrar"
                                        update="ordenes">
